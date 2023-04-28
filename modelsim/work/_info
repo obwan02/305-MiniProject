@@ -1,6 +1,7 @@
 m255
 K4
 z2
+!s11e MIXED_VERSIONS
 13
 !s112 1.1
 !i10d 8192
@@ -8,3 +9,136 @@ z2
 !i10f 100
 cModel Technology
 dC:/modeltech_2020.2/examples
+Egame_state_machine
+Z0 w1682641680
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 8
+Z4 dH:/Documents/305-MiniProject/modelsim
+Z5 8H:/Documents/305-MiniProject/modelsim/game_state_machine.vhd
+Z6 FH:/Documents/305-MiniProject/modelsim/game_state_machine.vhd
+l0
+L5 1
+VJk^VlhzU=7VYcTOF0PgA`0
+!s100 U2LMm2;nGCzV5C<FB6_n@0
+Z7 OE;C;2020.2;71
+32
+Z8 !s110 1682641684
+!i10b 1
+Z9 !s108 1682641684.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|H:/Documents/305-MiniProject/modelsim/game_state_machine.vhd|
+!s107 H:/Documents/305-MiniProject/modelsim/game_state_machine.vhd|
+!i113 0
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abehave
+R1
+R2
+R3
+DEx4 work 18 game_state_machine 0 22 Jk^VlhzU=7VYcTOF0PgA`0
+!i122 8
+l18
+L13 15
+V?W?IChlJWU1NlnQVCo_EW1
+!s100 PAF6gGGN>I:@;X5RRlcnI2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+Z13 !s107 H:/Documents/305-MiniProject/modelsim/game_state_machine.vhd|
+!i113 0
+R11
+R12
+Emouse
+Z14 w1617185575
+Z15 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z16 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R2
+R3
+!i122 1
+R4
+Z17 8H:/Documents/305-MiniProject/modelsim/mouse.vhd
+Z18 FH:/Documents/305-MiniProject/modelsim/mouse.vhd
+l0
+L9 1
+V=Ph3GSn^@YBhjTX65@gaR3
+!s100 NW:2PZGF>]B=@dDA=NGMT0
+R7
+32
+Z19 !s110 1682641503
+!i10b 1
+Z20 !s108 1682641503.000000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|H:/Documents/305-MiniProject/modelsim/mouse.vhd|
+Z22 !s107 H:/Documents/305-MiniProject/modelsim/mouse.vhd|
+!i113 0
+R11
+R12
+Abehavior
+R15
+R16
+R2
+R3
+DEx4 work 5 mouse 0 22 =Ph3GSn^@YBhjTX65@gaR3
+!i122 1
+l44
+L18 256
+V[lS:;mYz8AA;9NBFoo5252
+!s100 zCU_b4jngd_4lC86n0`7F0
+R7
+32
+R19
+!i10b 1
+R20
+R21
+R22
+!i113 0
+R11
+R12
+Evga_sync
+Z23 w1682641469
+R15
+R16
+R2
+R3
+!i122 2
+R4
+Z24 8H:/Documents/305-MiniProject/modelsim/vga_sync.vhd
+Z25 FH:/Documents/305-MiniProject/modelsim/vga_sync.vhd
+l0
+L7 1
+VcdCRFk=kgOe`]L4zhZDZA1
+!s100 _l^FX8bbCD3IjI0S=_RTW3
+R7
+32
+R19
+!i10b 1
+R20
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|H:/Documents/305-MiniProject/modelsim/vga_sync.vhd|
+Z27 !s107 H:/Documents/305-MiniProject/modelsim/vga_sync.vhd|
+!i113 0
+R11
+R12
+Aa
+R15
+R16
+R2
+R3
+DEx4 work 8 vga_sync 0 22 cdCRFk=kgOe`]L4zhZDZA1
+!i122 2
+l18
+L13 77
+V@:[OozN^N9^agKj@@<;V42
+!s100 WFb=Ah6ekZG;K4j`AXbUV2
+R7
+32
+R19
+!i10b 1
+R20
+R26
+R27
+!i113 0
+R11
+R12
