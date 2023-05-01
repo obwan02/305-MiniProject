@@ -63,8 +63,8 @@ begin
 
     C1: renderer port map(Clk => Clk, 
                           Reset => '0', 
-                          PlayerX => PlayerX, 
-                          PlayerY => PlayerY, 
+                          PlayerX =>  (others => '0'), 
+                          PlayerY => (others => '0'), 
                           VgaRow => VgaRow,
                           VgaCol => VgaCol,
                           R => R,
@@ -79,7 +79,8 @@ begin
     );
 
     C3: player_update port map(Clk => Clk,
-                               Reset => '0',
+                               Reset => '0'
+                               ,
                                LeftMouseButton => '0',
                                NewX => PlayerX,
                                NewY => PlayerY

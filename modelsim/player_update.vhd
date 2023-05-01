@@ -15,20 +15,21 @@ entity player_update is
 end entity player_update;
 
 architecture rtl of player_update is
-
-    variable CurrentY : signed(9 downto 0);
 begin
-    process(clk)
+    process(Clk)
         constant ConstantYChanged: signed(9 downto 0) := to_signed(11, 10);  
         constant MaxOut: signed(9 downto 0) := to_signed(479, 10);  
+    
+        variable CurrentY : signed(9 downto 0);
     begin
         
+    if rising_edge(Clk) then
         if (LeftMouseButton /= '0') then 
             if (CurrentY - ConstantYChanged <= 0) then
-                newY <= (others => '0');
+                NewY <= (others => '0');
                 CurrentY  := (others => '0');
             else
-                newY <= CurrentY - ConstantYChanged;
+                NewY <= CurrentY - ConstantYChanged;
                 CurrentY  := CurrentY - ConstantYChanged;
             end if;
         else
@@ -37,9 +38,10 @@ begin
                 CurrentY := maxOut;
             else
                 NewY <= CurrentY + constantYChanged;
-                currentY := CurrentY + constantYChanged;
+                CurrentY := CurrentY + constantYChanged;
             end if;
         end if;
+    end if;
     
     end process;
 

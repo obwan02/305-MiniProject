@@ -36,20 +36,20 @@ begin
     RENDER_BIRD: process(VgaRow, VgaCol, PlayerY, PlayerX)
     begin
 
-        if PlayerY >= '0' & signed(VgaRow) and
-        PlayerX >= signed('0' & VgaCol) and 
-        PlayerY + BirdHeight <= signed(VgaRow) and 
-        PlayerX + BirdWidth <= signed('0' & VgaCol) then
+        if signed(VgaRow) >= PlayerY and
+        signed(VgaCol) >= PlayerX and 
+        signed(VgaRow) <= PlayerY + BirdHeight  and 
+        signed(VgaCol) <= PlayerX + BirdWidth then
             EnableBird <= '1';
         else
             EnableBird <= '0';
         end if;
     end process;
 
-    RENDER_ALL: process(EnableBird)
+    RENDER_ALL: process(EnableBird, BirdR, BirdG, BirdB)
     begin
 
-        if EnableBird then
+        if EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         else 
             R <= (others => '0'); G <= (others => '0'); B <= (others => '0');
