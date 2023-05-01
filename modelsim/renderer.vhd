@@ -52,7 +52,7 @@ begin
         if EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         else 
-            R <= (others => '0'); G <= (others => '0'); B <= (others => '0');
+            R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
         end if;
 
     end process;

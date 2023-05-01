@@ -80,15 +80,13 @@ BEGIN
    		video_on_v <= '0';
 	END IF;
 
-	red_out <= (others => red(1) and video_on);
-	green_out <= (others => green(1)and video_on);
-	blue_out <=  (others => blue(1) and video_on);
+
 -- Put all video signals through DFFs to elminate any delays that cause a blurry image
-	-- if video_on = '1' then 
-	-- 	red_out <= red; green_out <= green; blue_out <= blue;	
-	-- else
-	-- 	red_out <= (others => '0'); green_out <= (others => '0'); blue_out <= (others => '0');
-	-- end if;
+	if video_on = '1' then 
+		red_out <= red; green_out <= green; blue_out <= blue;	
+	else
+		red_out <= (others => '0'); green_out <= (others => '0'); blue_out <= (others => '0');
+	end if;
 
 	horiz_sync_out <= horiz_sync;
 	vert_sync_out <= vert_sync;

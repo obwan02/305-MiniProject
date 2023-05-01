@@ -9,7 +9,7 @@ entity player_update is
 
         LeftMouseButton: in std_logic;
 
-        NewX: out signed(10 downto 0);
+        NewX: out signed(10 downto 0) := to_signed(420, 11);
         NewY: out signed(9 downto 0)
     );
 end entity player_update;
@@ -17,30 +17,29 @@ end entity player_update;
 architecture rtl of player_update is
 begin
     process(Clk)
-        constant ConstantYChanged: signed(9 downto 0) := to_signed(11, 10);  
         constant MaxOut: signed(9 downto 0) := to_signed(479, 10);  
     
+        variable YVelocity: signed(9 downto 0) := to_signed(1, 10);  
         variable CurrentY : signed(9 downto 0);
     begin
-        
+
     if rising_edge(Clk) then
         if (LeftMouseButton /= '0') then 
-            if (CurrentY - ConstantYChanged <= 0) then
-                NewY <= (others => '0');
-                CurrentY  := (others => '0');
+            if (CurrentY - YVelocity <= 0) then
+                YVelocity := (others => '0');
             else
-                NewY <= CurrentY - ConstantYChanged;
-                CurrentY  := CurrentY - ConstantYChanged;
+                YVelocity := YVelocity + 1;
             end if;
         else
-            if (CurrentY + ConstantYChanged >= 479) then
-                NewY <= maxOut;
-                CurrentY := maxOut;
+            if (CurrentY + YVelocity >= 479) then
+                YVelocity := (others => '0');
             else
-                NewY <= CurrentY + constantYChanged;
-                CurrentY := CurrentY + constantYChanged;
+                YVelocity := YVelocity - 10;
             end if;
         end if;
+
+        CurrentY := CurrentY - YVelocity;
+        NewY <= CurrentY;
     end if;
     
     end process;
