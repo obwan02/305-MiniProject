@@ -5,8 +5,10 @@ use  IEEE.STD_LOGIC_ARITH.all;
 use  IEEE.STD_LOGIC_UNSIGNED.all;
 
 ENTITY VGA_SYNC IS
-	PORT(	clock_25Mhz, red, green, blue		: IN	STD_LOGIC;
-			red_out, green_out, blue_out, horiz_sync_out, vert_sync_out	: OUT	STD_LOGIC;
+	PORT(	clock_25Mhz: IN STD_LOGIC;
+			red, green, blue		: IN	std_logic_vector(3 downto 0);
+			red_out, green_out, blue_out  		: OUT std_logic_vector(3 downto 0);
+			horiz_sync_out, vert_sync_out	: OUT STD_LOGIC;
 			pixel_row, pixel_column: OUT STD_LOGIC_VECTOR(9 DOWNTO 0));
 END VGA_SYNC;
 
