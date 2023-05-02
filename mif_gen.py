@@ -20,18 +20,18 @@ def convert_image_to_bw(image: Image.Image):
     return "".join("0" if pix == 0 else "1" for pix, *_ in pix_ints)
 
 
-def convert_image_to_color(image: Image.Image):
+def convert_image_to_color(image: Image.Image) -> Image.Image:
     return image.tobytes()
 
 
-def group_into_8s(data):
+def group_into_ns(data, n=12):
     return (data[i : i + 8] for i in range(0, len(data), 8))
 
 
 def write_mif(file, bit_strings, names=None):
     file.write("% GENERATED CONTENT %")
     file.write("Depth = 512;\n")
-    file.write("Width = 8;\n")
+    file.write("Width = 12;\n")
     file.write("Address_radix = dec;\n")
     file.write("Data_radix = bin;\n")
     file.write("Content Begin\n")
@@ -44,8 +44,10 @@ def write_mif(file, bit_strings, names=None):
         file.write("\n")
         if name:
             file.write(f"% Data for '{name}' %")
-        for eight_bits in group_into_8s(bit_strings):
+        for eight_bits in group_into_ns(bit_strings, n=12):
             file.write(f"{addr:08d} : {eight_bits};")
+
+    file.write("END;")
 
 
 if __name__ == "__main__":
@@ -59,7 +61,5 @@ if __name__ == "__main__":
     # Convert image into binary,
     # split the binary into lines of 8 bits,
     # and then print the lines
-    bw = convert_image_to_bw(image)
     color = convert_image_to_color(image)
-    print("Black and White Image:")
-    print("".join(bw))
+    print(color.getbands())
