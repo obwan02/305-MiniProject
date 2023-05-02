@@ -4,31 +4,16 @@ from sys import argv, exit
 from itertools import zip_longest, count
 import struct
 
-
-def convert_image_to_bw(image: Image.Image):
-    # Convert every 4 bytes in the image
-    # into a big-endian integer
-    #
-    # Every 4 bytes that are read are
-    # structured in an RGBA, where each
-    # channel takes up one byte of space
-    pix_ints = struct.iter_unpack("!I", image.tobytes())
-
-    # Convert to a bit string, where every bit
-    # represents one pixel, and the pixel is active
-    # only if it is non-zero
-    return "".join("0" if pix == 0 else "1" for pix, *_ in pix_ints)
-
-
-def convert_image_to_color(image: Image.Image) -> Image.Image:
-    return image.tobytes()
+def convert_image_to_bin_strings(image: Image.Image) -> Image.Image:
+    data = image.getdata()
+    return [f'{r>>4:04b}{g>>4:04b}{r>>4:04b}' for r, g, b, *_ in data]
 
 
 def group_into_ns(data, n=12):
-    return (data[i : i + 8] for i in range(0, len(data), 8))
+    return (data[i : i + n] for i in range(0, len(data), n))
 
 
-def write_mif(file, bit_strings, names=None):
+def write_bin_strings(file, bit_strings):
     file.write("% GENERATED CONTENT %")
     file.write("Depth = 512;\n")
     file.write("Width = 12;\n")
@@ -37,15 +22,9 @@ def write_mif(file, bit_strings, names=None):
     file.write("Content Begin\n")
 
     addr = 0
-    for bit_string, name in zip_longest(
-        bit_strings,
-        names if names else [],
-    ):
-        file.write("\n")
-        if name:
-            file.write(f"% Data for '{name}' %")
-        for eight_bits in group_into_ns(bit_strings, n=12):
-            file.write(f"{addr:08d} : {eight_bits};")
+    for i, bit_string in enumerate(bit_strings):
+        file.write(f"{i:08d} : {bit_string};\n")
+        
 
     file.write("END;")
 
@@ -61,5 +40,6 @@ if __name__ == "__main__":
     # Convert image into binary,
     # split the binary into lines of 8 bits,
     # and then print the lines
-    color = convert_image_to_color(image)
-    print(color.getbands())
+    bin_strings = convert_image_to_bin_strings(image)
+    with open("modelsim/bird_rom.mif", "w") as file:
+        write_bin_strings(file, bin_strings)

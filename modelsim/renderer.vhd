@@ -71,8 +71,8 @@ begin
             signed(VgaCol) >= PlayerX and 
             signed(VgaRow) <= PlayerY + BirdHeight  and 
             signed(VgaCol) <= PlayerX + BirdWidth then
-                v_BirdRow := unsigned(VgaRow) - unsigned(PlayerX);
-                v_BirdCol := unsigned(VgaCol) - unsigned(PlayerY);
+                v_BirdRow := resize(unsigned(VgaRow) - unsigned('0' & PlayerX), 3);
+                v_BirdCol := resize(unsigned(VgaCol) - unsigned('0' & PlayerY), 3);
             else
                 v_BirdRow := (others => '0');
                 v_BirdCol := (others => '0');

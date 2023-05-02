@@ -42,7 +42,7 @@ architecture behave of sprite_rom is
 	);
 	port (
 		clock0		: in std_logic ;
-		address_a	: in std_logic_VECTOR (8 downto 0);
+		address_a	: in std_logic_VECTOR (5 downto 0);
 		q_a			: out std_logic_VECTOR (11 downto 0)
 	);
 	end component;
@@ -58,11 +58,11 @@ begin
 		intended_device_family => "Cyclone III",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
-		numwords_a => 512,
+		numwords_a => 64,
 		operation_mode => "ROM",
 		outdata_aclr_a => "NONE",
 		outdata_reg_a => "UNREGISTERED",
-		widthad_a => 9,
+		widthad_a => 6,
 		width_a => 12,
 		width_byteena_a => 1
 	)
