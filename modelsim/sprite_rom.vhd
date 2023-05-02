@@ -7,10 +7,7 @@ LIBRARY altera_mf;
 USE altera_mf.all;
 
 entity sprite_rom IS
-    generic
-    (
-        sprite_file: string
-    );
+    generic(sprite_file: string);
 
 	port
 	(
