@@ -1,2 +1,4 @@
 *.bak
+*.ghw
 modelsim/work/*
+modelsim/bin/*

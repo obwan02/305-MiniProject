@@ -13,7 +13,8 @@ entity sprite_rom IS
 	(
 		SpriteRow, SpriteCol	:	in std_logic_vector (2 downto 0);
 		Clk				: 	in std_logic;
-        Red, Green, Blue : out std_logic_vector(3 downto 0)
+        Red, Green, Blue : out std_logic_vector(3 downto 0);
+		Visible: out std_logic
 	);
 end sprite_rom;
 
@@ -32,13 +33,13 @@ architecture behave of sprite_rom is
 		intended_device_family	: string;
 		lpm_hint				: string;
 		lpm_type				: string;
-		numwords_a				: NATURAL;
+		numwords_a				: natural;
 		operation_mode			: string;
 		outdata_aclr_a			: string;
 		outdata_reg_a			: string;
-		widthad_a				: NATURAL;
-		width_a					: NATURAL;
-		width_byteena_a			: NATURAL
+		widthad_a				: natural;
+		width_a					: natural;
+		width_byteena_a			: natural
 	);
 	port (
 		clock0		: in std_logic ;
@@ -76,5 +77,6 @@ begin
     Red <= rom_data(11 downto 8);
     Green <= rom_data(7 downto 4);
     Blue <= rom_data(3 downto 0);
+	Visible <= '1';
 
 end behave;

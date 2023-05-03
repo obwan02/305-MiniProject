@@ -39,7 +39,7 @@ begin
         end if;
 
         CurrentY := CurrentY - YVelocity;
-        NewY <= CurrentY;
+        NewY <= to_signed(100, 10);
     end if;
     
     end process;

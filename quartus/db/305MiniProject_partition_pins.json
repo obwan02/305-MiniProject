@@ -1,0 +1,77 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "VgaRedOut[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaRedOut[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaRedOut[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaRedOut[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaGreenOut[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaGreenOut[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaGreenOut[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaGreenOut[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaBlueOut[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaBlueOut[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaBlueOut[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaBlueOut[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VgaHSync",
+					"strict" : false
+				},
+				{
+					"name" : "VgaVSync",
+					"strict" : false
+				},
+				{
+					"name" : "MouseClk",
+					"strict" : false
+				},
+				{
+					"name" : "MouseData",
+					"strict" : false
+				},
+				{
+					"name" : "Clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

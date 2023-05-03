@@ -24,7 +24,8 @@ architecture behave of renderer is
 
         port(SpriteRow, SpriteCol	:	in std_logic_vector (2 downto 0);
              Clk				: 	in std_logic;
-             Red, Green, Blue : out std_logic_vector(3 downto 0)
+             Red, Green, Blue : out std_logic_vector(3 downto 0);
+             Visible: out std_logic
         );
     end component;
 
@@ -34,7 +35,7 @@ architecture behave of renderer is
     constant BirdHeight: signed(9 downto 0) := to_signed(8, 10);
 
     
-    signal EnableBird: std_logic;
+    signal EnableBird, BirdVisible: std_logic;
     signal BirdR, BirdG, BirdB: std_logic_vector(3 downto 0);
     signal BirdRow, BirdCol: std_logic_vector (2 downto 0) := (others => '0');
 begin
@@ -44,43 +45,35 @@ begin
                                   SpriteRow => BirdRow,
                                   SpriteCol => BirdCol,
                                   Red => BirdR,
+                                  Green => BirdG,
                                   Blue => BirdB,
-                                  Green => BirdG 
+                                  Visible => BirdVisible
                          );
-
-    ENABLE_BIRD: process(VgaRow, VgaCol, PlayerY, PlayerX)
-    begin
-        
-        if signed(VgaRow) >= PlayerY and
-        signed(VgaCol) >= PlayerX and 
-        signed(VgaRow) <= PlayerY + BirdHeight  and 
-        signed(VgaCol) <= PlayerX + BirdWidth then
-            EnableBird <= '1';
-        else
-            EnableBird <= '0';
-        end if;
-    
-    end process;
-
-    BIRD_COLOUR: process(Clk)
-        variable v_BirdRow, v_BirdCol: unsigned(2 downto 0) := (others => '0');
+                         
+    BIRD_READER: process(Clk)
+        variable v_Enable: std_logic;
+        variable v_Row, v_Col: unsigned(2 downto 0); 
     begin
 
-        if rising_edge(Clk) then 
+        if rising_edge(Clk) then
             if signed(VgaRow) >= PlayerY and
-            signed(VgaCol) >= PlayerX and 
-            signed(VgaRow) <= PlayerY + BirdHeight  and 
-            signed(VgaCol) <= PlayerX + BirdWidth then
-                v_BirdRow := resize(unsigned(VgaRow) - unsigned('0' & PlayerX), 3);
-                v_BirdCol := resize(unsigned(VgaCol) - unsigned('0' & PlayerY), 3);
+               signed(VgaCol) >= PlayerX and 
+               signed(VgaRow) <= PlayerY + BirdHeight and 
+               signed(VgaCol) <= PlayerX + BirdWidth  then
+                v_Enable := '1' and BirdVisible;
+                v_Row := resize(unsigned(VgaRow) - unsigned('0' & PlayerX), 3);
+                v_Col := resize(unsigned(VgaCol) - unsigned('0' & PlayerY), 3);
             else
-                v_BirdRow := (others => '0');
-                v_BirdCol := (others => '0');
+                v_Enable := '0';
+                v_Row := (others => '0');
+                v_Col := (others => '0');
             end if;
         end if;
 
-        BirdRow <= std_logic_vector(v_BirdRow);
-        BirdCol <= std_logic_vector(v_BirdCol);
+        EnableBird <= v_Enable;
+        BirdRow <= std_logic_vector(v_Row);
+        BirdCol <= std_logic_vector(v_Col);
+
 
     end process;
 
@@ -90,12 +83,9 @@ begin
         if EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         else 
-            R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
+            R <= (others => '0'); G <= (others => '0'); B <= (others => '0');
         end if;
 
     end process;
-
-
-    
 
 end architecture;
