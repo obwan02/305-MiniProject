@@ -10,7 +10,8 @@ entity game_moore_fsm is port(
 	Train : in std_logic;
 	TryAgain: in std_logic;
 	GameRunning: out std_logic;
-	TrainingStatus: out std_logic);
+	TrainingStatus: out std_logic;
+	GameOver: out std_logic);
 end entity game_moore_fsm;
 
 architecture behaviour of game_moore_fsm is
@@ -71,11 +72,48 @@ begin
 			end if;
 		when GameOverMode =>
 			if (TryAgain = '1') then
-				next_state <= Initial;
+				next_state <= TrainingSelection;
 			end if;
 		when others =>
 			next_state <= Initial;
 	end case;
 end process;
 
+-- SET_OUTPUTS Process
+--
+-- This process is triggered when the current_state of the FSM changes.
+--
+-- Given the current state of the FSM, the three outputs, GameRunning,
+-- TrainingStatus and GameOver are set.
+SET_OUTPUTS : process (current_state)
+begin
+	case (current_state) is
+		when Initial =>
+			GameRunning <= '0';
+			TrainingStatus <= '0';
+			GameOver <= '0';
+		when TrainingSelection  =>
+			GameRunning <= '0';
+			TrainingStatus <= '0';
+			GameOver <= '0';
+		when TrainingMode =>
+			GameRunning <= '1';
+			TrainingStatus <= '1';
+			GameOver <= '0';
+		when NormalMode =>
+			GameRunning <= '1';
+			TrainingStatus <= '0';
+			GameOver <= '0';
+		when GameOverMode =>
+			GameRunning <= '0';
+			TrainingStatus <= '0';
+			GameOver <= '1';
+		when others =>
+			GameRunning <= '0';
+			TrainingStatus <= '0';
+			GameOver <= '0';
+	end case;
+end process;
+
 end architecture;
+
