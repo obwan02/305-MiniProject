@@ -30,11 +30,10 @@ begin
             v_CurrentTopPipeY := TopPipesY(i);
             v_CurrentBottomPipeY := BottomPipesY(i);
 
-            -- This statement determines if the bird's top or bottom edges
-            -- are either above or below the respective boundary that would
+            -- This statement checks if the bird's top or bottom edges are
+            -- either above or below the respective boundary that would
             -- need a collision to occur.
-            v_WithinXRange := ((PlayerY <= (v_CurrentTopPipeY + PipeLength)) or ((PlayerY + PLAYER_HEIGHT) >= v_CurrentBottomPipeY));
-            if (v_WithinXRange) then
+            if ((PlayerY <= (v_CurrentTopPipeY + PipeLength)) or ((PlayerY + PLAYER_HEIGHT) >= v_CurrentBottomPipeY)) then
                 -- This condition checks if the right edge of the bird has
                 -- hit any of the pipes. - also checks for top and bottom
                 -- edge collision.
