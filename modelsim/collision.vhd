@@ -7,6 +7,7 @@ entity collision is port(
     Clk: in std_logic;
 	PlayerX: in signed(10 downto 0);
 	PlayerY: in signed(9 downto 0);
+<<<<<<< HEAD
     PipesX: in PipesArray(3 downto 0);
     TopPipesY: in PipesArray(3 downto 0);
     BottomPipesY: in PipesArray(3 downto 0);
@@ -53,4 +54,15 @@ begin
 
         end loop;
 end process;
+=======
+	PipesLoc: in PipesArray(3 downto 0);
+    PipesX: in PipesArray(3 downto 0);
+    TopPipesY: in PipesArray(3 downto 0);
+    BottomPipesY: in PipesArray(3 downto 0);
+	Colided: out std_logic);
+end entity collision;
+
+architecture behaviour of collision is				 
+begin
+>>>>>>> ff1cb26 (new(collision.vhd): Created file for the collision detection functionality)
 end architecture;
