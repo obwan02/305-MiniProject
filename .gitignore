@@ -1,4 +1,6 @@
 *.bak
 *.ghw
-modelsim/work/*
 modelsim/bin/*
+modelsim/work/*
+Justfile
+modelsim/Justfile
