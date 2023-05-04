@@ -56,7 +56,7 @@ architecture behave of main is
 
     component pipes is
         port(
-            PipeCreationClk: in std_logic;
+            PipeClk: in std_logic;
             PipeWidth: out signed(10 downto 0);
             PipesXValues: out PipesArray;
             TopPipeHeights: out PipesArray;
@@ -145,7 +145,7 @@ begin
     );
 
     C5: pipes port map(
-        PipeCreationClk => VSync,
+        PipeClk => VSync,
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
         TopPipeHeights => TopPipeHeights,
