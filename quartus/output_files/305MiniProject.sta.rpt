@@ -1,5 +1,5 @@
 Timing Analyzer report for 305MiniProject
-Thu May 04 13:54:49 2023
+Thu May 04 14:01:28 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -106,9 +106,9 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.9%      ;
-;     Processor 3            ;   1.9%      ;
-;     Processor 4            ;   1.8%      ;
+;     Processor 2            ;   2.1%      ;
+;     Processor 3            ;   2.0%      ;
+;     Processor 4            ;   2.0%      ;
 ;     Processor 5            ;   1.5%      ;
 ;     Processor 6            ;   1.5%      ;
 +----------------------------+-------------+
@@ -130,9 +130,9 @@ refer to the applicable agreement for further details.
 +------------+-----------------+---------------------------+------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                ; Note                                           ;
 +------------+-----------------+---------------------------+------------------------------------------------+
-; 224.92 MHz ; 224.92 MHz      ; \VGA_CLOCK:v_25MHzClk     ;                                                ;
-; 292.83 MHz ; 275.03 MHz      ; Clk                       ; limit due to minimum period restriction (tmin) ;
-; 315.66 MHz ; 315.66 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;                                                ;
+; 212.9 MHz  ; 212.9 MHz       ; \VGA_CLOCK:v_25MHzClk     ;                                                ;
+; 294.55 MHz ; 275.03 MHz      ; Clk                       ; limit due to minimum period restriction (tmin) ;
+; 305.16 MHz ; 305.16 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;                                                ;
 +------------+-----------------+---------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -148,21 +148,21 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; \VGA_CLOCK:v_25MHzClk     ; -4.708 ; -266.411      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -3.964 ; -74.403       ;
-; Clk                       ; -3.088 ; -27.618       ;
+; \VGA_CLOCK:v_25MHzClk     ; -4.344 ; -246.690      ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -3.414 ; -73.335       ;
+; Clk                       ; -2.975 ; -28.317       ;
 +---------------------------+--------+---------------+
 
 
-+----------------------------------------------------+
-; Slow 1100mV 85C Model Hold Summary                 ;
-+---------------------------+--------+---------------+
-; Clock                     ; Slack  ; End Point TNS ;
-+---------------------------+--------+---------------+
-; Clk                       ; -2.292 ; -14.248       ;
-; \VGA_CLOCK:v_25MHzClk     ; 0.126  ; 0.000         ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.757  ; 0.000         ;
-+---------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1100mV 85C Model Hold Summary                ;
++---------------------------+-------+---------------+
+; Clock                     ; Slack ; End Point TNS ;
++---------------------------+-------+---------------+
+; \VGA_CLOCK:v_25MHzClk     ; 0.298 ; 0.000         ;
+; Clk                       ; 0.591 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.800 ; 0.000         ;
++---------------------------+-------+---------------+
 
 
 +----------------------------------------------------+
@@ -170,7 +170,7 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -2.703 ; -43.131       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -2.479 ; -39.551       ;
 +---------------------------+--------+---------------+
 
 
@@ -179,7 +179,7 @@ HTML report is unavailable in plain text report export.
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 1.846 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 1.578 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -188,9 +188,9 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.636 ; -37.218       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -92.914       ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -18.969       ;
+; Clk                       ; -2.636 ; -37.157       ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -83.241       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -17.366       ;
 +---------------------------+--------+---------------+
 
 
@@ -206,9 +206,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +------------+-----------------+---------------------------+------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                ; Note                                           ;
 +------------+-----------------+---------------------------+------------------------------------------------+
-; 223.71 MHz ; 223.71 MHz      ; \VGA_CLOCK:v_25MHzClk     ;                                                ;
-; 283.45 MHz ; 275.03 MHz      ; Clk                       ; limit due to minimum period restriction (tmin) ;
-; 318.88 MHz ; 318.88 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;                                                ;
+; 210.22 MHz ; 210.22 MHz      ; \VGA_CLOCK:v_25MHzClk     ;                                                ;
+; 285.71 MHz ; 275.03 MHz      ; Clk                       ; limit due to minimum period restriction (tmin) ;
+; 308.45 MHz ; 308.45 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;                                                ;
 +------------+-----------------+---------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -218,21 +218,21 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; \VGA_CLOCK:v_25MHzClk     ; -4.986 ; -266.138      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -3.857 ; -67.745       ;
-; Clk                       ; -2.855 ; -25.294       ;
+; \VGA_CLOCK:v_25MHzClk     ; -4.678 ; -249.261      ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -3.208 ; -65.656       ;
+; Clk                       ; -2.622 ; -25.326       ;
 +---------------------------+--------+---------------+
 
 
-+----------------------------------------------------+
-; Slow 1100mV 0C Model Hold Summary                  ;
-+---------------------------+--------+---------------+
-; Clock                     ; Slack  ; End Point TNS ;
-+---------------------------+--------+---------------+
-; Clk                       ; -2.477 ; -15.506       ;
-; \VGA_CLOCK:v_25MHzClk     ; 0.253  ; 0.000         ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.788  ; 0.000         ;
-+---------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1100mV 0C Model Hold Summary                 ;
++---------------------------+-------+---------------+
+; Clock                     ; Slack ; End Point TNS ;
++---------------------------+-------+---------------+
+; Clk                       ; 0.268 ; 0.000         ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.448 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.820 ; 0.000         ;
++---------------------------+-------+---------------+
 
 
 +----------------------------------------------------+
@@ -240,7 +240,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -2.495 ; -39.783       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -2.244 ; -35.773       ;
 +---------------------------+--------+---------------+
 
 
@@ -249,7 +249,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 1.727 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 1.439 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -258,9 +258,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.636 ; -37.496       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -91.395       ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -17.694       ;
+; Clk                       ; -2.636 ; -37.435       ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -82.835       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -17.136       ;
 +---------------------------+--------+---------------+
 
 
@@ -276,21 +276,21 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; \VGA_CLOCK:v_25MHzClk     ; -2.031 ; -104.295      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.994 ; -36.360       ;
-; Clk                       ; -1.688 ; -12.545       ;
+; Clk                       ; -1.855 ; -14.508       ;
+; \VGA_CLOCK:v_25MHzClk     ; -1.843 ; -92.781       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.687 ; -34.440       ;
 +---------------------------+--------+---------------+
 
 
-+----------------------------------------------------+
-; Fast 1100mV 85C Model Hold Summary                 ;
-+---------------------------+--------+---------------+
-; Clock                     ; Slack  ; End Point TNS ;
-+---------------------------+--------+---------------+
-; Clk                       ; -1.286 ; -7.842        ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.169 ; -0.241        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.399  ; 0.000         ;
-+---------------------------+--------+---------------+
++---------------------------------------------------+
+; Fast 1100mV 85C Model Hold Summary                ;
++---------------------------+-------+---------------+
+; Clock                     ; Slack ; End Point TNS ;
++---------------------------+-------+---------------+
+; \VGA_CLOCK:v_25MHzClk     ; 0.020 ; 0.000         ;
+; Clk                       ; 0.065 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.422 ; 0.000         ;
++---------------------------+-------+---------------+
 
 
 +----------------------------------------------------+
@@ -298,7 +298,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.310 ; -20.908       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.073 ; -17.116       ;
 +---------------------------+--------+---------------+
 
 
@@ -307,7 +307,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 1.024 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.778 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -316,9 +316,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.174 ; -26.113       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.142 ; -3.716        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.118  ; 0.000         ;
+; Clk                       ; -2.174 ; -25.961       ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.146 ; -4.375        ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.138  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -334,9 +334,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; \VGA_CLOCK:v_25MHzClk     ; -2.034 ; -91.850       ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.775 ; -31.566       ;
-; Clk                       ; -1.254 ; -9.435        ;
+; \VGA_CLOCK:v_25MHzClk     ; -1.867 ; -83.100       ;
+; Clk                       ; -1.537 ; -10.732       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.474 ; -29.674       ;
 +---------------------------+--------+---------------+
 
 
@@ -345,9 +345,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -1.325 ; -8.301        ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.149 ; -0.153        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.366  ; 0.000         ;
+; Clk                       ; -0.082 ; -0.320        ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.033  ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.386  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -356,7 +356,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.132 ; -18.083       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.918 ; -14.656       ;
 +---------------------------+--------+---------------+
 
 
@@ -365,7 +365,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.890 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.672 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -374,9 +374,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.174 ; -26.092       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.083 ; -1.332        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.140  ; 0.000         ;
+; Clk                       ; -2.174 ; -25.942       ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.083 ; -2.214        ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.125  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -387,20 +387,20 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 
 
 
-+--------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                        ;
-+----------------------------+----------+---------+----------+---------+---------------------+
-; Clock                      ; Setup    ; Hold    ; Recovery ; Removal ; Minimum Pulse Width ;
-+----------------------------+----------+---------+----------+---------+---------------------+
-; Worst-case Slack           ; -4.986   ; -2.477  ; -2.703   ; 0.890   ; -2.636              ;
-;  Clk                       ; -3.088   ; -2.477  ; N/A      ; N/A     ; -2.636              ;
-;  MOUSE:C4|MOUSE_CLK_FILTER ; -3.964   ; 0.366   ; -2.703   ; 0.890   ; -0.538              ;
-;  \VGA_CLOCK:v_25MHzClk     ; -4.986   ; -0.169  ; N/A      ; N/A     ; -0.538              ;
-; Design-wide TNS            ; -368.432 ; -15.506 ; -43.131  ; 0.0     ; -149.101            ;
-;  Clk                       ; -27.618  ; -15.506 ; N/A      ; N/A     ; -37.496             ;
-;  MOUSE:C4|MOUSE_CLK_FILTER ; -74.403  ; 0.000   ; -43.131  ; 0.000   ; -18.969             ;
-;  \VGA_CLOCK:v_25MHzClk     ; -266.411 ; -0.241  ; N/A      ; N/A     ; -92.914             ;
-+----------------------------+----------+---------+----------+---------+---------------------+
++-------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                       ;
++----------------------------+----------+--------+----------+---------+---------------------+
+; Clock                      ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
++----------------------------+----------+--------+----------+---------+---------------------+
+; Worst-case Slack           ; -4.678   ; -0.082 ; -2.479   ; 0.672   ; -2.636              ;
+;  Clk                       ; -2.975   ; -0.082 ; N/A      ; N/A     ; -2.636              ;
+;  MOUSE:C4|MOUSE_CLK_FILTER ; -3.414   ; 0.386  ; -2.479   ; 0.672   ; -0.538              ;
+;  \VGA_CLOCK:v_25MHzClk     ; -4.678   ; 0.020  ; N/A      ; N/A     ; -0.538              ;
+; Design-wide TNS            ; -348.342 ; -0.32  ; -39.551  ; 0.0     ; -137.764            ;
+;  Clk                       ; -28.317  ; -0.320 ; N/A      ; N/A     ; -37.435             ;
+;  MOUSE:C4|MOUSE_CLK_FILTER ; -73.335  ; 0.000  ; -39.551  ; 0.000   ; -17.366             ;
+;  \VGA_CLOCK:v_25MHzClk     ; -249.261 ; 0.000  ; N/A      ; N/A     ; -83.241             ;
++----------------------------+----------+--------+----------+---------+---------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -539,10 +539,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+---------------------------+----------+----------+----------+----------+
 ; From Clock                ; To Clock                  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
-; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1335     ; 0        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1204     ; 0        ; 0        ; 0        ;
 ; Clk                       ; \VGA_CLOCK:v_25MHzClk     ; 24       ; 0        ; 0        ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; \VGA_CLOCK:v_25MHzClk     ; 1        ; 5        ; 0        ; 0        ;
-; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 152      ; 1        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 188      ; 1        ; 0        ; 0        ;
 ; Clk                       ; Clk                       ; 7        ; 0        ; 0        ; 0        ;
 ; \VGA_CLOCK:v_25MHzClk     ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 22       ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 0        ; 107      ;
@@ -555,10 +555,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +---------------------------+---------------------------+----------+----------+----------+----------+
 ; From Clock                ; To Clock                  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
-; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1335     ; 0        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1204     ; 0        ; 0        ; 0        ;
 ; Clk                       ; \VGA_CLOCK:v_25MHzClk     ; 24       ; 0        ; 0        ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; \VGA_CLOCK:v_25MHzClk     ; 1        ; 5        ; 0        ; 0        ;
-; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 152      ; 1        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 188      ; 1        ; 0        ; 0        ;
 ; Clk                       ; Clk                       ; 7        ; 0        ; 0        ; 0        ;
 ; \VGA_CLOCK:v_25MHzClk     ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 22       ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 0        ; 107      ;
@@ -697,7 +697,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Thu May 04 13:54:41 2023
+    Info: Processing started: Thu May 04 14:01:19 2023
 Info: Command: quartus_sta 305MiniProject -c 305MiniProject
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -716,32 +716,32 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -4.708
+Info (332146): Worst-case setup slack is -4.344
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.708            -266.411 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -3.964             -74.403 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):    -3.088             -27.618 Clk 
-Info (332146): Worst-case hold slack is -2.292
+    Info (332119):    -4.344            -246.690 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -3.414             -73.335 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.975             -28.317 Clk 
+Info (332146): Worst-case hold slack is 0.298
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.292             -14.248 Clk 
-    Info (332119):     0.126               0.000 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.757               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case recovery slack is -2.703
+    Info (332119):     0.298               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.591               0.000 Clk 
+    Info (332119):     0.800               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case recovery slack is -2.479
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.703             -43.131 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 1.846
+    Info (332119):    -2.479             -39.551 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 1.578
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.846               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     1.578               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.636
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.636             -37.218 Clk 
-    Info (332119):    -0.538             -92.914 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.538             -18.969 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.636             -37.157 Clk 
+    Info (332119):    -0.538             -83.241 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -0.538             -17.366 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 6 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Slow 1100mV 0C Model
@@ -750,32 +750,32 @@ Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -4.986
+Info (332146): Worst-case setup slack is -4.678
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.986            -266.138 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -3.857             -67.745 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):    -2.855             -25.294 Clk 
-Info (332146): Worst-case hold slack is -2.477
+    Info (332119):    -4.678            -249.261 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -3.208             -65.656 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.622             -25.326 Clk 
+Info (332146): Worst-case hold slack is 0.268
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.477             -15.506 Clk 
-    Info (332119):     0.253               0.000 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.788               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case recovery slack is -2.495
+    Info (332119):     0.268               0.000 Clk 
+    Info (332119):     0.448               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.820               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case recovery slack is -2.244
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.495             -39.783 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 1.727
+    Info (332119):    -2.244             -35.773 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 1.439
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.727               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     1.439               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.636
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.636             -37.496 Clk 
-    Info (332119):    -0.538             -91.395 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.538             -17.694 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.636             -37.435 Clk 
+    Info (332119):    -0.538             -82.835 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -0.538             -17.136 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 6 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Fast 1100mV 85C Model
@@ -784,72 +784,72 @@ Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.031
+Info (332146): Worst-case setup slack is -1.855
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.031            -104.295 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -1.994             -36.360 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):    -1.688             -12.545 Clk 
-Info (332146): Worst-case hold slack is -1.286
+    Info (332119):    -1.855             -14.508 Clk 
+    Info (332119):    -1.843             -92.781 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -1.687             -34.440 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is 0.020
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.286              -7.842 Clk 
-    Info (332119):    -0.169              -0.241 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.399               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case recovery slack is -1.310
+    Info (332119):     0.020               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.065               0.000 Clk 
+    Info (332119):     0.422               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case recovery slack is -1.073
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.310             -20.908 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 1.024
+    Info (332119):    -1.073             -17.116 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.778
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.024               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.778               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174             -26.113 Clk 
-    Info (332119):    -0.142              -3.716 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.118               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.174             -25.961 Clk 
+    Info (332119):    -0.146              -4.375 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.138               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 6 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.034
+Info (332146): Worst-case setup slack is -1.867
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.034             -91.850 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -1.775             -31.566 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):    -1.254              -9.435 Clk 
-Info (332146): Worst-case hold slack is -1.325
+    Info (332119):    -1.867             -83.100 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -1.537             -10.732 Clk 
+    Info (332119):    -1.474             -29.674 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is -0.082
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.325              -8.301 Clk 
-    Info (332119):    -0.149              -0.153 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.366               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case recovery slack is -1.132
+    Info (332119):    -0.082              -0.320 Clk 
+    Info (332119):     0.033               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.386               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case recovery slack is -0.918
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.132             -18.083 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 0.890
+    Info (332119):    -0.918             -14.656 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.672
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.890               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.672               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174             -26.092 Clk 
-    Info (332119):    -0.083              -1.332 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.140               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.174             -25.942 Clk 
+    Info (332119):    -0.083              -2.214 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.125               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 6 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 5115 megabytes
-    Info: Processing ended: Thu May 04 13:54:49 2023
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 5116 megabytes
+    Info: Processing ended: Thu May 04 14:01:28 2023
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:05
 
 

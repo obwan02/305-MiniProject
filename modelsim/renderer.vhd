@@ -58,11 +58,11 @@ begin
         if rising_edge(Clk) then
             if signed(VgaRow) >= PlayerY and
                signed(VgaCol) >= PlayerX and 
-               signed(VgaRow) <= PlayerY + 16 and 
-               signed(VgaCol) <= PlayerX + 16  then
+               signed(VgaRow) <= PlayerY + 32 and 
+               signed(VgaCol) <= PlayerX + 32  then
                 v_Enable := '1' and BirdVisible;
-                v_Row := resize(shift_right(unsigned(VgaRow) - unsigned('0' & PlayerX), 1), 3);
-                v_Col := resize(shift_right(unsigned(VgaCol) - unsigned('0' & PlayerY), 1), 3);
+                v_Row := resize(shift_right(unsigned(VgaRow) - unsigned('0' & PlayerX), 2), 3);
+                v_Col := resize(shift_right(unsigned(VgaCol) - unsigned('0' & PlayerY), 2), 3);
             else
                 v_Enable := '0';
                 v_Row := (others => '0');
@@ -83,7 +83,7 @@ begin
         if EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         else 
-            R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
+            R <= (others => '0'); G <= (others => '0'); B <= (others => '1');
         end if;
 
     end process;

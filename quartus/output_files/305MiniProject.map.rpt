@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 305MiniProject
-Thu May 04 13:54:05 2023
+Thu May 04 14:00:46 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -54,7 +54,7 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 04 13:54:05 2023           ;
+; Analysis & Synthesis Status     ; Successful - Thu May 04 14:00:46 2023           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                   ; 305MiniProject                                  ;
 ; Top-level Entity Name           ; main                                            ;
@@ -208,14 +208,14 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------------------+
 ; Resource                                    ; Usage                 ;
 +---------------------------------------------+-----------------------+
-; Estimate of Logic utilization (ALMs needed) ; 66                    ;
+; Estimate of Logic utilization (ALMs needed) ; 67                    ;
 ;                                             ;                       ;
-; Combinational ALUT usage for logic          ; 103                   ;
+; Combinational ALUT usage for logic          ; 105                   ;
 ;     -- 7 input functions                    ; 0                     ;
 ;     -- 6 input functions                    ; 13                    ;
-;     -- 5 input functions                    ; 13                    ;
-;     -- 4 input functions                    ; 13                    ;
-;     -- <=3 input functions                  ; 64                    ;
+;     -- 5 input functions                    ; 12                    ;
+;     -- 4 input functions                    ; 15                    ;
+;     -- <=3 input functions                  ; 65                    ;
 ;                                             ;                       ;
 ; Dedicated logic registers                   ; 115                   ;
 ;                                             ;                       ;
@@ -227,7 +227,7 @@ refer to the applicable agreement for further details.
 ;                                             ;                       ;
 ; Maximum fan-out node                        ; \VGA_CLOCK:v_25MHzClk ;
 ; Maximum fan-out                             ; 86                    ;
-; Total fan-out                               ; 791                   ;
+; Total fan-out                               ; 796                   ;
 ; Average fan-out                             ; 2.96                  ;
 +---------------------------------------------+-----------------------+
 
@@ -237,10 +237,10 @@ refer to the applicable agreement for further details.
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                  ; Entity Name     ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |main                                        ; 103 (1)             ; 115 (1)                   ; 832               ; 0          ; 17   ; 0            ; |main                                                                                                ; main            ; work         ;
+; |main                                        ; 105 (1)             ; 115 (1)                   ; 832               ; 0          ; 17   ; 0            ; |main                                                                                                ; main            ; work         ;
 ;    |MOUSE:C4|                                ; 42 (42)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |main|MOUSE:C4                                                                                       ; MOUSE           ; work         ;
 ;    |VGA_SYNC:C2|                             ; 49 (49)             ; 57 (57)                   ; 0                 ; 0          ; 0    ; 0            ; |main|VGA_SYNC:C2                                                                                    ; VGA_SYNC        ; work         ;
-;    |renderer:C1|                             ; 11 (11)             ; 7 (7)                     ; 832               ; 0          ; 0    ; 0            ; |main|renderer:C1                                                                                    ; renderer        ; work         ;
+;    |renderer:C1|                             ; 13 (13)             ; 7 (7)                     ; 832               ; 0          ; 0    ; 0            ; |main|renderer:C1                                                                                    ; renderer        ; work         ;
 ;       |sprite_rom:BIRD_ROM|                  ; 0 (0)               ; 0 (0)                     ; 832               ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM                                                                ; sprite_rom      ; work         ;
 ;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 832               ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
 ;             |altsyncram_18g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 832               ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_18g1:auto_generated ; altsyncram_18g1 ; work         ;
@@ -475,22 +475,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SCLR              ; 22                          ;
 ;     plain             ; 30                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 103                         ;
+; arriav_lcell_comb     ; 105                         ;
 ;     arith             ; 31                          ;
 ;         1 data inputs ; 30                          ;
 ;         2 data inputs ; 1                           ;
-;     normal            ; 72                          ;
+;     normal            ; 74                          ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 18                          ;
+;         2 data inputs ; 19                          ;
 ;         3 data inputs ; 9                           ;
-;         4 data inputs ; 13                          ;
-;         5 data inputs ; 13                          ;
+;         4 data inputs ; 15                          ;
+;         5 data inputs ; 12                          ;
 ;         6 data inputs ; 13                          ;
 ; boundary_port         ; 17                          ;
 ; stratixv_ram_block    ; 13                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 1.45                        ;
+; Average LUT depth     ; 1.53                        ;
 +-----------------------+-----------------------------+
 
 
@@ -509,7 +509,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Thu May 04 13:53:53 2023
+    Info: Processing started: Thu May 04 14:00:34 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 305MiniProject -c 305MiniProject
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -568,16 +568,16 @@ Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal 
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 171 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 173 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 14 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 141 logic cells
+    Info (21061): Implemented 143 logic cells
     Info (21064): Implemented 13 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 4884 megabytes
-    Info: Processing ended: Thu May 04 13:54:05 2023
+    Info: Peak virtual memory: 4877 megabytes
+    Info: Processing ended: Thu May 04 14:00:46 2023
     Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Total CPU time (on all processors): 00:00:17
 
 
