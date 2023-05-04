@@ -5,3 +5,14 @@ use IEEE.numeric_std.all;
 package types is
     type PipesArray is array (3 downto 0) of signed(9 downto 0);
 end types;
+
+--TODO: Make PIPE width a constant
+package constants is 
+    -- These numbers should be a power of 2
+    -- if these are changed, tell ollie he needs
+    -- to change some stuff in the renderer
+    constant BIRD_WIDTH: integer := 32;
+    constant BIRD_HEIGHT: integer := 32;
+    constant SCREEN_HEIGHT: integer := 479;
+    constant SCREEN_WIDTH: integer := 639;
+end constants;

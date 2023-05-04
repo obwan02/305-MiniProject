@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use work.types.all;
 
 entity main is
     port (Clk: in std_logic;
@@ -22,7 +23,12 @@ architecture behave of main is
             PlayerX: in signed(10 downto 0);
             PlayerY: in signed(9 downto 0);
     
-            -- TODO: Add pipe arrays in here
+            -- pipe Arrays
+            PipeWidth: in signed(9 downto 0);
+            PipesXValues: in PipesArray(3 downto 0);
+            TopPipeHeights: in PipesArray(3 downto 0);
+            BottomPipeHeights: in PipesArray(3 downto 0);
+
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
             R, G, B: out std_logic_vector(3 downto 0)
         );
@@ -48,6 +54,17 @@ architecture behave of main is
         );
     end component;
 
+    component pipes is
+        port(
+            PipeCreationClk: in std_logic;
+            PipeWidth: out signed(9 downto 0);
+            PipesXValues: out PipesArray(3 downto 0);
+            TopPipeHeights: out PipesArray(3 downto 0);
+            BottomPipeHeights: out PipesArray(3 downto 0)
+
+        );
+    end component;
+
     component mouse IS
     PORT(clock_25Mhz, reset 		: IN std_logic;
          mouse_data					: INOUT std_logic;
@@ -66,6 +83,12 @@ architecture behave of main is
     signal PlayerY: signed(9 downto 0);
 
     signal LeftMouseButton: std_logic;
+
+    --Pipes Variables
+    signal PipesXValues: PipesArray(3 downto 0);
+    signal TopPipeHeights: PipesArray(3 downto 0);
+    signal BottomPipeHeights: PipesArray(3 downto 0);
+    signal PipeWidth: signed(9 downto 0);
 begin
 
     VGA_CLOCK: process(Clk)
@@ -82,6 +105,12 @@ begin
                           Reset => '0', 
                           PlayerX =>  PlayerX, 
                           PlayerY => PlayerY, 
+                          --Pipes
+                          PipeWidth => PipeWidth,
+                          PipesXValues => PipesXValues,
+                          TopPipeHeights => TopPipeHeights,
+                          BottomPipeHeights => BottomPipeHeights,
+
                           VgaRow => VgaRow,
                           VgaCol => VgaCol,
                           R => R,
@@ -104,6 +133,7 @@ begin
                                NewY => PlayerY
     );
 
+
     C4: mouse port map(clock_25Mhz => Clk25MHz,
                        Reset => '0',
                        Mouse_Data => MouseData,
@@ -112,6 +142,14 @@ begin
                        right_button => open,
                        mouse_cursor_row => open,
                        mouse_cursor_column => open
+    );
+
+    C5: pipes port map(
+        PipeCreationClk => VSync,
+        PipeWidth => PipeWidth,
+        PipesXValues => PipesXValues,
+        TopPipeHeights => TopPipeHeights,
+        BottomPipeHeights => BottomPipeHeights
     );
     
 
