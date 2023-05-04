@@ -34,21 +34,24 @@ begin
             -- are either above or below the respective boundary that would
             -- need a collision to occur.
             v_WithinXRange := ((PlayerY <= (v_CurrentTopPipeY + PipeLength)) or ((PlayerY + PLAYER_HEIGHT) >= v_CurrentBottomPipeY));
+            if (v_WithinXRange) then
+                -- This condition checks if the right edge of the bird has
+                -- hit any of the pipes. - also checks for top and bottom
+                -- edge collision.
+                if ((((PlayerX + PLAYER_WIDTH) >= v_CurrentPipeX) and 
+                    ((PlayerX + PLAYER_WIDTH) <= (v_CurrentPipeX + PipeWidth)))) then
+                    Collided <= '1';
 
-            -- This condition checks if the right edge of the bird has
-            -- hit any of the pipes. - also checks for top and bottom
-            -- edge collision.
-            if ((((PlayerX + PLAYER_WIDTH) >= v_CurrentPipeX) and 
-                ((PlayerX + PLAYER_WIDTH) <= (v_CurrentPipeX + PipeWidth))) and (v_WithinXRange)) then
-                Collided <= '1';
-
-            -- This condition checks if the left edge of the bird has
-            -- hit any of the pipes - also checks for top and bottom
-            -- edge collision. (This statement may be redundant as the 
-            -- left edge of the bird should never touch a pipe, however 
-            -- has been included for completeness).
-            elsif (((PlayerX >= v_CurrentPipeX) and (PlayerX <= (v_CurrentPipeX + PipeWidth))) and (v_WithinXRange)) then
-                Collided <= '1';
+                -- This condition checks if the left edge of the bird has
+                -- hit any of the pipes - also checks for top and bottom
+                -- edge collision. (This statement may be redundant as the 
+                -- left edge of the bird should never touch a pipe, however 
+                -- has been included for completeness).
+                elsif (((PlayerX >= v_CurrentPipeX) and (PlayerX <= (v_CurrentPipeX + PipeWidth)))) then
+                    Collided <= '1';
+                else
+                    Collided <= '0';
+                end if;
             else
                 Collided <= '0';
             end if;
