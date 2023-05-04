@@ -1,4 +1,4 @@
-Analysis & Synthesis Status : Successful - Wed May 03 12:55:54 2023
+Analysis & Synthesis Status : Successful - Thu May 04 13:54:05 2023
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 Revision Name : 305MiniProject
 Top-level Entity Name : main
@@ -7,7 +7,7 @@ Logic utilization (in ALMs) : N/A
 Total registers : 115
 Total pins : 17
 Total virtual pins : 0
-Total block memory bits : 768
+Total block memory bits : 832
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

@@ -18,10 +18,9 @@ entity sprite_rom IS
 	);
 end sprite_rom;
 
-
 architecture behave of sprite_rom is
 
-	signal rom_data		: std_logic_VECTOR (11 downto 0);
+	signal rom_data		: std_logic_VECTOR (12 downto 0);
 	signal rom_address	: std_logic_VECTOR (5 downto 0);
 
 	COMPONENT altsyncram
@@ -44,7 +43,7 @@ architecture behave of sprite_rom is
 	port (
 		clock0		: in std_logic ;
 		address_a	: in std_logic_VECTOR (5 downto 0);
-		q_a			: out std_logic_VECTOR (11 downto 0)
+		q_a			: out std_logic_VECTOR (12 downto 0)
 	);
 	end component;
 
@@ -64,12 +63,12 @@ begin
 		outdata_aclr_a => "NONE",
 		outdata_reg_a => "UNREGISTERED",
 		widthad_a => 6,
-		width_a => 12,
+		width_a => 13,
 		width_byteena_a => 1
 	)
 	port map (
 		clock0 => Clk,
-		address_a => rom_address,
+		address_a => rom_address, 
 		q_a => rom_data
 	);
 
@@ -77,6 +76,6 @@ begin
     Red <= rom_data(11 downto 8);
     Green <= rom_data(7 downto 4);
     Blue <= rom_data(3 downto 0);
-	Visible <= '1';
+	Visible <= rom_data(12);
 
 end behave;

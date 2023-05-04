@@ -5,14 +5,19 @@ from itertools import zip_longest, count
 import struct
 
 def convert_image_to_bin_strings(image: Image.Image) -> Image.Image:
-    data = image.getdata()
+    image = image.convert("RGBA")
     print(f"Channels: {image.getbands()}")
-    return [f'{r>>4:04b}{g>>4:04b}{b>>4:04b}{1 if a else 0}' for r, g, b, a in data]
 
+    width, height = image.size
+    data = []
+    for row in range(height):
+        for col in range(width):
+            r, g, b, a = image.getpixel((col, row))
+            data.append(f'{1 if a else 0}{r>>4:04b}{g>>4:04b}{b>>4:04b}')
 
-def group_into_ns(data, n=12):
-    return (data[i : i + n] for i in range(0, len(data), n))
+    return data
 
+# 001 000
 
 def write_bin_strings(file, bit_strings):
     file.write("% GENERATED CONTENT %\n")
@@ -41,6 +46,6 @@ if __name__ == "__main__":
     # split the binary into lines of 8 bits,
     # and then print the lines
     bin_strings = convert_image_to_bin_strings(image)
-    with open("modelsim/bird_rom.mif", "w") as file:
+    with open("modelsim/BRD_ROM.mif", "w") as file:
         write_bin_strings(file, bin_strings)
     print("Done!")
