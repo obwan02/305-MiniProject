@@ -2,7 +2,7 @@
 from PIL import Image
 from sys import argv, exit
 from itertools import zip_longest, count
-import struct
+from pathlib import Path
 
 def convert_image_to_bin_strings(image: Image.Image) -> Image.Image:
     image = image.convert("RGBA")
@@ -39,13 +39,21 @@ if __name__ == "__main__":
     try:
         image = Image.open(argv[1])
     except IndexError:
-        print("Expected a file as a second argument")
+        print("Expected a path to an image as a first argument")
         exit(1)
+    
+    try:
+        output_path = Path(argv[2])
+        if not output_path.is_file():
+            raise IndexError()
+    except IndexError:
+        print("Expected the second argument to be an path to the output file (a .mif file)")
+        exit(2)
 
     # Convert image into binary,
     # split the binary into lines of 8 bits,
     # and then print the lines
     bin_strings = convert_image_to_bin_strings(image)
-    with open("modelsim/BRD_ROM.mif", "w") as file:
+    with open(output_path, "w") as file:
         write_bin_strings(file, bin_strings)
     print("Done!")
