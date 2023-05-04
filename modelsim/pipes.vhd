@@ -2,34 +2,44 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.types.all;
+use work.constants;
 
 entity pipes is
     port(
-        PipeCreationClk: in std_logic;
-        PipeWidth: out signed(9 downto 0);
-        PipesXValues: out PipesArray(3 downto 0);
-        TopPipeHeights: out PipesArray(3 downto 0);
-        BottomPipeHeights: out PipesArray(3 downto 0)
+        PipeClk: in std_logic;
+        PipeWidth: out signed(10 downto 0);
+        PipesXValues: out PipesArray;
+        TopPipeHeights: out PipesArray;
+        BottomPipeHeights: out PipesArray
     );
 end entity pipes;
 
+
 architecture construction of pipes is
 begin
-    process(PipeCreationClk)
-    variable v_PipesXValues: PipesArray(3 downto 0);
-    variable v_TopPipeHeights: PipesArray(3 downto 0);
-    variable v_BottomPipeHeights: PipesArray(3 downto 0);
-    constant RightMostPixel: signed(9 downto 0) := to_signed(800, 10);
-    constant speed: signed(9 downto 0) := to_signed(1, 10);
-    constant TempHeight: signed(9 downto 0) := to_signed(200, 10);
+
+    PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
+
+    process(PipeClk)
+    variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
+                                            to_signed(300, 11), 
+                                            to_signed(500, 11),  
+                                            to_signed(700, 11));
+    variable v_TopPipeHeights: PipesArray;
+    variable v_BottomPipeHeights: PipesArray;
+
+    constant RightMostPixel: signed(10 downto 0) := to_signed(800, 11);
+    constant Speed: signed(9 downto 0) := to_signed(1, 10);
+    constant TempHeight: signed(10 downto 0) := to_signed(200, 11);
     begin
-        if rising_edge(PipeCreationClk) then
+        if falling_edge(PipeClk) then
             
+            -- TODO: Make this number a constant
             for i in 0 to 3 loop
-                if (v_PipesXValues(i) <= 0) then
+                if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
                     v_PipesXValues(i) := RightMostPixel;
                 else
-                    v_PipesXValues(i) := v_PipesXValues(i) - speed;
+                    v_PipesXValues(i) := v_PipesXValues(i) - Speed;
                 end if;
             end loop; 
 
@@ -37,11 +47,11 @@ begin
                 v_BottomPipeHeights(j) := TempHeight;
                 v_TopPipeHeights(j) := TempHeight;
             end loop;
-            BottomPipeHeights <= v_BottomPipeHeights;
-            TopPipeHeights <= v_TopPipeHeights;
-            PipesXValues <= v_PipesXValues;
-
         end if;
+
+        BottomPipeHeights <= v_BottomPipeHeights;
+        TopPipeHeights <= v_TopPipeHeights;
+        PipesXValues <= v_PipesXValues;
     end process;
 
 end architecture;

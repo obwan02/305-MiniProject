@@ -24,10 +24,10 @@ architecture behave of main is
             PlayerY: in signed(9 downto 0);
     
             -- pipe Arrays
-            PipeWidth: in signed(9 downto 0);
-            PipesXValues: in PipesArray(3 downto 0);
-            TopPipeHeights: in PipesArray(3 downto 0);
-            BottomPipeHeights: in PipesArray(3 downto 0);
+            PipeWidth: in signed(10 downto 0);
+            PipesXValues: in PipesArray;
+            TopPipeHeights: in PipesArray;
+            BottomPipeHeights: in PipesArray;
 
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
             R, G, B: out std_logic_vector(3 downto 0)
@@ -57,10 +57,10 @@ architecture behave of main is
     component pipes is
         port(
             PipeCreationClk: in std_logic;
-            PipeWidth: out signed(9 downto 0);
-            PipesXValues: out PipesArray(3 downto 0);
-            TopPipeHeights: out PipesArray(3 downto 0);
-            BottomPipeHeights: out PipesArray(3 downto 0)
+            PipeWidth: out signed(10 downto 0);
+            PipesXValues: out PipesArray;
+            TopPipeHeights: out PipesArray;
+            BottomPipeHeights: out PipesArray
 
         );
     end component;
@@ -85,10 +85,10 @@ architecture behave of main is
     signal LeftMouseButton: std_logic;
 
     --Pipes Variables
-    signal PipesXValues: PipesArray(3 downto 0);
-    signal TopPipeHeights: PipesArray(3 downto 0);
-    signal BottomPipeHeights: PipesArray(3 downto 0);
-    signal PipeWidth: signed(9 downto 0);
+    signal PipesXValues: PipesArray;
+    signal TopPipeHeights: PipesArray;
+    signal BottomPipeHeights: PipesArray;
+    signal PipeWidth: signed(10 downto 0);
 begin
 
     VGA_CLOCK: process(Clk)

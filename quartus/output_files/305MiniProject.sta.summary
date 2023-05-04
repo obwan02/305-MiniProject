@@ -3,179 +3,227 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup '\VGA_CLOCK:v_25MHzClk'
-Slack : -4.344
-TNS   : -246.690
+Slack : -4.736
+TNS   : -279.401
+
+Type  : Slow 1100mV 85C Model Setup 'VGA_SYNC:C2|vert_sync_out'
+Slack : -4.239
+TNS   : -289.732
 
 Type  : Slow 1100mV 85C Model Setup 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -3.414
-TNS   : -73.335
+Slack : -3.805
+TNS   : -74.031
 
 Type  : Slow 1100mV 85C Model Setup 'Clk'
-Slack : -2.975
-TNS   : -28.317
-
-Type  : Slow 1100mV 85C Model Hold '\VGA_CLOCK:v_25MHzClk'
-Slack : 0.298
-TNS   : 0.000
+Slack : -3.696
+TNS   : -44.359
 
 Type  : Slow 1100mV 85C Model Hold 'Clk'
-Slack : 0.591
+Slack : -1.586
+TNS   : -13.917
+
+Type  : Slow 1100mV 85C Model Hold '\VGA_CLOCK:v_25MHzClk'
+Slack : 0.213
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.764
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.800
+Slack : 0.782
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Recovery 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -2.479
-TNS   : -39.551
+Slack : -2.493
+TNS   : -39.796
 
 Type  : Slow 1100mV 85C Model Removal 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 1.578
+Slack : 1.593
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'Clk'
 Slack : -2.636
-TNS   : -37.157
+TNS   : -40.350
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width '\VGA_CLOCK:v_25MHzClk'
 Slack : -0.538
-TNS   : -83.241
+TNS   : -103.590
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA_SYNC:C2|vert_sync_out'
+Slack : -0.538
+TNS   : -58.671
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'MOUSE:C4|MOUSE_CLK_FILTER'
 Slack : -0.538
-TNS   : -17.366
+TNS   : -18.441
 
 Type  : Slow 1100mV 0C Model Setup '\VGA_CLOCK:v_25MHzClk'
-Slack : -4.678
-TNS   : -249.261
+Slack : -5.084
+TNS   : -280.643
+
+Type  : Slow 1100mV 0C Model Setup 'VGA_SYNC:C2|vert_sync_out'
+Slack : -4.218
+TNS   : -292.451
 
 Type  : Slow 1100mV 0C Model Setup 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -3.208
-TNS   : -65.656
+Slack : -3.684
+TNS   : -66.831
 
 Type  : Slow 1100mV 0C Model Setup 'Clk'
-Slack : -2.622
-TNS   : -25.326
+Slack : -3.476
+TNS   : -41.160
 
 Type  : Slow 1100mV 0C Model Hold 'Clk'
-Slack : 0.268
-TNS   : 0.000
+Slack : -1.789
+TNS   : -16.164
 
 Type  : Slow 1100mV 0C Model Hold '\VGA_CLOCK:v_25MHzClk'
-Slack : 0.448
+Slack : 0.331
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.820
+Slack : 0.819
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.823
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Recovery 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -2.244
-TNS   : -35.773
+Slack : -2.285
+TNS   : -36.452
 
 Type  : Slow 1100mV 0C Model Removal 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 1.439
+Slack : 1.485
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'Clk'
 Slack : -2.636
-TNS   : -37.435
+TNS   : -40.880
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width '\VGA_CLOCK:v_25MHzClk'
 Slack : -0.538
-TNS   : -82.835
+TNS   : -102.182
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'VGA_SYNC:C2|vert_sync_out'
+Slack : -0.538
+TNS   : -58.427
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'MOUSE:C4|MOUSE_CLK_FILTER'
 Slack : -0.538
-TNS   : -17.136
-
-Type  : Fast 1100mV 85C Model Setup 'Clk'
-Slack : -1.855
-TNS   : -14.508
+TNS   : -17.240
 
 Type  : Fast 1100mV 85C Model Setup '\VGA_CLOCK:v_25MHzClk'
-Slack : -1.843
-TNS   : -92.781
+Slack : -2.145
+TNS   : -107.196
+
+Type  : Fast 1100mV 85C Model Setup 'Clk'
+Slack : -2.095
+TNS   : -21.145
 
 Type  : Fast 1100mV 85C Model Setup 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -1.687
-TNS   : -34.440
+Slack : -1.869
+TNS   : -35.195
 
-Type  : Fast 1100mV 85C Model Hold '\VGA_CLOCK:v_25MHzClk'
-Slack : 0.020
-TNS   : 0.000
+Type  : Fast 1100mV 85C Model Setup 'VGA_SYNC:C2|vert_sync_out'
+Slack : -1.677
+TNS   : -108.299
 
 Type  : Fast 1100mV 85C Model Hold 'Clk'
-Slack : 0.065
+Slack : -0.969
+TNS   : -8.350
+
+Type  : Fast 1100mV 85C Model Hold '\VGA_CLOCK:v_25MHzClk'
+Slack : 0.018
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.332
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.422
+Slack : 0.389
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Recovery 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -1.073
-TNS   : -17.116
+Slack : -1.130
+TNS   : -18.035
 
 Type  : Fast 1100mV 85C Model Removal 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.778
+Slack : 0.828
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'Clk'
 Slack : -2.174
-TNS   : -25.961
+TNS   : -26.545
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width '\VGA_CLOCK:v_25MHzClk'
-Slack : -0.146
-TNS   : -4.375
+Slack : -0.135
+TNS   : -6.134
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.008
+TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.138
+Slack : 0.123
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup '\VGA_CLOCK:v_25MHzClk'
-Slack : -1.867
-TNS   : -83.100
+Slack : -2.054
+TNS   : -94.969
 
 Type  : Fast 1100mV 0C Model Setup 'Clk'
-Slack : -1.537
-TNS   : -10.732
+Slack : -1.747
+TNS   : -16.193
 
 Type  : Fast 1100mV 0C Model Setup 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -1.474
-TNS   : -29.674
+Slack : -1.665
+TNS   : -30.555
+
+Type  : Fast 1100mV 0C Model Setup 'VGA_SYNC:C2|vert_sync_out'
+Slack : -1.429
+TNS   : -95.317
 
 Type  : Fast 1100mV 0C Model Hold 'Clk'
-Slack : -0.082
-TNS   : -0.320
+Slack : -1.034
+TNS   : -9.266
 
 Type  : Fast 1100mV 0C Model Hold '\VGA_CLOCK:v_25MHzClk'
-Slack : 0.033
+Slack : 0.042
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.309
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.386
+Slack : 0.371
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Recovery 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : -0.918
-TNS   : -14.656
+Slack : -0.978
+TNS   : -15.619
 
 Type  : Fast 1100mV 0C Model Removal 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.672
+Slack : 0.727
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'Clk'
 Slack : -2.174
-TNS   : -25.942
+TNS   : -26.504
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width '\VGA_CLOCK:v_25MHzClk'
-Slack : -0.083
-TNS   : -2.214
+Slack : -0.072
+TNS   : -2.668
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'VGA_SYNC:C2|vert_sync_out'
+Slack : 0.028
+TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MOUSE:C4|MOUSE_CLK_FILTER'
-Slack : 0.125
+Slack : 0.142
 TNS   : 0.000
 
 ------------------------------------------------------------

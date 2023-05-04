@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 package types is
-    type PipesArray is array (3 downto 0) of signed(9 downto 0);
+    type PipesArray is array (3 downto 0) of signed(10 downto 0);
 end types;
 
 --TODO: Make PIPE width a constant
@@ -15,4 +15,6 @@ package constants is
     constant BIRD_HEIGHT: integer := 32;
     constant SCREEN_HEIGHT: integer := 479;
     constant SCREEN_WIDTH: integer := 639;
+
+    constant PIPE_WIDTH: integer := 80;
 end constants;
