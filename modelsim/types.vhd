@@ -3,6 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 package types is
+<<<<<<< HEAD
     type PipesArray is array (3 downto 0) of signed(10 downto 0);
 end types;
 
@@ -18,3 +19,9 @@ package constants is
 
     constant PIPE_WIDTH: integer := 80;
 end constants;
+=======
+    type PipesArray is array (3 downto 0) of signed(9 downto 0);
+    constant PLAYER_WIDTH: integer := 8;
+    constant PLAYER_HEIGHT: integer := 8;
+end types;
+>>>>>>> 6a24afc (update(collision.vhd): Implemented collision detection functionality)

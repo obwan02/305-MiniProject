@@ -2,5 +2,3 @@
 *.ghw
 modelsim/bin/*
 modelsim/work/*
-Justfile
-modelsim/Justfile
