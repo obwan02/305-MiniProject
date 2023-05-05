@@ -1,5 +1,5 @@
 Flow report for 305MiniProject
-Fri May 05 11:52:36 2023
+Fri May 05 12:20:22 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Fri May 05 11:52:27 2023           ;
+; Flow Status                     ; Successful - Fri May 05 12:20:13 2023           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                   ; 305MiniProject                                  ;
 ; Top-level Entity Name           ; main                                            ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/05/2023 11:51:18 ;
+; Start date & time ; 05/05/2023 12:19:07 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 305MiniProject      ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+----------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+----------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 251053328742721.168324427818324        ; --             ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 251053328742721.168324594712944        ; --             ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --             ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --             ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --             ; main        ; Top        ;
@@ -96,11 +96,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4896 MB             ; 00:00:16                           ;
-; Fitter               ; 00:00:45     ; 1.0                     ; 6855 MB             ; 00:01:27                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4814 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:08     ; 1.2                     ; 5144 MB             ; 00:00:06                           ;
-; Total                ; 00:01:09     ; --                      ; --                  ; 00:01:52                           ;
+; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4896 MB             ; 00:00:17                           ;
+; Fitter               ; 00:00:44     ; 1.0                     ; 6858 MB             ; 00:01:25                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4814 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.2                     ; 5143 MB             ; 00:00:06                           ;
+; Total                ; 00:01:07     ; --                      ; --                  ; 00:01:51                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

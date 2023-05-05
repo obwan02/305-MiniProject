@@ -91,10 +91,10 @@ begin
     PIPE_RENDERER: process(Clk)
         -- We need to store the output of each individual pipes 'enable'
         -- signal, otherwise, only the last pipe will be shown on the screen
-        variable v_PipePixelEnable: std_logic_vector(PipesXValues'length-1 downto 0);
+        variable v_PipePixelEnable: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
         begin
             if rising_edge(Clk) then
-                for i in 0 to 3 loop
+                for i in 0 to constants.PIPE_MAX_INDEX loop
                     if (signed(VgaRow) <= TopPipeHeights(i) or 
                         signed(VgaRow) >= (constants.SCREEN_HEIGHT - BottomPipeHeights(i))) and
                         signed('0' & VgaCol) >= PipesXValues(i) and

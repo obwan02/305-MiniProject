@@ -1,5 +1,5 @@
 Fitter report for 305MiniProject
-Fri May 05 11:52:16 2023
+Fri May 05 12:20:04 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                    ;
 +---------------------------------+-------------------------------------------------+
-; Fitter Status                   ; Successful - Fri May 05 11:52:16 2023           ;
+; Fitter Status                   ; Successful - Fri May 05 12:20:04 2023           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                   ; 305MiniProject                                  ;
 ; Top-level Entity Name           ; main                                            ;
@@ -1427,7 +1427,7 @@ Info (188005): Design requires adding a large amount of routing delay for some s
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:22
-Info (11888): Total time spent on timing analysis during the Fitter is 0.76 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.73 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
@@ -1435,10 +1435,10 @@ Info (334004): Delay annotation completed successfully
 Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:02
 Info (144001): Generated suppressed messages file H:/Documents/305-MiniProject/quartus/output_files/305MiniProject.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 6855 megabytes
-    Info: Processing ended: Fri May 05 11:52:19 2023
-    Info: Elapsed time: 00:00:48
-    Info: Total CPU time (on all processors): 00:01:27
+    Info: Peak virtual memory: 6858 megabytes
+    Info: Processing ended: Fri May 05 12:20:06 2023
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:01:26
 
 
 +----------------------------+

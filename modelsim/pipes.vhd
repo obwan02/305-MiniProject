@@ -35,7 +35,7 @@ begin
         if falling_edge(PipeClk) then
             
             -- TODO: Make this number a constant
-            for i in 0 to 3 loop
+            for i in 0 to constants.PIPE_MAX_INDEX loop
                 if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
                     v_PipesXValues(i) := RightMostPixel;
                 else
@@ -43,7 +43,7 @@ begin
                 end if;
             end loop; 
 
-            for j in 0 to 3 loop
+            for j in 0 to constants.PIPE_MAX_INDEX loop
                 v_BottomPipeHeights(j) := TempHeight;
                 v_TopPipeHeights(j) := TempHeight;
             end loop;
