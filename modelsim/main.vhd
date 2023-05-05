@@ -25,7 +25,7 @@ architecture behave of main is
             -- pipe Arrays
             PipeWidth: in signed(10 downto 0);
             PipesXValues: in PipesArray;
-            TopPipeHeights: in PipesArray;
+            TopPipeHeights: UnsignedPipesArray;
             BottomPipeHeights: in PipesArray;
 
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
@@ -58,7 +58,7 @@ architecture behave of main is
             PipeClk: in std_logic;
             PipeWidth: out signed(10 downto 0);
             PipesXValues: out PipesArray;
-            TopPipeHeights: out PipesArray;
+            TopPipeHeights: out UnsignedPipesArray;
             BottomPipeHeights: out PipesArray
 
         );
@@ -78,9 +78,16 @@ architecture behave of main is
         PlayerX: in signed(10 downto 0);
         PlayerY: in signed(9 downto 0);
         PipesX: in PipesArray;
-        TopPipeHeight: in PipesArray;
+        TopPipeHeight: in UnsignedPipesArray;
         BottomPipeHeight: in PipesArray;
         Collided: out std_logic);
+    end component;
+
+    component LFSR is port(
+        Clk: in std_logic;
+        Reset: in std_logic;
+        Random7BitNumbersArray: out RandomPipesHeightArray
+    );
     end component;
 
     signal VSync: std_logic;
@@ -95,9 +102,13 @@ architecture behave of main is
 
     --Pipes Variables
     signal PipesXValues: PipesArray;
-    signal TopPipeHeights: PipesArray;
+    signal TopPipeHeights: UnsignedPipesArray;
     signal BottomPipeHeights: PipesArray;
     signal PipeWidth: signed(10 downto 0);
+
+    --Random generator variables
+    signal RandomReset: std_logic;
+    signal Random7BitNumber: RandomPipesHeightArray;
 begin
 
     VGA_CLOCK: process(Clk)
@@ -168,6 +179,12 @@ begin
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
                            Collided => Collided
+    );
+
+    C7: LFSR port map (
+        clk => Clk,
+        Reset => RandomReset,
+        Random7BitNumbersArray => Random7BitNumber
     );
     
 

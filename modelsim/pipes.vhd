@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+
 use work.types.all;
 use work.constants;
 
@@ -8,8 +9,9 @@ entity pipes is
     port(
         PipeClk: in std_logic;
         PipeWidth: out signed(10 downto 0);
+        RandomHeights: in RandomPipesHeightArray;
         PipesXValues: out PipesArray;
-        TopPipeHeights: out PipesArray;
+        TopPipeHeights: out UnsignedPipesArray;
         BottomPipeHeights: out PipesArray
     );
 end entity pipes;
@@ -25,7 +27,7 @@ begin
                                             to_signed(300, 11), 
                                             to_signed(500, 11),  
                                             to_signed(700, 11));
-    variable v_TopPipeHeights: PipesArray;
+    variable v_TopPipeHeights: UnsignedPipesArray;
     variable v_BottomPipeHeights: PipesArray;
 
     constant RightMostPixel: signed(10 downto 0) := to_signed(800, 11);
@@ -36,6 +38,7 @@ begin
             
             -- TODO: Make this number a constant
             for i in 0 to constants.PIPE_MAX_INDEX loop
+                -- Put the 
                 if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
                     v_PipesXValues(i) := RightMostPixel;
                 else
@@ -45,7 +48,7 @@ begin
 
             for j in 0 to constants.PIPE_MAX_INDEX loop
                 v_BottomPipeHeights(j) := TempHeight;
-                v_TopPipeHeights(j) := TempHeight;
+                v_TopPipeHeights(j) := "000" & RandomHeights(j);
             end loop;
         end if;
 
