@@ -5,13 +5,12 @@ use work.types.all;
 
 entity main is
     port (Clk: in std_logic;
-
           -- VGA Shit
           VgaRedOut, VgaGreenOut, VgaBlueOut: out std_logic_vector(3 downto 0);
           VgaHSync, VgaVSync: out std_logic;
-          
           -- Mouse Shit
-          MouseClk, MouseData: inout std_logic);
+          MouseClk, MouseData: inout std_logic;
+          Collided: out std_logic);
 end entity main;
 
 architecture behave of main is
@@ -72,6 +71,16 @@ architecture behave of main is
          left_button, right_button	: OUT std_logic;
 		 mouse_cursor_row 			: OUT std_logic_vector(9 DOWNTO 0); 
 		 mouse_cursor_column 		: OUT std_logic_vector(9 DOWNTO 0));       	
+    end component;
+
+    component collision is port(
+        Clk: in std_logic;
+        PlayerX: in signed(10 downto 0);
+        PlayerY: in signed(9 downto 0);
+        PipesX: in PipesArray;
+        TopPipeHeight: in PipesArray;
+        BottomPipeHeight: in PipesArray;
+        Collided: out std_logic);
     end component;
 
     signal VSync: std_logic;
@@ -150,6 +159,15 @@ begin
         PipesXValues => PipesXValues,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights
+    );
+
+    C6: collision port map(Clk => Clk,
+                           PlayerX => PlayerX,
+                           PlayerY => PlayerY,
+                           PipesX => PipesXValues,
+                           TopPipeHeight => TopPipeHeights,
+                           BottomPipeHeight => BottomPipeHeights,
+                           Collided => Collided
     );
     
 

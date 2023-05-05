@@ -60,6 +60,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "Collided",
+					"strict" : false
+				},
+				{
 					"name" : "MouseClk",
 					"strict" : false
 				},
