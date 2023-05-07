@@ -7,11 +7,17 @@ LIBRARY altera_mf;
 USE altera_mf.all;
 
 entity sprite_rom IS
-    generic(sprite_file: string);
+    generic(SPRITE_FILE: string;
+			-- ADDR_WIDTH detemines the size of the image that we are able to use
+			-- NOTE: the image must exactly match the ADDR_WIDTH, e.g. if we have
+			-- and ADDR_WIDTH of 3, we must have an 8x8 image in ROM.
+			--
+			-- The mif_gen.py script should perform this check when generating a .mif file.
+			ADDR_WIDTH: natural := 3);
 
 	port
 	(
-		SpriteRow, SpriteCol	:	in std_logic_vector (2 downto 0);
+		SpriteRow, SpriteCol	:	in std_logic_vector (ADDR_WIDTH-1 downto 0);
 		Clk				: 	in std_logic;
         Red, Green, Blue : out std_logic_vector(3 downto 0);
 		Visible: out std_logic
@@ -21,7 +27,7 @@ end sprite_rom;
 architecture behave of sprite_rom is
 
 	signal rom_data		: std_logic_VECTOR (12 downto 0);
-	signal rom_address	: std_logic_VECTOR (5 downto 0);
+	signal rom_address	: std_logic_VECTOR ((ADDR_WIDTH * 2)-1 downto 0);
 
 	COMPONENT altsyncram
 	generic (
@@ -42,7 +48,7 @@ architecture behave of sprite_rom is
 	);
 	port (
 		clock0		: in std_logic ;
-		address_a	: in std_logic_VECTOR (5 downto 0);
+		address_a	: in std_logic_VECTOR ((ADDR_WIDTH * 2) - 1 downto 0);
 		q_a			: out std_logic_VECTOR (12 downto 0)
 	);
 	end component;
@@ -54,15 +60,15 @@ begin
 		address_aclr_a => "NONE",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => sprite_file,
+		init_file => SPRITE_FILE,
 		intended_device_family => "Cyclone III",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
-		numwords_a => 64,
+		numwords_a => (2**(ADDR_WIDTH * 2)),
 		operation_mode => "ROM",
 		outdata_aclr_a => "NONE",
 		outdata_reg_a => "UNREGISTERED",
-		widthad_a => 6,
+		widthad_a => ADDR_WIDTH*2,
 		width_a => 13,
 		width_byteena_a => 1
 	)
