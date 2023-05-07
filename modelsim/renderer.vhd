@@ -44,12 +44,31 @@ architecture behave of renderer is
     constant BirdWidth: signed(10 downto 0) := to_signed(8, 11);
     constant BirdHeight: signed(9 downto 0) := to_signed(8, 10);
 
-    
+    -- Below are all the signals required to display the bird
+    --
+    -- EnableBird is used in the RENDER_ALL process
+    -- to tell us wether or not we should display the bird,
+    -- 
+    -- BirdVisible is output by the ROM and tells us if a pixel
+    -- is transparent or not.
+    --
+    -- BirdR, BirdG and BirdB are the colour outputs from the ROM
+    --
+    -- BirdRow and BirdCol are the inputs to the sprite ROM and tells
+    -- the ROM which pixel colour we want to select
     signal EnableBird, BirdVisible: std_logic;
     signal BirdR, BirdG, BirdB: std_logic_vector(3 downto 0);
     signal BirdRow, BirdCol: std_logic_vector (2 downto 0) := (others => '0');
 
+    -- These are the signals used for the pipes
+    --
+    -- EnablePipe tells the RENDER_ALL process if a pipe should be 
+    -- visible.
     signal EnablePipe: std_logic;
+
+    -- These are the signals used for the background sprite
+    signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
+    signal BackgroundRow, BackgroundCol: std_logic_vector (2 downto 0) := (others => '0');
 begin
 
     BIRD_ROM: sprite_rom generic map("BRD_ROM.mif") 
@@ -61,8 +80,18 @@ begin
                                   Blue => BirdB,
                                   Visible => BirdVisible
                          );
+
+    BGKGRD_ROM: sprite_rom generic map("ROM/BCKGRND_ROM.mif") 
+    port map(Clk => Clk,
+            SpriteRow => BackgroundRow,
+            SpriteCol => BackgroundCol,
+            Red => BackgroundR,
+            Green => BackgroundG,
+            Blue => BackgroundB,
+            Visible => open
+    );
                          
-    BIRD_READER: process(Clk)
+    BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(2 downto 0); 
     begin
@@ -72,9 +101,13 @@ begin
                signed('0' & VgaCol) >= PlayerX and 
                signed(VgaRow) <= PlayerY + constants.BIRD_WIDTH and 
                signed('0' & VgaCol) <= PlayerX + constants.BIRD_HEIGHT  then
+                -- Only enable the bird if the pixel isn't transparent
                 v_Enable := '1' and BirdVisible;
-                v_Row := shift_right(unsigned(VgaRow) - unsigned('0' & PlayerY), 2)(2 downto 0);
-                v_Col := shift_right(unsigned(VgaCol) - unsigned('0' & PlayerX), 2)(2 downto 0);
+                -- Here, we need to quadruple the size of the bird, as the sprite in ROM
+                -- is only 8x8 pixels.
+                -- To do this, we divide the rows and cols by 4.
+                v_Row := resize(shift_right(unsigned(VgaRow) - unsigned('0' & PlayerX), 2), 3);
+                v_Col := resize(shift_right(unsigned(VgaCol) - unsigned('0' & PlayerY), 2), 3);
             else
                 v_Enable := '0';
                 v_Row := (others => '0');
@@ -88,7 +121,7 @@ begin
         
     end process;
 
-    PIPE_RENDERER: process(Clk)
+    PIPE_RENDER: process(Clk)
         -- We need to store the output of each individual pipes 'enable'
         -- signal, otherwise, only the last pipe will be shown on the screen
         variable v_PipePixelEnable: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
@@ -112,16 +145,31 @@ begin
 
     end process;
 
-
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB)
+    BACKGROUND_RENDER: process(Clk) 
     begin
+        
+        if rising_edge(Clk) then
+            -- We chose 3 downto 1 so the we double the size of the background
+            BackgroundRow <= VgaRow(3 downto 1);
+            BackgroundCol <= VgaCol(3 downto 1);
+        end if;
 
+
+    end process;
+
+
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB)
+    begin
+        -- This process decides which items
+        -- should be rendered for the current 
+        -- pixel, given which items are being drawn
+        -- atm.
         if EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         elsif EnablePipe = '1' then
             R <= (others => '0'); G <= (others => '1'); B <= (others => '0');
         else
-            R <= (others => '0'); G <= (others => '0'); B <= (others => '0');
+            R <= BackgroundR; G <= BackgroundG; B <= BackgroundB;
         end if;
     end process;
 
