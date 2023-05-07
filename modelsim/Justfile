@@ -25,6 +25,7 @@ GHDL_FLAGS := GHDL_MODS + " --workdir=" + BIN_DIR
 # 
 # TL;DR:
 # Analyse/compile selected files
+[linux]
 [macos]
 analyse PATTERN='**/*.vh{d,dl}': _ensure_bin_dir
 	ghdl -a {{GHDL_FLAGS}} {{PATTERN}}
@@ -44,6 +45,7 @@ list-entities: analyse
 
 
 # List the entities that are available
+[linux]
 [macos]
 list-entities: analyse
 	@echo "\\n\\033[1;32mEntities:\\033[0m"
@@ -71,6 +73,7 @@ open-gtkwave FILE='sim_wav.ghw':
 
 
 # Opens GTKWave with the default wave file
+[linux]
 [macos]
 open-gtkwave FILE='sim_wav.ghw':
     open /Applications/gtkwave.app {{FILE}}
@@ -83,6 +86,7 @@ _ensure_bin_dir:
 
 
 # Make sure that binary dir always exists
+[linux]
 [macos]
 _ensure_bin_dir:
 	@mkdir {{BIN_DIR}} &> /dev/null || true
