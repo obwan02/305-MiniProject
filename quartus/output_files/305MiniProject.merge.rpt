@@ -1,0 +1,238 @@
+Partition Merge report for 305MiniProject
+Mon May 08 14:19:56 2023
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Partition Merge Summary
+  3. Partition Merge Netlist Types Used
+  4. Partition Merge Rapid Recompile Summary
+  5. Partition Merge Rapid Recompile Table of Changed Logic Entities
+  6. Partition Merge Partition Pin Processing
+  7. Partition Merge Resource Usage Summary
+  8. Partition Merge RAM Summary
+  9. Partition Merge Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Partition Merge Summary                                                           ;
++---------------------------------+-------------------------------------------------+
+; Partition Merge Status          ; Successful - Mon May 08 14:19:56 2023           ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name                   ; 305MiniProject                                  ;
+; Top-level Entity Name           ; main                                            ;
+; Family                          ; Cyclone V                                       ;
+; Logic utilization (in ALMs)     ; 242 / 18,480 ( 1 % )                            ;
+; Total registers                 ; 259                                             ;
+; Total pins                      ; 18 / 224 ( 8 % )                                ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 1,600 / 3,153,920 ( < 1 % )                     ;
+; Total DSP Blocks                ; 0 / 66 ( 0 % )                                  ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0 / 4 ( 0 % )                                   ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                                   ;
++---------------------------------+-------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Netlist Types Used                                                                                                   ;
++--------------------------------+----------------+--------------------------+------------------------+--------------------------------+
+; Partition Name                 ; Partition Type ; Netlist Type Used        ; Netlist Type Requested ; Partition Contents             ;
++--------------------------------+----------------+--------------------------+------------------------+--------------------------------+
+; Top                            ; User-created   ; Hybrid (Rapid Recompile) ; Source File            ;                                ;
+; hard_block:auto_generated_inst ; Auto-generated ; Source File              ; Source File            ; hard_block:auto_generated_inst ;
++--------------------------------+----------------+--------------------------+------------------------+--------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Rapid Recompile Summary                                                                          ;
++----------------+------------------------+--------------------------------+-------------------------------+-------+
+; Partition Name ; Rapid Recompile Status ; Netlist Preservation Requested ; Netlist Preservation Achieved ; Notes ;
++----------------+------------------------+--------------------------------+-------------------------------+-------+
+; Top            ; Engaged                ; 93.37% (620 / 664)             ; 92.62% (615 / 664)            ;       ;
++----------------+------------------------+--------------------------------+-------------------------------+-------+
+
+
++-------------------------------------------------------------------+
+; Partition Merge Rapid Recompile Table of Changed Logic Entities   ;
++-----------------------------------------+-------------------------+
+; Changed Logic Entities                  ; Number of Changed Nodes ;
++-----------------------------------------+-------------------------+
+; |main|VGA_SYNC:C2                       ; 26                      ;
+; |main|renderer:C1|sprite_rom:BIRD_ROM   ; 13                      ;
+; |main|renderer:C1|sprite_rom:BGKGRD_ROM ; 12                      ;
+; |main|renderer:C1                       ; 7                       ;
++-----------------------------------------+-------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Partition Pin Processing                                                                                    ;
++------------------------------+-----------+---------------+--------------------+---------------------------------------------+
+; Name                         ; Partition ; Type          ; Location           ; Status                                      ;
++------------------------------+-----------+---------------+--------------------+---------------------------------------------+
+; Clk                          ; Top       ; Input Port    ; n/a                ;                                             ;
+;     -- Clk                   ; Top       ; Input Pad     ; IOPAD_X22_Y0_N0    ; Preserved from Post-Fit or Imported Netlist ;
+;     -- Clk~input             ; Top       ; Input Buffer  ; IOIBUF_X22_Y0_N1   ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; Collided                     ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- Collided              ; Top       ; Output Pad    ; IOPAD_X0_Y18_N77   ; Preserved from Post-Fit or Imported Netlist ;
+;     -- Collided~output       ; Top       ; Output Buffer ; IOOBUF_X0_Y18_N79  ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; MouseClk                     ; Top       ; Bidir Port    ; n/a                ;                                             ;
+;     -- MouseClk              ; Top       ; Bidir Pad     ; IOPAD_X0_Y20_N3    ; Preserved from Post-Fit or Imported Netlist ;
+;     -- MouseClk~output       ; Top       ; Output Buffer ; IOOBUF_X0_Y20_N5   ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; MouseData                    ; Top       ; Bidir Port    ; n/a                ;                                             ;
+;     -- MouseData             ; Top       ; Bidir Pad     ; IOPAD_X0_Y21_N3    ; Preserved from Post-Fit or Imported Netlist ;
+;     -- MouseData~output      ; Top       ; Output Buffer ; IOOBUF_X0_Y21_N5   ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaBlueOut[0]                ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaBlueOut[0]         ; Top       ; Output Pad    ; IOPAD_X14_Y45_N34  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaBlueOut[0]~output  ; Top       ; Output Buffer ; IOOBUF_X14_Y45_N36 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaBlueOut[1]                ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaBlueOut[1]         ; Top       ; Output Pad    ; IOPAD_X14_Y45_N51  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaBlueOut[1]~output  ; Top       ; Output Buffer ; IOOBUF_X14_Y45_N53 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaBlueOut[2]                ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaBlueOut[2]         ; Top       ; Output Pad    ; IOPAD_X12_Y45_N0   ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaBlueOut[2]~output  ; Top       ; Output Buffer ; IOOBUF_X12_Y45_N2  ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaBlueOut[3]                ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaBlueOut[3]         ; Top       ; Output Pad    ; IOPAD_X12_Y45_N17  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaBlueOut[3]~output  ; Top       ; Output Buffer ; IOOBUF_X12_Y45_N19 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaGreenOut[0]               ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaGreenOut[0]        ; Top       ; Output Pad    ; IOPAD_X22_Y45_N34  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaGreenOut[0]~output ; Top       ; Output Buffer ; IOOBUF_X22_Y45_N36 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaGreenOut[1]               ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaGreenOut[1]        ; Top       ; Output Pad    ; IOPAD_X22_Y45_N51  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaGreenOut[1]~output ; Top       ; Output Buffer ; IOOBUF_X22_Y45_N53 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaGreenOut[2]               ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaGreenOut[2]        ; Top       ; Output Pad    ; IOPAD_X20_Y45_N0   ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaGreenOut[2]~output ; Top       ; Output Buffer ; IOOBUF_X20_Y45_N2  ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaGreenOut[3]               ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaGreenOut[3]        ; Top       ; Output Pad    ; IOPAD_X20_Y45_N17  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaGreenOut[3]~output ; Top       ; Output Buffer ; IOOBUF_X20_Y45_N19 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaHSync                     ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaHSync              ; Top       ; Output Pad    ; IOPAD_X20_Y45_N34  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaHSync~output       ; Top       ; Output Buffer ; IOOBUF_X20_Y45_N36 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaRedOut[0]                 ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaRedOut[0]          ; Top       ; Output Pad    ; IOPAD_X18_Y45_N51  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaRedOut[0]~output   ; Top       ; Output Buffer ; IOOBUF_X18_Y45_N53 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaRedOut[1]                 ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaRedOut[1]          ; Top       ; Output Pad    ; IOPAD_X16_Y45_N40  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaRedOut[1]~output   ; Top       ; Output Buffer ; IOOBUF_X16_Y45_N42 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaRedOut[2]                 ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaRedOut[2]          ; Top       ; Output Pad    ; IOPAD_X16_Y45_N57  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaRedOut[2]~output   ; Top       ; Output Buffer ; IOOBUF_X16_Y45_N59 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaRedOut[3]                 ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaRedOut[3]          ; Top       ; Output Pad    ; IOPAD_X16_Y45_N74  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaRedOut[3]~output   ; Top       ; Output Buffer ; IOOBUF_X16_Y45_N76 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
+; VgaVSync                     ; Top       ; Output Port   ; n/a                ;                                             ;
+;     -- VgaVSync              ; Top       ; Output Pad    ; IOPAD_X20_Y45_N51  ; Preserved from Post-Fit or Imported Netlist ;
+;     -- VgaVSync~output       ; Top       ; Output Buffer ; IOOBUF_X20_Y45_N53 ; Preserved from Post-Fit or Imported Netlist ;
+;                              ;           ;               ;                    ;                                             ;
++------------------------------+-----------+---------------+--------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Partition Merge Resource Usage Summary                              ;
++---------------------------------------------+-----------------------+
+; Resource                                    ; Usage                 ;
++---------------------------------------------+-----------------------+
+; Estimate of Logic utilization (ALMs needed) ; 262                   ;
+;                                             ;                       ;
+; Combinational ALUT usage for logic          ; 313                   ;
+;     -- 7 input functions                    ; 1                     ;
+;     -- 6 input functions                    ; 95                    ;
+;     -- 5 input functions                    ; 42                    ;
+;     -- 4 input functions                    ; 45                    ;
+;     -- <=3 input functions                  ; 130                   ;
+;                                             ;                       ;
+; Dedicated logic registers                   ; 259                   ;
+;                                             ;                       ;
+; I/O pins                                    ; 18                    ;
+; Total MLAB memory bits                      ; 0                     ;
+; Total block memory bits                     ; 1600                  ;
+;                                             ;                       ;
+; Total DSP Blocks                            ; 0                     ;
+;                                             ;                       ;
+; Maximum fan-out node                        ; \VGA_CLOCK:v_25MHzClk ;
+; Maximum fan-out                             ; 114                   ;
+; Total fan-out                               ; 2112                  ;
+; Average fan-out                             ; 3.27                  ;
++---------------------------------------------+-----------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge RAM Summary                                                                                                                                                                                        ;
++-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+---------------------+
+; Name                                                                                                        ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF                 ;
++-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+---------------------+
+; renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_11h1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 64           ; 13           ; --           ; --           ; 832  ; ROM/BCKGRND_ROM.mif ;
+; renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ujg1:auto_generated|ALTSYNCRAM   ; AUTO ; ROM  ; 64           ; 13           ; --           ; --           ; 832  ; ROM/BRD_ROM.mif     ;
++-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+---------------------+
+
+
++--------------------------+
+; Partition Merge Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Partition Merge
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+    Info: Processing started: Mon May 08 14:19:54 2023
+Info: Command: quartus_cdb --read_settings_files=on --write_settings_files=off 305MiniProject -c 305MiniProject --merge=on --recompile=on
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (12849): Using Hybrid (Rapid Recompile) netlist for partition "Top"
+Info (35002): Resolved and merged 1 partition(s)
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 563 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 15 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 519 logic cells
+    Info (21064): Implemented 25 RAM segments
+Info: Quartus Prime Partition Merge was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4860 megabytes
+    Info: Processing ended: Mon May 08 14:19:57 2023
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
+
+

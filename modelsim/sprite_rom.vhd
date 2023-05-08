@@ -48,7 +48,7 @@ architecture behave of sprite_rom is
 	);
 	port (
 		clock0		: in std_logic ;
-		address_a	: in std_logic_VECTOR ((ADDR_WIDTH * 2) - 1 downto 0);
+		address_a	: in std_logic_VECTOR (((ADDR_WIDTH * 2) - 1) downto 0);
 		q_a			: out std_logic_VECTOR (12 downto 0)
 	);
 	end component;
@@ -79,9 +79,14 @@ begin
 	);
 
 	rom_address <= SpriteRow & SpriteCol;
-    Red <= rom_data(11 downto 8);
-    Green <= rom_data(7 downto 4);
-    Blue <= rom_data(3 downto 0);
-	Visible <= rom_data(12);
 
+	UPDATE: process(Clk)
+	begin
+		if rising_edge(Clk) then 
+			Red <= rom_data(11 downto 8);
+			Green <= rom_data(7 downto 4);
+			Blue <= rom_data(3 downto 0);
+			Visible <= rom_data(12);
+		end if;
+	end process;
 end behave;

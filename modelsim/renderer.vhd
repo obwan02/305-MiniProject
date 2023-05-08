@@ -26,13 +26,14 @@ entity renderer is
 
 
     );
-end entity renderer;
+end entity;
 
 architecture behave of renderer is
     component sprite_rom is
-        generic(sprite_file: string);
+        generic(sprite_file: string;
+                addr_width: natural := 3);
 
-        port(SpriteRow, SpriteCol	:	in std_logic_vector (2 downto 0);
+        port(SpriteRow, SpriteCol	:	in std_logic_vector (ADDR_WIDTH-1 downto 0);
              Clk				: 	in std_logic;
              Red, Green, Blue : out std_logic_vector(3 downto 0);
              Visible: out std_logic
@@ -68,7 +69,7 @@ architecture behave of renderer is
 
     -- These are the signals used for the background sprite
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
-    signal BackgroundRow, BackgroundCol: std_logic_vector (2 downto 0) := (others => '0');
+    signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
 begin
 
     BIRD_ROM: sprite_rom generic map("ROM/BRD_ROM.mif") 
@@ -81,7 +82,9 @@ begin
                                   Visible => BirdVisible
                          );
 
-    BGKGRD_ROM: sprite_rom generic map("ROM/BCKGRND_ROM.mif") 
+    BGKGRD_ROM: sprite_rom generic map(
+        Sprite_File => "ROM/BK_GRND2.mif",
+        Addr_Width => 4)
     port map(Clk => Clk,
             SpriteRow => BackgroundRow,
             SpriteCol => BackgroundCol,
@@ -145,17 +148,8 @@ begin
 
     end process;
 
-    BACKGROUND_RENDER: process(Clk) 
-    begin
-        
-        if rising_edge(Clk) then
-            -- We chose 3 downto 1 so the we double the size of the background
-            BackgroundRow <= VgaRow(3 downto 1);
-            BackgroundCol <= VgaCol(3 downto 1);
-        end if;
-
-
-    end process;
+    BackgroundRow <= VgaRow(5 downto 2);
+    BackgroundCol <= VgaCol(5 downto 2);
 
 
     RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB)
