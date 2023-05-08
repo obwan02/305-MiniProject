@@ -109,8 +109,8 @@ begin
                 -- Here, we need to quadruple the size of the bird, as the sprite in ROM
                 -- is only 8x8 pixels.
                 -- To do this, we divide the rows and cols by 4.
-                v_Row := resize(shift_right(unsigned(VgaRow) - unsigned('0' & PlayerX), 2), 3);
-                v_Col := resize(shift_right(unsigned(VgaCol) - unsigned('0' & PlayerY), 2), 3);
+                v_Row := shift_right(unsigned(VgaRow) - unsigned('0' & PlayerY), 2)(2 downto 0);
+                v_Col := shift_right(unsigned(VgaCol) - unsigned('0' & PlayerX), 2)(2 downto 0);
             else
                 v_Enable := '0';
                 v_Row := (others => '0');
