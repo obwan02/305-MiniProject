@@ -73,8 +73,8 @@ begin
                signed(VgaRow) <= PlayerY + constants.BIRD_WIDTH and 
                signed('0' & VgaCol) <= PlayerX + constants.BIRD_HEIGHT  then
                 v_Enable := '1' and BirdVisible;
-                v_Row := resize(shift_right(unsigned(VgaRow) - unsigned('0' & PlayerX), 2), 3);
-                v_Col := resize(shift_right(unsigned(VgaCol) - unsigned('0' & PlayerY), 2), 3);
+                v_Row := shift_right(unsigned(VgaRow) - unsigned('0' & PlayerY), 2)(2 downto 0);
+                v_Col := shift_right(unsigned(VgaCol) - unsigned('0' & PlayerX), 2)(2 downto 0);
             else
                 v_Enable := '0';
                 v_Row := (others => '0');

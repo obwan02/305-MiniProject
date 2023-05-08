@@ -10,7 +10,7 @@ entity main is
           VgaHSync, VgaVSync: out std_logic;
           -- Mouse Shit
           MouseClk, MouseData: inout std_logic;
-          Collided: out std_logic);
+          DebugLight: out std_logic);
 end entity main;
 
 architecture behave of main is
@@ -153,6 +153,8 @@ begin
                        mouse_cursor_column => open
     );
 
+    DebugLight <= LeftMouseButton;
+
     C5: pipes port map(
         PipeClk => VSync,
         PipeWidth => PipeWidth,
@@ -167,7 +169,7 @@ begin
                            PipesX => PipesXValues,
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
-                           Collided => Collided
+                           Collided => open
     );
     
 

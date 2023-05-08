@@ -48,19 +48,21 @@ begin
 			-- go upwards if the LMB was clicked.
 			-- Otherwise, we increment the velocity to
 			-- simulate gravity.
-			if (LeftMouseButton /= v_PrevLeftMB) then 
+			if (LeftMouseButton /= v_PrevLeftMB) and v_PrevLeftMB /= '1' then 
 				v_YVel := to_signed(-10, v_YVel'length);
 			else
 				v_YVel := v_YVel + 1;
 			end if;
+			v_PrevLeftMB := LeftMouseButton;
 
 			-- Here, we put a cap on the amount of downwards
 			-- velocity we can obtain
-			if v_YVel <= 10 then
+			if v_YVel >= 10 then
 				v_Yvel := to_signed(10, v_YVel'length); 
 			end if;
 
 			v_CurrentY := v_CurrentY + v_YVel;
+			
 
 			-- Here, we limit the birds position so
 			-- that we can't fall through the floor
@@ -73,7 +75,7 @@ begin
 				v_HitTop := '0';
 			end if;
 
-			if (v_CurrentY - constants.BIRD_HEIGHT) >= constants.SCREEN_HEIGHT then
+			if (v_CurrentY + constants.BIRD_HEIGHT) >= constants.SCREEN_HEIGHT then
 				v_CurrentY := to_signed(constants.SCREEN_HEIGHT - constants.BIRD_HEIGHT, v_CurrentY'length);
 				v_YVel := (others => '0');
 				v_HitBottom := '1';
@@ -83,9 +85,6 @@ begin
 
 			HitTopOrBottom <= v_HitTop or v_HitBottom;
 			NewY <= v_CurrentY;
-			
-			v_PrevLeftMB := LeftMouseButton;
-
 		end if;
     
     end process;

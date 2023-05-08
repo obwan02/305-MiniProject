@@ -60,7 +60,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "Collided",
+					"name" : "DebugLight",
 					"strict" : false
 				},
 				{
