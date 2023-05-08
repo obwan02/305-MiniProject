@@ -68,6 +68,8 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_D3 -to MouseClk
 set_location_assignment PIN_G2 -to MouseData
+set_location_assignment PIN_AA2 -to Collided
+set_global_assignment -name VHDL_FILE ../modelsim/lfsr.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/collision.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/types.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/pipes.vhd
@@ -77,5 +79,4 @@ set_global_assignment -name VHDL_FILE ../modelsim/vga_sync.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/renderer.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/player_update.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/main.vhd
-set_location_assignment PIN_AA2 -to Collided
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

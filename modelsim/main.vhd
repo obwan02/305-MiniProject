@@ -25,7 +25,7 @@ architecture behave of main is
             -- pipe Arrays
             PipeWidth: in signed(10 downto 0);
             PipesXValues: in PipesArray;
-            TopPipeHeights: UnsignedPipesArray;
+            TopPipeHeights: in PipesArray;
             BottomPipeHeights: in PipesArray;
 
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
@@ -57,8 +57,9 @@ architecture behave of main is
         port(
             PipeClk: in std_logic;
             PipeWidth: out signed(10 downto 0);
+            RandomHeights: in PipesArray;
             PipesXValues: out PipesArray;
-            TopPipeHeights: out UnsignedPipesArray;
+            TopPipeHeights: out PipesArray;
             BottomPipeHeights: out PipesArray
 
         );
@@ -78,7 +79,7 @@ architecture behave of main is
         PlayerX: in signed(10 downto 0);
         PlayerY: in signed(9 downto 0);
         PipesX: in PipesArray;
-        TopPipeHeight: in UnsignedPipesArray;
+        TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
         Collided: out std_logic);
     end component;
@@ -86,7 +87,7 @@ architecture behave of main is
     component LFSR is port(
         Clk: in std_logic;
         Reset: in std_logic;
-        Random7BitNumbersArray: out RandomPipesHeightArray
+        Random7BitNumbersArray: out PipesArray
     );
     end component;
 
@@ -102,13 +103,13 @@ architecture behave of main is
 
     --Pipes Variables
     signal PipesXValues: PipesArray;
-    signal TopPipeHeights: UnsignedPipesArray;
+    signal TopPipeHeights: PipesArray;
     signal BottomPipeHeights: PipesArray;
     signal PipeWidth: signed(10 downto 0);
 
     --Random generator variables
     signal RandomReset: std_logic;
-    signal Random7BitNumber: RandomPipesHeightArray;
+    signal RandomNumbers: PipesArray;
 begin
 
     VGA_CLOCK: process(Clk)
@@ -168,6 +169,7 @@ begin
         PipeClk => VSync,
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
+        RandomHeights => RandomNumbers,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights
     );
@@ -184,7 +186,7 @@ begin
     C7: LFSR port map (
         clk => Clk,
         Reset => RandomReset,
-        Random7BitNumbersArray => Random7BitNumber
+        Random7BitNumbersArray => RandomNumbers
     );
     
 
