@@ -18,7 +18,7 @@ entity renderer is
         --Pipe arrays
         PipeWidth: in signed(10 downto 0);
         PipesXValues: in PipesArray;
-        TopPipeHeights: in UnsignedPipesArray;
+        TopPipeHeights: in PipesArray;
         BottomPipeHeights: in PipesArray;
 
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
@@ -147,7 +147,7 @@ begin
         begin
             if rising_edge(Clk) then
                 for i in 0 to constants.PIPE_MAX_INDEX loop
-                    if (unsigned(VgaRow) <= TopPipeHeights(i) or 
+                    if (signed(VgaRow) <= TopPipeHeights(i) or 
                         signed(VgaRow) >= (constants.SCREEN_HEIGHT - BottomPipeHeights(i))) and
                         signed('0' & VgaCol) >= PipesXValues(i) and
                         signed('0' & VgaCol) <= PipesXValues(i) + PipeWidth 

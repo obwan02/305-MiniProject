@@ -9,9 +9,9 @@ entity pipes is
     port(
         PipeClk: in std_logic;
         PipeWidth: out signed(10 downto 0);
-        RandomHeights: in RandomPipesHeightArray;
+        RandomHeights: in PipesArray;
         PipesXValues: out PipesArray;
-        TopPipeHeights: out UnsignedPipesArray;
+        TopPipeHeights: out PipesArray;
         BottomPipeHeights: out PipesArray
     );
 end entity pipes;
@@ -23,33 +23,27 @@ begin
     PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
 
     process(PipeClk)
-    variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
-                                            to_signed(300, 11), 
-                                            to_signed(500, 11),  
-                                            to_signed(700, 11));
-    variable v_TopPipeHeights: UnsignedPipesArray;
+    variable v_PipesXValues: PipesArray := (to_signed(600, 11), 
+                                            to_signed(700, 11), 
+                                            to_signed(800, 11),  
+                                            to_signed(900, 11));
+    variable v_TopPipeHeights: PipesArray;
     variable v_BottomPipeHeights: PipesArray;
 
     constant RightMostPixel: signed(10 downto 0) := to_signed(800, 11);
     constant Speed: signed(9 downto 0) := to_signed(1, 10);
-    constant TempHeight: signed(10 downto 0) := to_signed(200, 11);
+    constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
     begin
-        if falling_edge(PipeClk) then
-            
-            -- TODO: Make this number a constant
+        if rising_edge(PipeClk) then
             for i in 0 to constants.PIPE_MAX_INDEX loop
-                -- Put the 
                 if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
                     v_PipesXValues(i) := RightMostPixel;
+                    v_BottomPipeHeights(i) := TempHeight;
+                    v_TopPipeHeights(i) := RandomHeights(i);
                 else
                     v_PipesXValues(i) := v_PipesXValues(i) - Speed;
                 end if;
             end loop; 
-
-            for j in 0 to constants.PIPE_MAX_INDEX loop
-                v_BottomPipeHeights(j) := TempHeight;
-                v_TopPipeHeights(j) := "000" & RandomHeights(j);
-            end loop;
         end if;
 
         BottomPipeHeights <= v_BottomPipeHeights;
