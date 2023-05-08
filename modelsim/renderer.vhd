@@ -59,7 +59,7 @@ architecture behave of renderer is
     -- the ROM which pixel colour we want to select
     signal EnableBird, BirdVisible: std_logic;
     signal BirdR, BirdG, BirdB: std_logic_vector(3 downto 0);
-    signal BirdRow, BirdCol: std_logic_vector (2 downto 0) := (others => '0');
+    signal BirdRow, BirdCol: std_logic_vector (4 downto 0) := (others => '0');
 
     -- These are the signals used for the pipes
     --
@@ -72,7 +72,8 @@ architecture behave of renderer is
     signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
 begin
 
-    BIRD_ROM: sprite_rom generic map("ROM/BRD_ROM.mif") 
+    BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
+                                     Addr_Width => 5) 
                          port map(Clk => Clk,
                                   SpriteRow => BirdRow,
                                   SpriteCol => BirdCol,
@@ -96,7 +97,7 @@ begin
                          
     BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
-        variable v_Row, v_Col: unsigned(2 downto 0); 
+        variable v_Row, v_Col: unsigned(4 downto 0); 
     begin
 
         if rising_edge(Clk) then
@@ -109,8 +110,8 @@ begin
                 -- Here, we need to quadruple the size of the bird, as the sprite in ROM
                 -- is only 8x8 pixels.
                 -- To do this, we divide the rows and cols by 4.
-                v_Row := shift_right(unsigned(VgaRow) - unsigned('0' & PlayerY), 2)(2 downto 0);
-                v_Col := shift_right(unsigned(VgaCol) - unsigned('0' & PlayerX), 2)(2 downto 0);
+                v_Row := resize(unsigned(VgaRow) - unsigned('0' & PlayerY), 5);
+                v_Col := resize(unsigned(VgaCol) - unsigned('0' & PlayerX), 5);
             else
                 v_Enable := '0';
                 v_Row := (others => '0');

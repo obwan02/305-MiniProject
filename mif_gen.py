@@ -29,7 +29,7 @@ def convert_image_to_bin_strings(image: Image.Image) -> Image.Image:
 
 def write_bin_strings(file, bit_strings):
     file.write("% GENERATED CONTENT %\n")
-    file.write("Depth = 512;\n")
+    file.write(f"Depth = {len(bit_strings)};\n")
     file.write("Width = 13;\n")
     file.write("Address_radix = dec;\n")
     file.write("Data_radix = bin;\n")
