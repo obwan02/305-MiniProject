@@ -72,7 +72,7 @@ architecture behave of renderer is
     signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
 begin
 
-    BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
+    BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD_ROM.mif",
                                      Addr_Width => 5) 
                          port map(Clk => Clk,
                                   SpriteRow => BirdRow,
