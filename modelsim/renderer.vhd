@@ -50,6 +50,12 @@ architecture behave of renderer is
 	);
     end component;
 
+	component text_storage is 
+		generic(STR: string);
+		port(Index: in unsigned(STR'length-1 downto 0)
+			 Address: out std_logic_vector(5 downto 0));
+	end component;
+
     -- Constants
     -- TODO: Make this more accessible
     constant BirdWidth: signed(10 downto 0) := to_signed(8, 11);
@@ -82,6 +88,7 @@ architecture behave of renderer is
     signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
 
     -- Text rendering signals
+	signal CharIndex: unsigned(5 downto 0);
     signal CharAddress: std_logic_vector(5 downto 0);
     signal FontRow, FontCol: std_logic_vector(2 downto 0);
     signal FontOutput, FontVisible: std_logic;
@@ -170,27 +177,20 @@ begin
 
     end process;
 
+	SCORE_TEXT: text_storage generic map(constants.SCORE_TEXT) port map(Address => CharAddress,
+														   Index => CharIndex);
     TEXT_RENDER: process
-        variable v_TextWidth: unsigned(9 downto 0);
-        type t_Addresses is array (natural range <>) of std_logic_vector(5 downto 0);
-        constant Addresses: t_Addresses := (std_logic_vector(to_unsigned(19, 6)),
-                                            std_logic_vector(to_unsigned(3, 6)),
-                                            std_logic_vector(to_unsigned(15, 6)),
-                                            std_logic_vector(to_unsigned(18, 6)),
-                                            std_logic_vector(to_unsigned(5, 6))
-                                        );
+		constant TEXT_WIDTH: integer := constants.SCORE_TEXT'length * 8;
     begin
         wait until rising_edge(Clk);
-
-        v_TextWidth := shift_left(to_unsigned(5, v_TextWidth'length), 3);
 
         if signed('0' & VgaCol) >= 16 and 
            signed('0' & VgaCol) < signed(v_TextWidth + 16) and
            signed(VgaRow) >= 16 and
            signed(VgaRow) < 24 then
-            CharAddress <= Addresses(to_integer(shift_right(unsigned(VgaCol) - 16, 3)));
-            FontCol <= VgaCol(2 downto 0);
-            FontRow <= VgaRow(2 downto 0);
+			CharIndex <= shift_right(VgaCol, 4)
+            FontCol <= VgaCol(3 downto 1);
+            FontRow <= VgaRow(3 downto 1);
             FontVisible <= FontOutput;
         else
             FontVisible <= '0';    

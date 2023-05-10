@@ -20,4 +20,7 @@ package constants is
     constant PIPE_COUNT: integer := 4;
     constant PIPE_MAX_INDEX: integer := PIPE_COUNT - 1;
     constant PIPE_WIDTH: integer := 80;
+
+
+	constant SCORE_TEXT: string := "Score";
 end constants;
