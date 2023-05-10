@@ -38,8 +38,13 @@ begin
             for i in 0 to constants.PIPE_MAX_INDEX loop
                 if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
                     v_PipesXValues(i) := RightMostPixel;
-                    v_BottomPipeHeights(i) := TempHeight;
+
+                    --asign the randomly generated heigt to the top pipes
                     v_TopPipeHeights(i) := RandomHeights(i);
+
+                    -- find the bottom piprd height
+                    v_BottomPipeHeights(i) := 639 - (RandomHeights(i) + 200);
+                    
                 else
                     v_PipesXValues(i) := v_PipesXValues(i) - Speed;
                 end if;
