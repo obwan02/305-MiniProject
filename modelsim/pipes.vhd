@@ -23,15 +23,15 @@ begin
     PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
 
     process(PipeClk)
-    variable v_PipesXValues: PipesArray := (to_signed(600, 11), 
-                                            to_signed(900, 11), 
-                                            to_signed(1200, 11),  
-                                            to_signed(1500, 11));
+    variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
+                                            to_signed(200 + 80, 11), 
+                                            to_signed(300 + 160, 11),  
+                                            to_signed(400 + 240, 11));
     variable v_TopPipeHeights: PipesArray;
     variable v_BottomPipeHeights: PipesArray;
 
-    constant RightMostPixel: signed(10 downto 0) := to_signed(800, 11);
-    constant Speed: signed(9 downto 0) := to_signed(3, 10);
+    constant RightMostPixel: signed(10 downto 0) := to_signed(640, 11);
+    constant Speed: signed(9 downto 0) := to_signed(2, 10);
     constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
     begin
         if rising_edge(PipeClk) then
