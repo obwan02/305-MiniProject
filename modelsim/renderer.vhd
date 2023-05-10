@@ -22,9 +22,9 @@ entity renderer is
         BottomPipeHeights: in PipesArray;
 
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
-        R, G, B: out std_logic_vector(3 downto 0)
+        R, G, B: out std_logic_vector(3 downto 0);
 
-
+        Score: in unsigned(15 downto 0)
     );
 end entity;
 
@@ -38,6 +38,16 @@ architecture behave of renderer is
              Red, Green, Blue : out std_logic_vector(3 downto 0);
              Visible: out std_logic
         );
+    end component;
+
+    component char_rom is
+	port
+	(
+		character_address	:	in STD_LOGIC_VECTOR (5 downto 0);
+		font_row, font_col	:	in STD_LOGIC_VECTOR (2 downto 0);
+		clock				: 	in STD_LOGIC ;
+		rom_mux_output		:	out STD_LOGIC
+	);
     end component;
 
     -- Constants
@@ -70,9 +80,20 @@ architecture behave of renderer is
     -- These are the signals used for the background sprite
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
     signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
+
+    -- Text rendering signals
+    signal CharAddress: std_logic_vector(5 downto 0);
+    signal FontRow, FontCol: std_logic_vector(2 downto 0);
+    signal FontOutput, FontVisible: std_logic;
 begin
 
-    BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD_ROM.mif",
+    TEXT_ROM: char_rom port map(Clock => Clk,
+                                Character_Address => CharAddress,
+                                Font_Row => FontRow,
+                                Font_Col => FontCol,
+                                rom_mux_output => FontOutput);
+
+    BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
                                      Addr_Width => 5) 
                          port map(Clk => Clk,
                                   SpriteRow => BirdRow,
@@ -149,17 +170,48 @@ begin
 
     end process;
 
+    TEXT_RENDER: process
+        variable v_TextWidth: unsigned(9 downto 0);
+        type t_Addresses is array (natural range <>) of std_logic_vector(5 downto 0);
+        constant Addresses: t_Addresses := (std_logic_vector(to_unsigned(19, 6)),
+                                            std_logic_vector(to_unsigned(3, 6)),
+                                            std_logic_vector(to_unsigned(15, 6)),
+                                            std_logic_vector(to_unsigned(18, 6)),
+                                            std_logic_vector(to_unsigned(5, 6))
+                                        );
+    begin
+        wait until rising_edge(Clk);
+
+        v_TextWidth := to_unsigned(5, v_TextWidth'length) * 8;
+
+        if signed('0' & VgaCol) >= 16 and 
+           signed('0' & VgaCol) <= signed(v_TextWidth + 16) and
+           signed(VgaRow) >= 16 and
+           signed(VgaRow) <= 24 then
+            CharAddress <= Addresses(to_integer(shift_right(unsigned(VgaCol) - 10, 3)));
+            FontCol <= VgaCol(2 downto 0);
+            FontRow <= VgaRow(2 downto 0);
+            FontVisible <= FontOutput;
+        else
+            FontVisible <= '0';    
+        end if;
+
+
+    end process;
+
     BackgroundRow <= VgaRow(5 downto 2);
     BackgroundCol <= VgaCol(5 downto 2);
 
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, FontVisible)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if EnableBird = '1' then
+        if FontVisible = '1' then
+            R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
+        elsif EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         elsif EnablePipe = '1' then
             R <= (others => '0'); G <= (others => '1'); B <= (others => '0');
