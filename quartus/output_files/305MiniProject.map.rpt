@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 305MiniProject
-Mon May 08 18:43:53 2023
+Wed May 10 19:43:29 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -19,21 +19,23 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
  11. General Register Statistics
  12. Inverted Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Source assignments for renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated
- 15. Source assignments for renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated
- 16. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM
- 17. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component
- 18. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM
- 19. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component
- 20. altsyncram Parameter Settings by Entity Instance
- 21. Port Connectivity Checks: "collision:C6"
- 22. Port Connectivity Checks: "MOUSE:C4"
- 23. Port Connectivity Checks: "player_update:C3"
- 24. Port Connectivity Checks: "renderer:C1|sprite_rom:BGKGRD_ROM"
- 25. Port Connectivity Checks: "renderer:C1"
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
+ 14. Source assignments for renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated
+ 15. Source assignments for renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated
+ 16. Source assignments for renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated
+ 17. Parameter Settings for User Entity Instance: renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component
+ 18. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM
+ 19. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component
+ 20. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM
+ 21. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component
+ 22. altsyncram Parameter Settings by Entity Instance
+ 23. Port Connectivity Checks: "collision:C6"
+ 24. Port Connectivity Checks: "MOUSE:C4"
+ 25. Port Connectivity Checks: "player_update:C3"
+ 26. Port Connectivity Checks: "renderer:C1|sprite_rom:BGKGRD_ROM"
+ 27. Port Connectivity Checks: "renderer:C1"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -59,16 +61,16 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon May 08 18:43:52 2023           ;
+; Analysis & Synthesis Status     ; Successful - Wed May 10 19:43:29 2023           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                   ; 305MiniProject                                  ;
 ; Top-level Entity Name           ; main                                            ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 225                                             ;
+; Total registers                 ; 237                                             ;
 ; Total pins                      ; 18                                              ;
 ; Total virtual pins              ; 0                                               ;
-; Total block memory bits         ; 16,384                                          ;
+; Total block memory bits         ; 18,432                                          ;
 ; Total DSP Blocks                ; 0                                               ;
 ; Total HSSI RX PCSs              ; 0                                               ;
 ; Total HSSI PMA RX Deserializers ; 0                                               ;
@@ -184,34 +186,34 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                          ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                            ; Library ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
-; ../modelsim/collision.vhd        ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/collision.vhd                     ;         ;
-; ../modelsim/types.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/types.vhd                         ;         ;
-; ../modelsim/pipes.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/pipes.vhd                         ;         ;
-; ../modelsim/sprite_rom.vhd       ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd                    ;         ;
-; ../modelsim/mouse.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/mouse.vhd                         ;         ;
-; ../modelsim/vga_sync.vhd         ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/vga_sync.vhd                      ;         ;
-; ../modelsim/renderer.vhd         ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/renderer.vhd                      ;         ;
-; ../modelsim/player_update.vhd    ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/player_update.vhd                 ;         ;
-; ../modelsim/main.vhd             ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/main.vhd                          ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
-; aglobal181.inc                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/aglobal181.inc        ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
-; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
-; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_ppg1.tdf           ; yes             ; Auto-Generated Megafunction            ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ppg1.tdf             ;         ;
-; ../modelsim/ROM/BRD3_ROM.mif     ; yes             ; Auto-Found Memory Initialization File  ; H:/Documents/305-MiniProject/modelsim/ROM/BRD3_ROM.mif                  ;         ;
-; db/altsyncram_nmg1.tdf           ; yes             ; Auto-Generated Megafunction            ; H:/Documents/305-MiniProject/quartus/db/altsyncram_nmg1.tdf             ;         ;
-; ../modelsim/ROM/BK_GRND2.mif     ; yes             ; Auto-Found Memory Initialization File  ; H:/Documents/305-MiniProject/modelsim/ROM/BK_GRND2.mif                  ;         ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; ../modelsim/char_rom.vhd         ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/char_rom.vhd                      ;         ;
+; ../modelsim/collision.vhd        ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/collision.vhd                     ;         ;
+; ../modelsim/types.vhd            ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/types.vhd                         ;         ;
+; ../modelsim/pipes.vhd            ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/pipes.vhd                         ;         ;
+; ../modelsim/sprite_rom.vhd       ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd                    ;         ;
+; ../modelsim/mouse.vhd            ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/mouse.vhd                         ;         ;
+; ../modelsim/vga_sync.vhd         ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/vga_sync.vhd                      ;         ;
+; ../modelsim/renderer.vhd         ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/renderer.vhd                      ;         ;
+; ../modelsim/player_update.vhd    ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/player_update.vhd                 ;         ;
+; ../modelsim/main.vhd             ; yes             ; User VHDL File               ; H:/Documents/305-MiniProject/modelsim/main.vhd                          ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/aglobal181.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_ahg1.tdf           ; yes             ; Auto-Generated Megafunction  ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf             ;         ;
+; db/altsyncram_ppg1.tdf           ; yes             ; Auto-Generated Megafunction  ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ppg1.tdf             ;         ;
+; db/altsyncram_nmg1.tdf           ; yes             ; Auto-Generated Megafunction  ; H:/Documents/305-MiniProject/quartus/db/altsyncram_nmg1.tdf             ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------------------+
@@ -219,27 +221,27 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------------------+
 ; Resource                                    ; Usage                 ;
 +---------------------------------------------+-----------------------+
-; Estimate of Logic utilization (ALMs needed) ; 239                   ;
+; Estimate of Logic utilization (ALMs needed) ; 245                   ;
 ;                                             ;                       ;
-; Combinational ALUT usage for logic          ; 377                   ;
-;     -- 7 input functions                    ; 2                     ;
+; Combinational ALUT usage for logic          ; 388                   ;
+;     -- 7 input functions                    ; 4                     ;
 ;     -- 6 input functions                    ; 89                    ;
-;     -- 5 input functions                    ; 39                    ;
-;     -- 4 input functions                    ; 76                    ;
-;     -- <=3 input functions                  ; 171                   ;
+;     -- 5 input functions                    ; 53                    ;
+;     -- 4 input functions                    ; 66                    ;
+;     -- <=3 input functions                  ; 176                   ;
 ;                                             ;                       ;
-; Dedicated logic registers                   ; 225                   ;
+; Dedicated logic registers                   ; 237                   ;
 ;                                             ;                       ;
 ; I/O pins                                    ; 18                    ;
 ; Total MLAB memory bits                      ; 0                     ;
-; Total block memory bits                     ; 16384                 ;
+; Total block memory bits                     ; 18432                 ;
 ;                                             ;                       ;
 ; Total DSP Blocks                            ; 0                     ;
 ;                                             ;                       ;
 ; Maximum fan-out node                        ; \VGA_CLOCK:v_25MHzClk ;
 ; Maximum fan-out                             ; 86                    ;
-; Total fan-out                               ; 2285                  ;
-; Average fan-out                             ; 3.44                  ;
+; Total fan-out                               ; 2449                  ;
+; Average fan-out                             ; 3.52                  ;
 +---------------------------------------------+-----------------------+
 
 
@@ -248,12 +250,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Entity Name     ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |main                                        ; 377 (1)             ; 225 (1)                   ; 16384             ; 0          ; 18   ; 0            ; |main                                                                                                  ; main            ; work         ;
+; |main                                        ; 388 (1)             ; 237 (1)                   ; 18432             ; 0          ; 18   ; 0            ; |main                                                                                                  ; main            ; work         ;
 ;    |MOUSE:C4|                                ; 50 (50)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |main|MOUSE:C4                                                                                         ; MOUSE           ; work         ;
 ;    |VGA_SYNC:C2|                             ; 52 (52)             ; 57 (57)                   ; 0                 ; 0          ; 0    ; 0            ; |main|VGA_SYNC:C2                                                                                      ; VGA_SYNC        ; work         ;
 ;    |pipes:C5|                                ; 96 (96)             ; 44 (44)                   ; 0                 ; 0          ; 0    ; 0            ; |main|pipes:C5                                                                                         ; pipes           ; work         ;
 ;    |player_update:C3|                        ; 49 (49)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|player_update:C3                                                                                 ; player_update   ; work         ;
-;    |renderer:C1|                             ; 129 (129)           ; 40 (15)                   ; 16384             ; 0          ; 0    ; 0            ; |main|renderer:C1                                                                                      ; renderer        ; work         ;
+;    |renderer:C1|                             ; 140 (138)           ; 52 (27)                   ; 18432             ; 0          ; 0    ; 0            ; |main|renderer:C1                                                                                      ; renderer        ; work         ;
+;       |char_rom:TEXT_ROM|                    ; 2 (2)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|char_rom:TEXT_ROM                                                                    ; char_rom        ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component                                    ; altsyncram      ; work         ;
+;             |altsyncram_ahg1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated     ; altsyncram_ahg1 ; work         ;
 ;       |sprite_rom:BGKGRD_ROM|                ; 0 (0)               ; 12 (12)                   ; 3072              ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM                                                                ; sprite_rom      ; work         ;
 ;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 3072              ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
 ;             |altsyncram_nmg1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 3072              ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated ; altsyncram_nmg1 ; work         ;
@@ -269,6 +274,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+------------------+
 ; Name                                                                                                        ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF              ;
 +-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+------------------+
+; renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated|ALTSYNCRAM     ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096  ; ROM/TCGROM.mif   ;
 ; renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 256          ; 13           ; --           ; --           ; 3328  ; ROM/BK_GRND2.mif ;
 ; renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated|ALTSYNCRAM   ; AUTO ; ROM  ; 1024         ; 13           ; --           ; --           ; 13312 ; ROM/BRD3_ROM.mif ;
 +-------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+------------------+
@@ -382,6 +388,7 @@ Encoding Type:  One-Hot
 ; pipes:C5|v_BottomPipeHeights[3][8]      ; Stuck at GND due to stuck port data_in ;
 ; pipes:C5|v_BottomPipeHeights[3][9]      ; Stuck at GND due to stuck port data_in ;
 ; pipes:C5|v_BottomPipeHeights[3][10]     ; Stuck at GND due to stuck port data_in ;
+; renderer:C1|CharAddress[5]              ; Stuck at GND due to stuck port data_in ;
 ; MOUSE:C4|CHAROUT[4..7]                  ; Stuck at VCC due to stuck port data_in ;
 ; MOUSE:C4|CHAROUT[3]                     ; Stuck at GND due to stuck port data_in ;
 ; MOUSE:C4|CHAROUT[2]                     ; Stuck at VCC due to stuck port data_in ;
@@ -399,7 +406,7 @@ Encoding Type:  One-Hot
 ; player_update:C3|v_CurrentY[0]          ; Merged with player_update:C3|NewY[0]   ;
 ; player_update:C3|NewY[9]                ; Stuck at GND due to stuck port data_in ;
 ; VGA_SYNC:C2|pixel_row[9]                ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 109 ;                                        ;
+; Total Number of Removed Registers = 110 ;                                        ;
 +-----------------------------------------+----------------------------------------+
 
 
@@ -408,12 +415,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 225   ;
-; Number of registers using Synchronous Clear  ; 52    ;
+; Total registers                              ; 237   ;
+; Number of registers using Synchronous Clear  ; 53    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 16    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 71    ;
+; Number of registers using Clock Enable       ; 82    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -458,10 +465,19 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |main|VGA_SYNC:C2|v_count[6]     ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |main|player_update:C3|v_YVel[9] ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |main|VGA_SYNC:C2|green_out[3]   ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |main|VGA_SYNC:C2|v_count[9]     ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |main|player_update:C3|v_YVel[4] ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |main|VGA_SYNC:C2|green_out[0]   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Source assignments for renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                    ;
++---------------------------------+--------------------+------+-------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                     ;
++---------------------------------+--------------------+------+-------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------+
@@ -480,6 +496,67 @@ Encoding Type:  One-Hot
 +---------------------------------+--------------------+------+-----------------------------------------------------------+
 ; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                         ;
 +---------------------------------+--------------------+------+-----------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                           ;
++------------------------------------+----------------------+------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                 ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                        ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                        ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                 ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                                 ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                                 ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                        ;
+; WIDTH_B                            ; 1                    ; Untyped                                        ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                        ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                        ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                        ;
+; INIT_FILE                          ; ROM/TCGROM.mif       ; Untyped                                        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                        ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                        ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                        ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                        ;
+; CBXI_PARAMETER                     ; altsyncram_ahg1      ; Untyped                                        ;
++------------------------------------+----------------------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------------------------------------------+
@@ -631,7 +708,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+-------------------------------------------------------------------+
 ; Name                                      ; Value                                                             ;
 +-------------------------------------------+-------------------------------------------------------------------+
-; Number of entity instances                ; 2                                                                 ;
+; Number of entity instances                ; 3                                                                 ;
+; Entity Instance                           ; renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component     ;
+;     -- OPERATION_MODE                     ; ROM                                                               ;
+;     -- WIDTH_A                            ; 8                                                                 ;
+;     -- NUMWORDS_A                         ; 512                                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                      ;
+;     -- WIDTH_B                            ; 1                                                                 ;
+;     -- NUMWORDS_B                         ; 1                                                                 ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                         ;
 ; Entity Instance                           ; renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component   ;
 ;     -- OPERATION_MODE                     ; ROM                                                               ;
 ;     -- WIDTH_A                            ; 13                                                                ;
@@ -697,13 +785,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------+
-; Port Connectivity Checks: "renderer:C1" ;
-+-------+-------+----------+--------------+
-; Port  ; Type  ; Severity ; Details      ;
-+-------+-------+----------+--------------+
-; reset ; Input ; Info     ; Stuck at GND ;
-+-------+-------+----------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "renderer:C1"                                                                                                                                 ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                      ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; reset ; Input ; Info     ; Stuck at GND                                                                                                                                 ;
+; score ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -711,36 +800,36 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 225                         ;
+; arriav_ff             ; 237                         ;
 ;     CLR               ; 1                           ;
-;     ENA               ; 46                          ;
+;     ENA               ; 56                          ;
 ;     ENA CLR           ; 15                          ;
-;     ENA SCLR          ; 10                          ;
+;     ENA SCLR          ; 11                          ;
 ;     SCLR              ; 42                          ;
-;     plain             ; 111                         ;
+;     plain             ; 112                         ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 377                         ;
+; arriav_lcell_comb     ; 388                         ;
 ;     arith             ; 119                         ;
 ;         1 data inputs ; 104                         ;
 ;         2 data inputs ; 5                           ;
 ;         3 data inputs ; 1                           ;
 ;         5 data inputs ; 9                           ;
-;     extend            ; 2                           ;
-;         7 data inputs ; 2                           ;
-;     normal            ; 251                         ;
+;     extend            ; 4                           ;
+;         7 data inputs ; 4                           ;
+;     normal            ; 260                         ;
 ;         1 data inputs ; 7                           ;
-;         2 data inputs ; 31                          ;
-;         3 data inputs ; 18                          ;
-;         4 data inputs ; 76                          ;
-;         5 data inputs ; 30                          ;
+;         2 data inputs ; 34                          ;
+;         3 data inputs ; 20                          ;
+;         4 data inputs ; 66                          ;
+;         5 data inputs ; 44                          ;
 ;         6 data inputs ; 89                          ;
 ;     shared            ; 5                           ;
 ;         2 data inputs ; 5                           ;
 ; boundary_port         ; 18                          ;
-; stratixv_ram_block    ; 25                          ;
+; stratixv_ram_block    ; 33                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 7.20                        ;
-; Average LUT depth     ; 2.82                        ;
+; Average LUT depth     ; 2.78                        ;
 +-----------------------+-----------------------------+
 
 
@@ -759,10 +848,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Mon May 08 18:43:39 2023
+    Info: Processing started: Wed May 10 19:43:16 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 305MiniProject -c 305MiniProject
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/char_rom.vhd
+    Info (12022): Found design unit 1: char_rom-SYN File: H:/Documents/305-MiniProject/modelsim/char_rom.vhd Line: 20
+    Info (12023): Found entity 1: char_rom File: H:/Documents/305-MiniProject/modelsim/char_rom.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/collision.vhd
     Info (12022): Found design unit 1: collision-behaviour File: H:/Documents/305-MiniProject/modelsim/collision.vhd Line: 18
     Info (12023): Found entity 1: collision File: H:/Documents/305-MiniProject/modelsim/collision.vhd Line: 8
@@ -792,7 +884,28 @@ Info (12021): Found 2 design units, including 1 entities, in source file /docume
     Info (12023): Found entity 1: main File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 6
 Info (12127): Elaborating entity "main" for the top level hierarchy
 Info (12128): Elaborating entity "renderer" for hierarchy "renderer:C1" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 113
-Info (12128): Elaborating entity "sprite_rom" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 75
+Info (12128): Elaborating entity "char_rom" for hierarchy "renderer:C1|char_rom:TEXT_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 90
+Info (12128): Elaborating entity "altsyncram" for hierarchy "renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/char_rom.vhd Line: 51
+Info (12130): Elaborated megafunction instantiation "renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/char_rom.vhd Line: 51
+Info (12133): Instantiated megafunction "renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component" with the following parameter: File: H:/Documents/305-MiniProject/modelsim/char_rom.vhd Line: 51
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "ROM/TCGROM.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "512"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "9"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ahg1.tdf
+    Info (12023): Found entity 1: altsyncram_ahg1 File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_ahg1" for hierarchy "renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated" File: c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "sprite_rom" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 96
 Info (12128): Elaborating entity "altsyncram" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12130): Elaborated megafunction instantiation "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12133): Instantiated megafunction "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component" with the following parameter: File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
@@ -813,7 +926,7 @@ Info (12133): Instantiated megafunction "renderer:C1|sprite_rom:BIRD_ROM|altsync
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ppg1.tdf
     Info (12023): Found entity 1: altsyncram_ppg1 File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ppg1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_ppg1" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated" File: c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "sprite_rom" for hierarchy "renderer:C1|sprite_rom:BGKGRD_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 86
+Info (12128): Elaborating entity "sprite_rom" for hierarchy "renderer:C1|sprite_rom:BGKGRD_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 107
 Info (12128): Elaborating entity "altsyncram" for hierarchy "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12130): Elaborated megafunction instantiation "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12133): Instantiated megafunction "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component" with the following parameter: File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
@@ -834,9 +947,6 @@ Info (12133): Instantiated megafunction "renderer:C1|sprite_rom:BGKGRD_ROM|altsy
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_nmg1.tdf
     Info (12023): Found entity 1: altsyncram_nmg1 File: H:/Documents/305-MiniProject/quartus/db/altsyncram_nmg1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_nmg1" for hierarchy "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated" File: c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Warning (113028): 256 out of 512 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: H:/Documents/305-MiniProject/modelsim/ROM/BK_GRND2.mif Line: 1
-    Warning (113027): Addresses ranging from 256 to 511 are not initialized File: H:/Documents/305-MiniProject/modelsim/ROM/BK_GRND2.mif Line: 1
-Critical Warning (127004): Memory depth (256) in the design file differs from memory depth (512) in the Memory Initialization File "H:/Documents/305-MiniProject/modelsim/ROM/BK_GRND2.mif" -- truncated remaining initial content value to fit RAM File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:C2" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 129
 Info (12128): Elaborating entity "player_update" for hierarchy "player_update:C3" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 138
 Warning (10540): VHDL Signal Declaration warning at player_update.vhd(14): used explicit default value for signal "NewX" because signal was never assigned a value File: H:/Documents/305-MiniProject/modelsim/player_update.vhd Line: 14
@@ -851,22 +961,23 @@ Info (12128): Elaborating entity "collision" for hierarchy "collision:C6" File: 
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_nmg1:auto_generated|q_a[12]" File: H:/Documents/305-MiniProject/quartus/db/altsyncram_nmg1.tdf Line: 286
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13000): Registers with preset signals will power-up high File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
+Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "renderer:C1|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated|ALTSYNCRAM" File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf Line: 31
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 497 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 523 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 15 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 454 logic cells
-    Info (21064): Implemented 25 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 4896 megabytes
-    Info: Processing ended: Mon May 08 18:43:53 2023
-    Info: Elapsed time: 00:00:14
+    Info (21061): Implemented 472 logic cells
+    Info (21064): Implemented 33 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 4882 megabytes
+    Info: Processing ended: Wed May 10 19:43:29 2023
+    Info: Elapsed time: 00:00:13
     Info: Total CPU time (on all processors): 00:00:19
 
 

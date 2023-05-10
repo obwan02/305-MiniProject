@@ -182,13 +182,13 @@ begin
     begin
         wait until rising_edge(Clk);
 
-        v_TextWidth := to_unsigned(5, v_TextWidth'length) * 8;
+        v_TextWidth := shift_left(to_unsigned(5, v_TextWidth'length), 3);
 
         if signed('0' & VgaCol) >= 16 and 
-           signed('0' & VgaCol) <= signed(v_TextWidth + 16) and
+           signed('0' & VgaCol) < signed(v_TextWidth + 16) and
            signed(VgaRow) >= 16 and
-           signed(VgaRow) <= 24 then
-            CharAddress <= Addresses(to_integer(shift_right(unsigned(VgaCol) - 10, 3)));
+           signed(VgaRow) < 24 then
+            CharAddress <= Addresses(to_integer(shift_right(unsigned(VgaCol) - 16, 3)));
             FontCol <= VgaCol(2 downto 0);
             FontRow <= VgaRow(2 downto 0);
             FontVisible <= FontOutput;
