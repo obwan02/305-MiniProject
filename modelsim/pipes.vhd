@@ -43,7 +43,7 @@ begin
                     v_TopPipeHeights(i) := RandomHeights(i);
 
                     -- find the bottom piprd height
-                    v_BottomPipeHeights(i) := 639 - (RandomHeights(i) + 200);
+                    v_BottomPipeHeights(i) := constants.SCREEN_HEIGHT - (RandomHeights(i) + 200);
                     
                 else
                     v_PipesXValues(i) := v_PipesXValues(i) - Speed;
