@@ -2,6 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_misc.all;
 use IEEE.numeric_std.all;
+use IEEE.std_logic_unsigned.all;
 use work.types.all;
 use work.constants;
 
@@ -22,7 +23,13 @@ entity renderer is
         BottomPipeHeights: in PipesArray;
 
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
+
+        TrainSwitch, LeftMouseButton : in std_logic;
+        mouse_cursor_row, mouse_cursor_column : in std_logic_vector(9 DOWNTO 0);
+
         R, G, B: out std_logic_vector(3 downto 0);
+
+        DebugLight : out std_logic;
 
         ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
         Lives: in unsigned(2 downto 0)
@@ -78,6 +85,15 @@ architecture behave of renderer is
              Visible: out std_logic
              );
     end component;
+    component menus is port(
+        Clk, GameRunning, GameOver, TrainSwitch, LeftMouseButton : in std_logic;
+        VGARow, VGACol                                           : in unsigned(9 downto 0);
+        Score                                                    : in unsigned(9 downto 0);
+        MouseRow, MouseCol                    : in unsigned(9 DOWNTO 0); 
+        BackgroundR, BackgroundG, BackgroundB                    : in std_logic_vector(3 downto 0);
+        R, G, B                                                  : out std_logic_vector(3 downto 0);
+        DebugLight : out std_logic);
+    end component menus;
 
     -- Constants
     -- TODO: Make this more accessible
@@ -117,6 +133,9 @@ architecture behave of renderer is
     -- Text constants
     constant SCORE_TEXT: string := "SCORE";
     constant LIVES_TEXT: string :=  "LIVES";
+
+    signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
+    signal TEST : std_logic := '0';
 begin
 
     BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
@@ -142,6 +161,24 @@ begin
             Visible => open
     );
 
+    MENU_RENDER: menus port map(Clk => Clk,
+                                GameRunning => '0',
+                                GameOver => '0',
+                                TrainSwitch => TrainSwitch,
+                                LeftMouseButton => LeftMouseButton,
+                                VGARow => unsigned(VGARow),
+                                VGACol => unsigned(VGACol),
+                                Score => to_unsigned(99, 10),
+                                MouseRow => unsigned(mouse_cursor_row),
+                                MouseCol => unsigned(mouse_cursor_column),
+                                BackgroundR => BackgroundR,
+                                BackgroundG => BackgroundG,
+                                BackgroundB => BackgroundB,
+                                R => MenuR,
+                                G => MenuG,
+                                B => MenuB,
+                                DebugLight => DebugLight);
+                         
     BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(4 downto 0); 
@@ -232,13 +269,15 @@ begin
     BackgroundRow <= VgaRow(5 downto 1);
     BackgroundCol <= VgaCol(5 downto 1);
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible, MenuR, MenuG, MenuB, TEST)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if ScoreTextVisible = '1' or ScoreNumberVisible = '1' or LivesTextVisible = '1' then
+        if TEST = '0' then 
+            R <= MenuR; G <= MenuG; B <= MenuB;
+        elsif ScoreTextVisible = '1' or ScoreNumberVisible = '1' or LivesTextVisible = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
         elsif LivesVisible = '1' then
             R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
@@ -249,6 +288,7 @@ begin
         else
             R <= BackgroundR; G <= BackgroundG; B <= BackgroundB;
         end if;
+
     end process;
 
 end architecture;

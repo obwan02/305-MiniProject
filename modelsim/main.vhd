@@ -8,6 +8,7 @@ entity main is
           -- temp
           pushbutton : in std_logic;
           -- VGA Shit
+          TrainSwitch: in std_logic;
           VgaRedOut, VgaGreenOut, VgaBlueOut: out std_logic_vector(3 downto 0);
           VgaHSync, VgaVSync: out std_logic;
           -- Mouse Shit
@@ -33,7 +34,13 @@ architecture behave of main is
             BottomPipeHeights: in PipesArray;
 
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
+
+            TrainSwitch, LeftMouseButton : in std_logic;
+            mouse_cursor_row, mouse_cursor_column : in std_logic_vector(9 DOWNTO 0);
+
             R, G, B: out std_logic_vector(3 downto 0);
+
+            DebugLight : out std_logic;
 
             ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
             Lives: unsigned(2 downto 0)
@@ -169,6 +176,8 @@ architecture behave of main is
 
     signal LeftMouseButton: std_logic;
 
+    signal cursor_row, cursor_col : std_logic_vector(9 DOWNTO 0);
+
     --Pipes Variables
     signal PipesXValues: PipesArray;
     signal TopPipeHeights: PipesArray;
@@ -229,6 +238,12 @@ begin
 
                           VgaRow => VgaRow,
                           VgaCol => VgaCol,
+
+                          TrainSwitch => not(TrainSwitch),
+                          LeftMouseButton => LeftMouseButton,
+                          mouse_cursor_row => cursor_row,
+                          mouse_cursor_column => cursor_col,
+
                           R => R,
                           G => G,
                           B => B,
@@ -236,7 +251,8 @@ begin
                           ScoreOnes => scoreOnesSignal,
                           ScoreTens => scoreTensSignal,
                           
-                          Lives => Lives);
+                          Lives => Lives,
+                          DebugLight => DebugLight);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
                           red => R, green => G, blue => B,
@@ -268,8 +284,8 @@ begin
                        Mouse_Clk => MouseClk,
                        Left_Button => LeftMouseButton,
                        right_button => open,
-                       mouse_cursor_row => open,
-                       mouse_cursor_column => open
+                       mouse_cursor_row => cursor_row,
+                       mouse_cursor_column => cursor_col
     );
 
     C5: pipes port map(
