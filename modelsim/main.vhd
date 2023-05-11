@@ -5,12 +5,16 @@ use work.types.all;
 
 entity main is
     port (Clk: in std_logic;
+          -- temp
+          pushbutton : in std_logic;
           -- VGA Shit
           VgaRedOut, VgaGreenOut, VgaBlueOut: out std_logic_vector(3 downto 0);
           VgaHSync, VgaVSync: out std_logic;
           -- Mouse Shit
           MouseClk, MouseData: inout std_logic;
-          DebugLight: out std_logic);
+          DebugLight: out std_logic;
+          --temp
+          tempLight: out std_logic);
 end entity main;
 
 architecture behave of main is
@@ -172,5 +176,6 @@ begin
                            Collided => open
     );
     
+    tempLight <= not(pushbutton);
 
 end architecture;

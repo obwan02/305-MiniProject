@@ -80,7 +80,7 @@ architecture behave of renderer is
 
     -- These are the signals used for the background sprite
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
-    signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
+    signal BackgroundRow, BackgroundCol: std_logic_vector (4 downto 0) := (others => '0');
 
 
     -- Signal for text
@@ -99,8 +99,8 @@ begin
                          );
 
     BGKGRD_ROM: sprite_rom generic map(
-        Sprite_File => "ROM/BK_GRND2.mif",
-        Addr_Width => 4)
+        Sprite_File => "ROM/REAL_BACK.mif",
+        Addr_Width => 5)
     port map(Clk => Clk,
             SpriteRow => BackgroundRow,
             SpriteCol => BackgroundCol,
@@ -171,8 +171,8 @@ begin
                                                                VgaRow => VgaRow,
                                                                Visible => TextVisible);
 
-    BackgroundRow <= VgaRow(5 downto 2);
-    BackgroundCol <= VgaCol(5 downto 2);
+    BackgroundRow <= VgaRow(5 downto 1);
+    BackgroundCol <= VgaCol(5 downto 1);
 
 
     RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, TextVisible)

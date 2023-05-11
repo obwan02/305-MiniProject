@@ -64,11 +64,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "tempLight",
+					"strict" : false
+				},
+				{
 					"name" : "MouseClk",
 					"strict" : false
 				},
 				{
 					"name" : "MouseData",
+					"strict" : false
+				},
+				{
+					"name" : "pushbutton",
 					"strict" : false
 				},
 				{

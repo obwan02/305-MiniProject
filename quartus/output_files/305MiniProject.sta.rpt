@@ -1,5 +1,5 @@
 Timing Analyzer report for 305MiniProject
-Thu May 11 12:52:26 2023
+Thu May 11 13:41:06 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -101,16 +101,16 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 6           ;
 ; Maximum allowed            ; 6           ;
 ;                            ;             ;
-; Average used               ; 1.17        ;
+; Average used               ; 1.18        ;
 ; Maximum used               ; 6           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.6%      ;
-;     Processor 3            ;   3.5%      ;
-;     Processor 4            ;   3.5%      ;
-;     Processor 5            ;   3.1%      ;
-;     Processor 6            ;   3.1%      ;
+;     Processor 2            ;   3.8%      ;
+;     Processor 3            ;   3.7%      ;
+;     Processor 4            ;   3.6%      ;
+;     Processor 5            ;   3.3%      ;
+;     Processor 6            ;   3.3%      ;
 +----------------------------+-------------+
 
 
@@ -131,10 +131,10 @@ refer to the applicable agreement for further details.
 +------------+-----------------+---------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                ; Note ;
 +------------+-----------------+---------------------------+------+
-; 136.52 MHz ; 136.52 MHz      ; VGA_SYNC:C2|vert_sync_out ;      ;
-; 195.58 MHz ; 195.58 MHz      ; Clk                       ;      ;
-; 234.14 MHz ; 234.14 MHz      ; \VGA_CLOCK:v_25MHzClk     ;      ;
-; 242.19 MHz ; 242.19 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;      ;
+; 132.87 MHz ; 132.87 MHz      ; VGA_SYNC:C2|vert_sync_out ;      ;
+; 216.92 MHz ; 216.92 MHz      ; Clk                       ;      ;
+; 220.99 MHz ; 220.99 MHz      ; \VGA_CLOCK:v_25MHzClk     ;      ;
+; 247.77 MHz ; 247.77 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;      ;
 +------------+-----------------+---------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -150,10 +150,10 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; VGA_SYNC:C2|vert_sync_out ; -6.325 ; -380.089      ;
-; Clk                       ; -4.303 ; -165.957      ;
-; \VGA_CLOCK:v_25MHzClk     ; -3.741 ; -288.342      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -3.375 ; -104.243      ;
+; VGA_SYNC:C2|vert_sync_out ; -6.526 ; -370.733      ;
+; Clk                       ; -3.824 ; -209.775      ;
+; \VGA_CLOCK:v_25MHzClk     ; -3.780 ; -290.299      ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -3.036 ; -83.226       ;
 +---------------------------+--------+---------------+
 
 
@@ -162,10 +162,10 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.502 ; -47.708       ;
-; \VGA_CLOCK:v_25MHzClk     ; 0.059  ; 0.000         ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.508  ; 0.000         ;
-; VGA_SYNC:C2|vert_sync_out ; 0.565  ; 0.000         ;
+; Clk                       ; -1.802 ; -27.670       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.218  ; 0.000         ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.453  ; 0.000         ;
+; VGA_SYNC:C2|vert_sync_out ; 0.714  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -174,7 +174,7 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.870 ; -29.535       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.278 ; -20.347       ;
 +---------------------------+--------+---------------+
 
 
@@ -183,7 +183,7 @@ HTML report is unavailable in plain text report export.
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 1.012 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.512 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -192,10 +192,10 @@ HTML report is unavailable in plain text report export.
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.636 ; -286.300      ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -94.788       ;
-; VGA_SYNC:C2|vert_sync_out ; -0.538 ; -78.983       ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -27.583       ;
+; Clk                       ; -2.636 ; -339.935      ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.562 ; -104.984      ;
+; VGA_SYNC:C2|vert_sync_out ; -0.538 ; -75.226       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -28.116       ;
 +---------------------------+--------+---------------+
 
 
@@ -211,10 +211,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +------------+-----------------+---------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                ; Note ;
 +------------+-----------------+---------------------------+------+
-; 134.07 MHz ; 134.07 MHz      ; VGA_SYNC:C2|vert_sync_out ;      ;
-; 191.57 MHz ; 191.57 MHz      ; Clk                       ;      ;
-; 232.23 MHz ; 232.23 MHz      ; \VGA_CLOCK:v_25MHzClk     ;      ;
-; 242.54 MHz ; 242.54 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;      ;
+; 129.99 MHz ; 129.99 MHz      ; VGA_SYNC:C2|vert_sync_out ;      ;
+; 211.1 MHz  ; 211.1 MHz       ; Clk                       ;      ;
+; 217.06 MHz ; 217.06 MHz      ; \VGA_CLOCK:v_25MHzClk     ;      ;
+; 252.27 MHz ; 252.27 MHz      ; MOUSE:C4|MOUSE_CLK_FILTER ;      ;
 +------------+-----------------+---------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -224,10 +224,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; VGA_SYNC:C2|vert_sync_out ; -6.459 ; -388.723      ;
-; Clk                       ; -4.220 ; -154.918      ;
-; \VGA_CLOCK:v_25MHzClk     ; -3.998 ; -287.275      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -3.321 ; -96.897       ;
+; VGA_SYNC:C2|vert_sync_out ; -6.693 ; -378.919      ;
+; \VGA_CLOCK:v_25MHzClk     ; -4.060 ; -291.338      ;
+; Clk                       ; -3.737 ; -193.301      ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -2.964 ; -78.236       ;
 +---------------------------+--------+---------------+
 
 
@@ -236,10 +236,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.678 ; -54.257       ;
-; \VGA_CLOCK:v_25MHzClk     ; 0.058  ; 0.000         ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.560  ; 0.000         ;
-; VGA_SYNC:C2|vert_sync_out ; 0.615  ; 0.000         ;
+; Clk                       ; -2.065 ; -32.675       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.216  ; 0.000         ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.504  ; 0.000         ;
+; VGA_SYNC:C2|vert_sync_out ; 0.764  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -248,7 +248,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.702 ; -26.787       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.163 ; -18.509       ;
 +---------------------------+--------+---------------+
 
 
@@ -257,7 +257,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.949 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.490 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -266,10 +266,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.636 ; -287.295      ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -93.351       ;
-; VGA_SYNC:C2|vert_sync_out ; -0.538 ; -78.521       ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -27.197       ;
+; Clk                       ; -2.636 ; -340.996      ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.538 ; -101.442      ;
+; VGA_SYNC:C2|vert_sync_out ; -0.538 ; -74.190       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.538 ; -27.571       ;
 +---------------------------+--------+---------------+
 
 
@@ -285,10 +285,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; VGA_SYNC:C2|vert_sync_out ; -2.870 ; -155.008      ;
-; Clk                       ; -2.441 ; -65.397       ;
-; \VGA_CLOCK:v_25MHzClk     ; -1.647 ; -118.145      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.581 ; -45.020       ;
+; VGA_SYNC:C2|vert_sync_out ; -2.920 ; -144.950      ;
+; Clk                       ; -2.279 ; -93.444       ;
+; \VGA_CLOCK:v_25MHzClk     ; -1.627 ; -111.474      ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.268 ; -29.923       ;
 +---------------------------+--------+---------------+
 
 
@@ -297,9 +297,9 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -1.386 ; -28.126       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.082 ; -0.163        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.247  ; 0.000         ;
+; Clk                       ; -1.041 ; -15.844       ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.075  ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.110  ; 0.000         ;
 ; VGA_SYNC:C2|vert_sync_out ; 0.451  ; 0.000         ;
 +---------------------------+--------+---------------+
 
@@ -309,7 +309,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.834 ; -12.976       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.522 ; -8.319        ;
 +---------------------------+--------+---------------+
 
 
@@ -318,7 +318,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.480 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.194 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -327,10 +327,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.174 ; -215.772      ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.125 ; -1.986        ;
-; VGA_SYNC:C2|vert_sync_out ; -0.054 ; -1.179        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.076  ; 0.000         ;
+; Clk                       ; -2.174 ; -258.747      ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.191 ; -9.212        ;
+; VGA_SYNC:C2|vert_sync_out ; -0.027 ; -0.204        ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.005  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -346,10 +346,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; VGA_SYNC:C2|vert_sync_out ; -2.604 ; -136.613      ;
-; Clk                       ; -2.014 ; -50.776       ;
-; \VGA_CLOCK:v_25MHzClk     ; -1.582 ; -102.675      ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; -1.441 ; -39.944       ;
+; VGA_SYNC:C2|vert_sync_out ; -2.664 ; -129.152      ;
+; Clk                       ; -1.931 ; -72.640       ;
+; \VGA_CLOCK:v_25MHzClk     ; -1.591 ; -98.091       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -1.081 ; -25.890       ;
 +---------------------------+--------+---------------+
 
 
@@ -358,10 +358,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -1.415 ; -30.918       ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.080 ; -0.158        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.234  ; 0.000         ;
-; VGA_SYNC:C2|vert_sync_out ; 0.410  ; 0.000         ;
+; Clk                       ; -1.135 ; -18.009       ;
+; \VGA_CLOCK:v_25MHzClk     ; 0.052  ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.112  ; 0.000         ;
+; VGA_SYNC:C2|vert_sync_out ; 0.414  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -370,7 +370,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; -0.734 ; -11.413       ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; -0.454 ; -7.229        ;
 +---------------------------+--------+---------------+
 
 
@@ -379,7 +379,7 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+-------+---------------+
 ; Clock                     ; Slack ; End Point TNS ;
 +---------------------------+-------+---------------+
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.433 ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.188 ; 0.000         ;
 +---------------------------+-------+---------------+
 
 
@@ -388,10 +388,10 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+--------+---------------+
 ; Clock                     ; Slack  ; End Point TNS ;
 +---------------------------+--------+---------------+
-; Clk                       ; -2.174 ; -215.936      ;
-; \VGA_CLOCK:v_25MHzClk     ; -0.069 ; -0.816        ;
-; VGA_SYNC:C2|vert_sync_out ; -0.017 ; -0.257        ;
-; MOUSE:C4|MOUSE_CLK_FILTER ; 0.087  ; 0.000         ;
+; Clk                       ; -2.174 ; -258.972      ;
+; \VGA_CLOCK:v_25MHzClk     ; -0.107 ; -4.278        ;
+; VGA_SYNC:C2|vert_sync_out ; 0.020  ; 0.000         ;
+; MOUSE:C4|MOUSE_CLK_FILTER ; 0.035  ; 0.000         ;
 +---------------------------+--------+---------------+
 
 
@@ -407,16 +407,16 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +----------------------------+----------+---------+----------+---------+---------------------+
 ; Clock                      ; Setup    ; Hold    ; Recovery ; Removal ; Minimum Pulse Width ;
 +----------------------------+----------+---------+----------+---------+---------------------+
-; Worst-case Slack           ; -6.459   ; -2.678  ; -1.870   ; 0.433   ; -2.636              ;
-;  Clk                       ; -4.303   ; -2.678  ; N/A      ; N/A     ; -2.636              ;
-;  MOUSE:C4|MOUSE_CLK_FILTER ; -3.375   ; 0.234   ; -1.870   ; 0.433   ; -0.538              ;
-;  VGA_SYNC:C2|vert_sync_out ; -6.459   ; 0.410   ; N/A      ; N/A     ; -0.538              ;
-;  \VGA_CLOCK:v_25MHzClk     ; -3.998   ; -0.082  ; N/A      ; N/A     ; -0.538              ;
-; Design-wide TNS            ; -938.631 ; -54.257 ; -29.535  ; 0.0     ; -487.654            ;
-;  Clk                       ; -165.957 ; -54.257 ; N/A      ; N/A     ; -287.295            ;
-;  MOUSE:C4|MOUSE_CLK_FILTER ; -104.243 ; 0.000   ; -29.535  ; 0.000   ; -27.583             ;
-;  VGA_SYNC:C2|vert_sync_out ; -388.723 ; 0.000   ; N/A      ; N/A     ; -78.983             ;
-;  \VGA_CLOCK:v_25MHzClk     ; -288.342 ; -0.163  ; N/A      ; N/A     ; -94.788             ;
+; Worst-case Slack           ; -6.693   ; -2.065  ; -1.278   ; 0.188   ; -2.636              ;
+;  Clk                       ; -3.824   ; -2.065  ; N/A      ; N/A     ; -2.636              ;
+;  MOUSE:C4|MOUSE_CLK_FILTER ; -3.036   ; 0.110   ; -1.278   ; 0.188   ; -0.538              ;
+;  VGA_SYNC:C2|vert_sync_out ; -6.693   ; 0.414   ; N/A      ; N/A     ; -0.538              ;
+;  \VGA_CLOCK:v_25MHzClk     ; -4.060   ; 0.052   ; N/A      ; N/A     ; -0.562              ;
+; Design-wide TNS            ; -954.033 ; -32.675 ; -20.347  ; 0.0     ; -548.261            ;
+;  Clk                       ; -209.775 ; -32.675 ; N/A      ; N/A     ; -340.996            ;
+;  MOUSE:C4|MOUSE_CLK_FILTER ; -83.226  ; 0.000   ; -20.347  ; 0.000   ; -28.116             ;
+;  VGA_SYNC:C2|vert_sync_out ; -378.919 ; 0.000   ; N/A      ; N/A     ; -75.226             ;
+;  \VGA_CLOCK:v_25MHzClk     ; -291.338 ; 0.000   ; N/A      ; N/A     ; -104.984            ;
 +----------------------------+----------+---------+----------+---------+---------------------+
 
 
@@ -440,20 +440,22 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 ; VgaHSync       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VgaVSync       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; DebugLight     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; tempLight      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; MouseClk       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; MouseData      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 +----------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
 
 
-+--------------------------------------------------------------+
-; Input Transition Times                                       ;
-+-----------+--------------+-----------------+-----------------+
-; Pin       ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
-+-----------+--------------+-----------------+-----------------+
-; MouseClk  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; MouseData ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; Clk       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-+-----------+--------------+-----------------+-----------------+
++---------------------------------------------------------------+
+; Input Transition Times                                        ;
++------------+--------------+-----------------+-----------------+
+; Pin        ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++------------+--------------+-----------------+-----------------+
+; MouseClk   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; MouseData  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; pushbutton ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; Clk        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++------------+--------------+-----------------+-----------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -475,7 +477,8 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 ; VgaBlueOut[3]  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.88e-07 V                   ; 2.35 V              ; -0.0185 V           ; 0.153 V                              ; 0.099 V                              ; 4.6e-10 s                   ; 4.48e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.88e-07 V                  ; 2.35 V             ; -0.0185 V          ; 0.153 V                             ; 0.099 V                             ; 4.6e-10 s                  ; 4.48e-10 s                 ; No                        ; Yes                       ;
 ; VgaHSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.15e-07 V                   ; 2.41 V              ; -0.0492 V           ; 0.181 V                              ; 0.116 V                              ; 4.54e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.15e-07 V                  ; 2.41 V             ; -0.0492 V          ; 0.181 V                             ; 0.116 V                             ; 4.54e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
 ; VgaVSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.15e-07 V                   ; 2.41 V              ; -0.0495 V           ; 0.18 V                               ; 0.115 V                              ; 4.54e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.15e-07 V                  ; 2.41 V             ; -0.0495 V          ; 0.18 V                              ; 0.115 V                             ; 4.54e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
-; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.19e-07 V                   ; 2.4 V               ; -0.039 V            ; 0.21 V                               ; 0.145 V                              ; 4.67e-10 s                  ; 4.63e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.19e-07 V                  ; 2.4 V              ; -0.039 V           ; 0.21 V                              ; 0.145 V                             ; 4.67e-10 s                 ; 4.63e-10 s                 ; No                        ; Yes                       ;
+; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.15e-07 V                   ; 2.41 V              ; -0.0492 V           ; 0.181 V                              ; 0.116 V                              ; 4.54e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.15e-07 V                  ; 2.41 V             ; -0.0492 V          ; 0.181 V                             ; 0.116 V                             ; 4.54e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
+; tempLight      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.15e-07 V                   ; 2.41 V              ; -0.0495 V           ; 0.18 V                               ; 0.115 V                              ; 4.54e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.15e-07 V                  ; 2.41 V             ; -0.0495 V          ; 0.18 V                              ; 0.115 V                             ; 4.54e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
 ; MouseClk       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.19e-07 V                   ; 2.4 V               ; -0.039 V            ; 0.21 V                               ; 0.145 V                              ; 4.67e-10 s                  ; 4.63e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.19e-07 V                  ; 2.4 V              ; -0.039 V           ; 0.21 V                              ; 0.145 V                             ; 4.67e-10 s                 ; 4.63e-10 s                 ; No                        ; Yes                       ;
 ; MouseData      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.19e-07 V                   ; 2.4 V               ; -0.039 V            ; 0.21 V                               ; 0.145 V                              ; 4.67e-10 s                  ; 4.63e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.19e-07 V                  ; 2.4 V              ; -0.039 V           ; 0.21 V                              ; 0.145 V                             ; 4.67e-10 s                 ; 4.63e-10 s                 ; No                        ; Yes                       ;
 +----------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -500,7 +503,8 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 ; VgaBlueOut[3]  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.27e-05 V                   ; 2.34 V              ; -0.0089 V           ; 0.206 V                              ; 0.058 V                              ; 4.97e-10 s                  ; 5.13e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.27e-05 V                  ; 2.34 V             ; -0.0089 V          ; 0.206 V                             ; 0.058 V                             ; 4.97e-10 s                 ; 5.13e-10 s                 ; Yes                       ; Yes                       ;
 ; VgaHSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.52e-05 V                   ; 2.38 V              ; -0.032 V            ; 0.204 V                              ; 0.181 V                              ; 4.74e-10 s                  ; 4.85e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.52e-05 V                  ; 2.38 V             ; -0.032 V           ; 0.204 V                             ; 0.181 V                             ; 4.74e-10 s                 ; 4.85e-10 s                 ; No                        ; Yes                       ;
 ; VgaVSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.52e-05 V                   ; 2.38 V              ; -0.0315 V           ; 0.205 V                              ; 0.182 V                              ; 4.74e-10 s                  ; 4.85e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.52e-05 V                  ; 2.38 V             ; -0.0315 V          ; 0.205 V                             ; 0.182 V                             ; 4.74e-10 s                 ; 4.85e-10 s                 ; No                        ; Yes                       ;
-; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.56e-05 V                   ; 2.38 V              ; -0.026 V            ; 0.249 V                              ; 0.089 V                              ; 4.95e-10 s                  ; 6.01e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.56e-05 V                  ; 2.38 V             ; -0.026 V           ; 0.249 V                             ; 0.089 V                             ; 4.95e-10 s                 ; 6.01e-10 s                 ; No                        ; Yes                       ;
+; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.52e-05 V                   ; 2.38 V              ; -0.032 V            ; 0.204 V                              ; 0.181 V                              ; 4.74e-10 s                  ; 4.85e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.52e-05 V                  ; 2.38 V             ; -0.032 V           ; 0.204 V                             ; 0.181 V                             ; 4.74e-10 s                 ; 4.85e-10 s                 ; No                        ; Yes                       ;
+; tempLight      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.52e-05 V                   ; 2.38 V              ; -0.0315 V           ; 0.205 V                              ; 0.182 V                              ; 4.74e-10 s                  ; 4.85e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.52e-05 V                  ; 2.38 V             ; -0.0315 V          ; 0.205 V                             ; 0.182 V                             ; 4.74e-10 s                 ; 4.85e-10 s                 ; No                        ; Yes                       ;
 ; MouseClk       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.56e-05 V                   ; 2.38 V              ; -0.026 V            ; 0.249 V                              ; 0.089 V                              ; 4.95e-10 s                  ; 6.01e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.56e-05 V                  ; 2.38 V             ; -0.026 V           ; 0.249 V                             ; 0.089 V                             ; 4.95e-10 s                 ; 6.01e-10 s                 ; No                        ; Yes                       ;
 ; MouseData      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.56e-05 V                   ; 2.38 V              ; -0.026 V            ; 0.249 V                              ; 0.089 V                              ; 4.95e-10 s                  ; 6.01e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 2.56e-05 V                  ; 2.38 V             ; -0.026 V           ; 0.249 V                             ; 0.089 V                             ; 4.95e-10 s                 ; 6.01e-10 s                 ; No                        ; Yes                       ;
 +----------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -525,7 +529,8 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 ; VgaBlueOut[3]  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 3.54e-06 V                   ; 2.81 V              ; -0.0578 V           ; 0.303 V                              ; 0.28 V                               ; 2.93e-10 s                  ; 3.01e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 3.54e-06 V                  ; 2.81 V             ; -0.0578 V          ; 0.303 V                             ; 0.28 V                              ; 2.93e-10 s                 ; 3.01e-10 s                 ; No                        ; No                        ;
 ; VgaHSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.119 V            ; 0.326 V                              ; 0.298 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.119 V           ; 0.326 V                             ; 0.298 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
 ; VgaVSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.121 V            ; 0.326 V                              ; 0.297 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.121 V           ; 0.326 V                             ; 0.297 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
-; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.25e-06 V                   ; 2.9 V               ; -0.107 V            ; 0.378 V                              ; 0.16 V                               ; 2.87e-10 s                  ; 4.28e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 4.25e-06 V                  ; 2.9 V              ; -0.107 V           ; 0.378 V                             ; 0.16 V                              ; 2.87e-10 s                 ; 4.28e-10 s                 ; No                        ; No                        ;
+; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.119 V            ; 0.326 V                              ; 0.298 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.119 V           ; 0.326 V                             ; 0.298 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
+; tempLight      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.121 V            ; 0.326 V                              ; 0.297 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.121 V           ; 0.326 V                             ; 0.297 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
 ; MouseClk       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.25e-06 V                   ; 2.9 V               ; -0.107 V            ; 0.378 V                              ; 0.16 V                               ; 2.87e-10 s                  ; 4.28e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 4.25e-06 V                  ; 2.9 V              ; -0.107 V           ; 0.378 V                             ; 0.16 V                              ; 2.87e-10 s                 ; 4.28e-10 s                 ; No                        ; No                        ;
 ; MouseData      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.25e-06 V                   ; 2.9 V               ; -0.107 V            ; 0.378 V                              ; 0.16 V                               ; 2.87e-10 s                  ; 4.28e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 4.25e-06 V                  ; 2.9 V              ; -0.107 V           ; 0.378 V                             ; 0.16 V                              ; 2.87e-10 s                 ; 4.28e-10 s                 ; No                        ; No                        ;
 +----------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -550,7 +555,8 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 ; VgaBlueOut[3]  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000213 V                   ; 2.79 V              ; -0.0324 V           ; 0.139 V                              ; 0.119 V                              ; 4.42e-10 s                  ; 4.33e-10 s                  ; No                         ; Yes                        ; 2.75 V                      ; 0.000213 V                  ; 2.79 V             ; -0.0324 V          ; 0.139 V                             ; 0.119 V                             ; 4.42e-10 s                 ; 4.33e-10 s                 ; No                        ; Yes                       ;
 ; VgaHSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0805 V           ; 0.358 V                              ; 0.156 V                              ; 3.01e-10 s                  ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0805 V          ; 0.358 V                             ; 0.156 V                             ; 3.01e-10 s                 ; 4.34e-10 s                 ; No                        ; No                        ;
 ; VgaVSync       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0814 V           ; 0.36 V                               ; 0.156 V                              ; 3e-10 s                     ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0814 V          ; 0.36 V                              ; 0.156 V                             ; 3e-10 s                    ; 4.34e-10 s                 ; No                        ; No                        ;
-; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000247 V                   ; 2.85 V              ; -0.0711 V           ; 0.204 V                              ; 0.181 V                              ; 4.55e-10 s                  ; 4.49e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000247 V                  ; 2.85 V             ; -0.0711 V          ; 0.204 V                             ; 0.181 V                             ; 4.55e-10 s                 ; 4.49e-10 s                 ; No                        ; No                        ;
+; DebugLight     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0805 V           ; 0.358 V                              ; 0.156 V                              ; 3.01e-10 s                  ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0805 V          ; 0.358 V                             ; 0.156 V                             ; 3.01e-10 s                 ; 4.34e-10 s                 ; No                        ; No                        ;
+; tempLight      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0814 V           ; 0.36 V                               ; 0.156 V                              ; 3e-10 s                     ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0814 V          ; 0.36 V                              ; 0.156 V                             ; 3e-10 s                    ; 4.34e-10 s                 ; No                        ; No                        ;
 ; MouseClk       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000247 V                   ; 2.85 V              ; -0.0711 V           ; 0.204 V                              ; 0.181 V                              ; 4.55e-10 s                  ; 4.49e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000247 V                  ; 2.85 V             ; -0.0711 V          ; 0.204 V                             ; 0.181 V                             ; 4.55e-10 s                 ; 4.49e-10 s                 ; No                        ; No                        ;
 ; MouseData      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000247 V                   ; 2.85 V              ; -0.0711 V           ; 0.204 V                              ; 0.181 V                              ; 4.55e-10 s                  ; 4.49e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000247 V                  ; 2.85 V             ; -0.0711 V          ; 0.204 V                             ; 0.181 V                             ; 4.55e-10 s                 ; 4.49e-10 s                 ; No                        ; No                        ;
 +----------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -561,16 +567,16 @@ Design MTBF is not calculated because the design doesn't meet its timing require
 +---------------------------+---------------------------+----------+----------+----------+----------+
 ; From Clock                ; To Clock                  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
-; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1310     ; 0        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1253     ; 0        ; 0        ; 0        ;
 ; Clk                       ; \VGA_CLOCK:v_25MHzClk     ; 96       ; 0        ; 0        ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; \VGA_CLOCK:v_25MHzClk     ; 1        ; 5        ; 0        ; 0        ;
-; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 790      ; 1        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 802      ; 1        ; 0        ; 0        ;
 ; Clk                       ; Clk                       ; 67       ; 0        ; 0        ; 0        ;
 ; VGA_SYNC:C2|vert_sync_out ; Clk                       ; 373      ; 256      ; 0        ; 0        ;
 ; \VGA_CLOCK:v_25MHzClk     ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 35       ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 0        ; 196      ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; VGA_SYNC:C2|vert_sync_out ; 0        ; 2160     ; 0        ; 0        ;
-; VGA_SYNC:C2|vert_sync_out ; VGA_SYNC:C2|vert_sync_out ; 56676    ; 0        ; 0        ; 2888     ;
+; VGA_SYNC:C2|vert_sync_out ; VGA_SYNC:C2|vert_sync_out ; 56676    ; 0        ; 0        ; 2712     ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -580,16 +586,16 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +---------------------------+---------------------------+----------+----------+----------+----------+
 ; From Clock                ; To Clock                  ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
-; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1310     ; 0        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; \VGA_CLOCK:v_25MHzClk     ; 1253     ; 0        ; 0        ; 0        ;
 ; Clk                       ; \VGA_CLOCK:v_25MHzClk     ; 96       ; 0        ; 0        ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; \VGA_CLOCK:v_25MHzClk     ; 1        ; 5        ; 0        ; 0        ;
-; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 790      ; 1        ; 0        ; 0        ;
+; \VGA_CLOCK:v_25MHzClk     ; Clk                       ; 802      ; 1        ; 0        ; 0        ;
 ; Clk                       ; Clk                       ; 67       ; 0        ; 0        ; 0        ;
 ; VGA_SYNC:C2|vert_sync_out ; Clk                       ; 373      ; 256      ; 0        ; 0        ;
 ; \VGA_CLOCK:v_25MHzClk     ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 35       ; 0        ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; MOUSE:C4|MOUSE_CLK_FILTER ; 0        ; 0        ; 0        ; 196      ;
 ; MOUSE:C4|MOUSE_CLK_FILTER ; VGA_SYNC:C2|vert_sync_out ; 0        ; 2160     ; 0        ; 0        ;
-; VGA_SYNC:C2|vert_sync_out ; VGA_SYNC:C2|vert_sync_out ; 56676    ; 0        ; 0        ; 2888     ;
+; VGA_SYNC:C2|vert_sync_out ; VGA_SYNC:C2|vert_sync_out ; 56676    ; 0        ; 0        ; 2712     ;
 +---------------------------+---------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -633,10 +639,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 2     ; 2    ;
-; Unconstrained Input Port Paths  ; 6     ; 6    ;
-; Unconstrained Output Ports      ; 17    ; 17   ;
-; Unconstrained Output Port Paths ; 20    ; 20   ;
+; Unconstrained Input Ports       ; 3     ; 3    ;
+; Unconstrained Input Port Paths  ; 7     ; 7    ;
+; Unconstrained Output Ports      ; 18    ; 18   ;
+; Unconstrained Output Port Paths ; 21    ; 21   ;
 +---------------------------------+-------+------+
 
 
@@ -659,6 +665,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +------------+--------------------------------------------------------------------------------------+
 ; MouseClk   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; MouseData  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; pushbutton ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -684,6 +691,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; VgaRedOut[2]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VgaRedOut[3]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VgaVSync       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tempLight      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------+---------------------------------------------------------------------------------------+
 
 
@@ -694,6 +702,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +------------+--------------------------------------------------------------------------------------+
 ; MouseClk   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; MouseData  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; pushbutton ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -719,6 +728,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; VgaRedOut[2]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VgaRedOut[3]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VgaVSync       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tempLight      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------+---------------------------------------------------------------------------------------+
 
 
@@ -728,7 +738,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Thu May 11 12:52:15 2023
+    Info: Processing started: Thu May 11 13:40:56 2023
 Info: Command: quartus_sta 305MiniProject -c 305MiniProject
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -748,35 +758,35 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.325
+Info (332146): Worst-case setup slack is -6.526
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.325            -380.089 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -4.303            -165.957 Clk 
-    Info (332119):    -3.741            -288.342 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -3.375            -104.243 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case hold slack is -2.502
+    Info (332119):    -6.526            -370.733 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -3.824            -209.775 Clk 
+    Info (332119):    -3.780            -290.299 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -3.036             -83.226 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is -1.802
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.502             -47.708 Clk 
-    Info (332119):     0.059               0.000 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.508               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):     0.565               0.000 VGA_SYNC:C2|vert_sync_out 
-Info (332146): Worst-case recovery slack is -1.870
+    Info (332119):    -1.802             -27.670 Clk 
+    Info (332119):     0.218               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.453               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.714               0.000 VGA_SYNC:C2|vert_sync_out 
+Info (332146): Worst-case recovery slack is -1.278
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.870             -29.535 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 1.012
+    Info (332119):    -1.278             -20.347 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.512
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.012               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.512               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.636
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.636            -286.300 Clk 
-    Info (332119):    -0.538             -94.788 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.538             -78.983 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -0.538             -27.583 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.636            -339.935 Clk 
+    Info (332119):    -0.562            -104.984 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -0.538             -75.226 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -0.538             -28.116 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 8 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Slow 1100mV 0C Model
@@ -785,35 +795,35 @@ Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.459
+Info (332146): Worst-case setup slack is -6.693
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.459            -388.723 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -4.220            -154.918 Clk 
-    Info (332119):    -3.998            -287.275 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -3.321             -96.897 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case hold slack is -2.678
+    Info (332119):    -6.693            -378.919 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -4.060            -291.338 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -3.737            -193.301 Clk 
+    Info (332119):    -2.964             -78.236 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is -2.065
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.678             -54.257 Clk 
-    Info (332119):     0.058               0.000 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.560               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):     0.615               0.000 VGA_SYNC:C2|vert_sync_out 
-Info (332146): Worst-case recovery slack is -1.702
+    Info (332119):    -2.065             -32.675 Clk 
+    Info (332119):     0.216               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.504               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.764               0.000 VGA_SYNC:C2|vert_sync_out 
+Info (332146): Worst-case recovery slack is -1.163
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.702             -26.787 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 0.949
+    Info (332119):    -1.163             -18.509 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.490
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.949               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.490               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.636
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.636            -287.295 Clk 
-    Info (332119):    -0.538             -93.351 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.538             -78.521 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -0.538             -27.197 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.636            -340.996 Clk 
+    Info (332119):    -0.538            -101.442 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -0.538             -74.190 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -0.538             -27.571 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 8 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Fast 1100mV 85C Model
@@ -822,77 +832,77 @@ Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.870
+Info (332146): Worst-case setup slack is -2.920
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.870            -155.008 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -2.441             -65.397 Clk 
-    Info (332119):    -1.647            -118.145 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -1.581             -45.020 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case hold slack is -1.386
+    Info (332119):    -2.920            -144.950 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -2.279             -93.444 Clk 
+    Info (332119):    -1.627            -111.474 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -1.268             -29.923 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is -1.041
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.386             -28.126 Clk 
-    Info (332119):    -0.082              -0.163 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.247               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -1.041             -15.844 Clk 
+    Info (332119):     0.075               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.110               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
     Info (332119):     0.451               0.000 VGA_SYNC:C2|vert_sync_out 
-Info (332146): Worst-case recovery slack is -0.834
+Info (332146): Worst-case recovery slack is -0.522
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.834             -12.976 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 0.480
+    Info (332119):    -0.522              -8.319 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.194
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.480               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.194               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174            -215.772 Clk 
-    Info (332119):    -0.125              -1.986 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.054              -1.179 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):     0.076               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.174            -258.747 Clk 
+    Info (332119):    -0.191              -9.212 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -0.027              -0.204 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):     0.005               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 8 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.604
+Info (332146): Worst-case setup slack is -2.664
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.604            -136.613 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):    -2.014             -50.776 Clk 
-    Info (332119):    -1.582            -102.675 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -1.441             -39.944 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case hold slack is -1.415
+    Info (332119):    -2.664            -129.152 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):    -1.931             -72.640 Clk 
+    Info (332119):    -1.591             -98.091 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):    -1.081             -25.890 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case hold slack is -1.135
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.415             -30.918 Clk 
-    Info (332119):    -0.080              -0.158 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):     0.234               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
-    Info (332119):     0.410               0.000 VGA_SYNC:C2|vert_sync_out 
-Info (332146): Worst-case recovery slack is -0.734
+    Info (332119):    -1.135             -18.009 Clk 
+    Info (332119):     0.052               0.000 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.112               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.414               0.000 VGA_SYNC:C2|vert_sync_out 
+Info (332146): Worst-case recovery slack is -0.454
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.734             -11.413 MOUSE:C4|MOUSE_CLK_FILTER 
-Info (332146): Worst-case removal slack is 0.433
+    Info (332119):    -0.454              -7.229 MOUSE:C4|MOUSE_CLK_FILTER 
+Info (332146): Worst-case removal slack is 0.188
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.433               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):     0.188               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174            -215.936 Clk 
-    Info (332119):    -0.069              -0.816 \VGA_CLOCK:v_25MHzClk 
-    Info (332119):    -0.017              -0.257 VGA_SYNC:C2|vert_sync_out 
-    Info (332119):     0.087               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
+    Info (332119):    -2.174            -258.972 Clk 
+    Info (332119):    -0.107              -4.278 \VGA_CLOCK:v_25MHzClk 
+    Info (332119):     0.020               0.000 VGA_SYNC:C2|vert_sync_out 
+    Info (332119):     0.035               0.000 MOUSE:C4|MOUSE_CLK_FILTER 
 Info (332114): Report Metastability: Found 8 synchronizer chains.
     Info (332114): Design MTBF is not calculated because the design doesn't meet its timing requirements.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 5125 megabytes
-    Info: Processing ended: Thu May 11 12:52:25 2023
+    Info: Peak virtual memory: 5124 megabytes
+    Info: Processing ended: Thu May 11 13:41:06 2023
     Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:07
 
