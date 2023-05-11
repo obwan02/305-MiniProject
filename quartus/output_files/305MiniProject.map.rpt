@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 305MiniProject
-Thu May 11 13:39:59 2023
+Thu May 11 13:59:14 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -10,34 +10,22 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis RAM Summary
-  9. State Machine - |main|MOUSE:C4|mouse_state
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Source assignments for renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated
- 15. Source assignments for renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_ltg1:auto_generated
- 16. Source assignments for renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated
- 17. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM
- 18. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component
- 19. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM
- 20. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component
- 21. Parameter Settings for User Entity Instance: renderer:C1|text_renderer:SCORE_TEXT
- 22. Parameter Settings for User Entity Instance: renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component
- 23. altsyncram Parameter Settings by Entity Instance
- 24. Port Connectivity Checks: "collision:C6"
- 25. Port Connectivity Checks: "MOUSE:C4"
- 26. Port Connectivity Checks: "player_update:C3"
- 27. Port Connectivity Checks: "renderer:C1|text_renderer:SCORE_TEXT"
- 28. Port Connectivity Checks: "renderer:C1|sprite_rom:BGKGRD_ROM"
- 29. Port Connectivity Checks: "renderer:C1"
- 30. Post-Synthesis Netlist Statistics for Top Partition
- 31. Elapsed Time Per Partition
- 32. Analysis & Synthesis Messages
+  5. Source assignments for renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated
+  6. Source assignments for renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_ltg1:auto_generated
+  7. Source assignments for renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated
+  8. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM
+  9. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component
+ 10. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM
+ 11. Parameter Settings for User Entity Instance: renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component
+ 12. Parameter Settings for User Entity Instance: renderer:C1|text_renderer:SCORE_TEXT
+ 13. Parameter Settings for User Entity Instance: renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component
+ 14. Port Connectivity Checks: "collision:C6"
+ 15. Port Connectivity Checks: "MOUSE:C4"
+ 16. Port Connectivity Checks: "player_update:C3"
+ 17. Port Connectivity Checks: "renderer:C1|text_renderer:SCORE_TEXT"
+ 18. Port Connectivity Checks: "renderer:C1|sprite_rom:BGKGRD_ROM"
+ 19. Port Connectivity Checks: "renderer:C1"
+ 20. Analysis & Synthesis Messages
 
 
 
@@ -60,27 +48,22 @@ refer to the applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                      ;
-+---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 11 13:39:59 2023           ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
-; Revision Name                   ; 305MiniProject                                  ;
-; Top-level Entity Name           ; main                                            ;
-; Family                          ; Cyclone V                                       ;
-; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 237                                             ;
-; Total pins                      ; 20                                              ;
-; Total virtual pins              ; 0                                               ;
-; Total block memory bits         ; 27,648                                          ;
-; Total DSP Blocks                ; 0                                               ;
-; Total HSSI RX PCSs              ; 0                                               ;
-; Total HSSI PMA RX Deserializers ; 0                                               ;
-; Total HSSI TX PCSs              ; 0                                               ;
-; Total HSSI PMA TX Serializers   ; 0                                               ;
-; Total PLLs                      ; 0                                               ;
-; Total DLLs                      ; 0                                               ;
-+---------------------------------+-------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++-----------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status ; Failed - Thu May 11 13:59:14 2023               ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name               ; 305MiniProject                                  ;
+; Top-level Entity Name       ; main                                            ;
+; Family                      ; Cyclone V                                       ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
+; Total registers             ; N/A until Partition Merge                       ;
+; Total pins                  ; N/A until Partition Merge                       ;
+; Total virtual pins          ; N/A until Partition Merge                       ;
+; Total block memory bits     ; N/A until Partition Merge                       ;
+; Total PLLs                  ; N/A until Partition Merge                       ;
+; Total DLLs                  ; N/A until Partition Merge                       ;
++-----------------------------+-------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -179,301 +162,11 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 6           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-6         ;   0.0%      ;
 +----------------------------+-------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                          ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                            ; Library ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
-; ../modelsim/text_renderer.vhd    ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/text_renderer.vhd                 ;         ;
-; ../modelsim/char_rom.vhd         ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/char_rom.vhd                      ;         ;
-; ../modelsim/collision.vhd        ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/collision.vhd                     ;         ;
-; ../modelsim/types.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/types.vhd                         ;         ;
-; ../modelsim/pipes.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/pipes.vhd                         ;         ;
-; ../modelsim/sprite_rom.vhd       ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd                    ;         ;
-; ../modelsim/mouse.vhd            ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/mouse.vhd                         ;         ;
-; ../modelsim/vga_sync.vhd         ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/vga_sync.vhd                      ;         ;
-; ../modelsim/renderer.vhd         ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/renderer.vhd                      ;         ;
-; ../modelsim/player_update.vhd    ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/player_update.vhd                 ;         ;
-; ../modelsim/main.vhd             ; yes             ; User VHDL File                         ; H:/Documents/305-MiniProject/modelsim/main.vhd                          ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
-; aglobal181.inc                   ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/aglobal181.inc        ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
-; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
-; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_ppg1.tdf           ; yes             ; Auto-Generated Megafunction            ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ppg1.tdf             ;         ;
-; db/altsyncram_ltg1.tdf           ; yes             ; Auto-Generated Megafunction            ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ltg1.tdf             ;         ;
-; ../modelsim/ROM/REAL_BACK.mif    ; yes             ; Auto-Found Memory Initialization File  ; H:/Documents/305-MiniProject/modelsim/ROM/REAL_BACK.mif                 ;         ;
-; db/altsyncram_ahg1.tdf           ; yes             ; Auto-Generated Megafunction            ; H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf             ;         ;
-+----------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------+---------+
-
-
-+---------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                         ;
-+---------------------------------------------+-----------------------+
-; Resource                                    ; Usage                 ;
-+---------------------------------------------+-----------------------+
-; Estimate of Logic utilization (ALMs needed) ; 245                   ;
-;                                             ;                       ;
-; Combinational ALUT usage for logic          ; 388                   ;
-;     -- 7 input functions                    ; 4                     ;
-;     -- 6 input functions                    ; 89                    ;
-;     -- 5 input functions                    ; 53                    ;
-;     -- 4 input functions                    ; 66                    ;
-;     -- <=3 input functions                  ; 176                   ;
-;                                             ;                       ;
-; Dedicated logic registers                   ; 237                   ;
-;                                             ;                       ;
-; I/O pins                                    ; 20                    ;
-; Total MLAB memory bits                      ; 0                     ;
-; Total block memory bits                     ; 27648                 ;
-;                                             ;                       ;
-; Total DSP Blocks                            ; 0                     ;
-;                                             ;                       ;
-; Maximum fan-out node                        ; \VGA_CLOCK:v_25MHzClk ;
-; Maximum fan-out                             ; 86                    ;
-; Total fan-out                               ; 2476                  ;
-; Average fan-out                             ; 3.54                  ;
-+---------------------------------------------+-----------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                     ;
-+-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                         ; Entity Name     ; Library Name ;
-+-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |main                                           ; 388 (1)             ; 237 (1)                   ; 27648             ; 0          ; 20   ; 0            ; |main                                                                                                                       ; main            ; work         ;
-;    |MOUSE:C4|                                   ; 50 (50)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |main|MOUSE:C4                                                                                                              ; MOUSE           ; work         ;
-;    |VGA_SYNC:C2|                                ; 52 (52)             ; 57 (57)                   ; 0                 ; 0          ; 0    ; 0            ; |main|VGA_SYNC:C2                                                                                                           ; VGA_SYNC        ; work         ;
-;    |pipes:C5|                                   ; 96 (96)             ; 44 (44)                   ; 0                 ; 0          ; 0    ; 0            ; |main|pipes:C5                                                                                                              ; pipes           ; work         ;
-;    |player_update:C3|                           ; 49 (49)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|player_update:C3                                                                                                      ; player_update   ; work         ;
-;    |renderer:C1|                                ; 140 (130)           ; 52 (15)                   ; 27648             ; 0          ; 0    ; 0            ; |main|renderer:C1                                                                                                           ; renderer        ; work         ;
-;       |sprite_rom:BGKGRD_ROM|                   ; 0 (0)               ; 12 (12)                   ; 12288             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM                                                                                     ; sprite_rom      ; work         ;
-;          |altsyncram:altsyncram_component|      ; 0 (0)               ; 0 (0)                     ; 12288             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component                                                     ; altsyncram      ; work         ;
-;             |altsyncram_ltg1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 12288             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_ltg1:auto_generated                      ; altsyncram_ltg1 ; work         ;
-;       |sprite_rom:BIRD_ROM|                     ; 0 (0)               ; 13 (13)                   ; 13312             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM                                                                                       ; sprite_rom      ; work         ;
-;          |altsyncram:altsyncram_component|      ; 0 (0)               ; 0 (0)                     ; 13312             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component                                                       ; altsyncram      ; work         ;
-;             |altsyncram_ppg1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 13312             ; 0          ; 0    ; 0            ; |main|renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated                        ; altsyncram_ppg1 ; work         ;
-;       |text_renderer:SCORE_TEXT|                ; 10 (8)              ; 12 (12)                   ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|text_renderer:SCORE_TEXT                                                                                  ; text_renderer   ; work         ;
-;          |char_rom:TEXT_ROM|                    ; 2 (2)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM                                                                ; char_rom        ; work         ;
-;             |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
-;                |altsyncram_ahg1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |main|renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated ; altsyncram_ahg1 ; work         ;
-+-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                                                       ;
-+----------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-------------------+
-; Name                                                                                                                             ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF               ;
-+----------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-------------------+
-; renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_ltg1:auto_generated|ALTSYNCRAM                      ; AUTO ; ROM  ; 1024         ; 13           ; --           ; --           ; 13312 ; ROM/REAL_BACK.mif ;
-; renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component|altsyncram_ppg1:auto_generated|ALTSYNCRAM                        ; AUTO ; ROM  ; 1024         ; 13           ; --           ; --           ; 13312 ; ROM/BRD3_ROM.mif  ;
-; renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096  ; ROM/TCGROM.mif    ;
-+----------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-------------------+
-
-
-Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |main|MOUSE:C4|mouse_state                                                                                                                                                              ;
-+-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
-; Name                          ; mouse_state.INPUT_PACKETS ; mouse_state.WAIT_CMD_ACK ; mouse_state.WAIT_OUTPUT_READY ; mouse_state.LOAD_COMMAND2 ; mouse_state.LOAD_COMMAND ; mouse_state.INHIBIT_TRANS ;
-+-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
-; mouse_state.INHIBIT_TRANS     ; 0                         ; 0                        ; 0                             ; 0                         ; 0                        ; 0                         ;
-; mouse_state.LOAD_COMMAND      ; 0                         ; 0                        ; 0                             ; 0                         ; 1                        ; 1                         ;
-; mouse_state.LOAD_COMMAND2     ; 0                         ; 0                        ; 0                             ; 1                         ; 0                        ; 1                         ;
-; mouse_state.WAIT_OUTPUT_READY ; 0                         ; 0                        ; 1                             ; 0                         ; 0                        ; 1                         ;
-; mouse_state.WAIT_CMD_ACK      ; 0                         ; 1                        ; 0                             ; 0                         ; 0                        ; 1                         ;
-; mouse_state.INPUT_PACKETS     ; 1                         ; 0                        ; 0                             ; 0                         ; 0                        ; 1                         ;
-+-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
-
-
-+----------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                           ;
-+-----------------------------------------------------+----------------------------------------+
-; Register name                                       ; Reason for Removal                     ;
-+-----------------------------------------------------+----------------------------------------+
-; pipes:C5|v_TopPipeHeights[1][0]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][10]                    ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][9]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][8]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][7]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][6]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][5]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][4]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][3]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][2]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][1]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[0][0]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][1]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][2]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][3]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][4]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][5]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][6]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][7]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][8]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][9]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[1][10]                    ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][0]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][1]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][2]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][3]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][4]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][5]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][6]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][7]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][8]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][9]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[2][10]                    ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][0]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][1]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][2]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][3]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][4]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][5]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][6]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][7]                     ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][8]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][9]                     ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_TopPipeHeights[3][10]                    ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][0]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][1]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][2]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][3]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][4]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][5]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][6]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][7]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][8]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][9]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[0][10]                 ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][0]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][1]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][2]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][3]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][4]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][5]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][6]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][7]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][8]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][9]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[1][10]                 ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][0]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][1]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][2]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][3]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][4]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][5]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][6]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][7]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][8]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][9]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[2][10]                 ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][0]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][1]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][2]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][3]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][4]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][5]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][6]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][7]                  ; Stuck at VCC due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][8]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][9]                  ; Stuck at GND due to stuck port data_in ;
-; pipes:C5|v_BottomPipeHeights[3][10]                 ; Stuck at GND due to stuck port data_in ;
-; renderer:C1|text_renderer:SCORE_TEXT|CharAddress[5] ; Stuck at GND due to stuck port data_in ;
-; MOUSE:C4|CHAROUT[4..7]                              ; Stuck at VCC due to stuck port data_in ;
-; MOUSE:C4|CHAROUT[3]                                 ; Stuck at GND due to stuck port data_in ;
-; MOUSE:C4|CHAROUT[2]                                 ; Stuck at VCC due to stuck port data_in ;
-; MOUSE:C4|CHAROUT[0,1]                               ; Stuck at GND due to stuck port data_in ;
-; MOUSE:C4|SHIFTOUT[10]                               ; Stuck at VCC due to stuck port data_in ;
-; player_update:C3|v_CurrentY[9]                      ; Merged with player_update:C3|NewY[9]   ;
-; player_update:C3|v_CurrentY[8]                      ; Merged with player_update:C3|NewY[8]   ;
-; player_update:C3|v_CurrentY[7]                      ; Merged with player_update:C3|NewY[7]   ;
-; player_update:C3|v_CurrentY[6]                      ; Merged with player_update:C3|NewY[6]   ;
-; player_update:C3|v_CurrentY[5]                      ; Merged with player_update:C3|NewY[5]   ;
-; player_update:C3|v_CurrentY[4]                      ; Merged with player_update:C3|NewY[4]   ;
-; player_update:C3|v_CurrentY[3]                      ; Merged with player_update:C3|NewY[3]   ;
-; player_update:C3|v_CurrentY[2]                      ; Merged with player_update:C3|NewY[2]   ;
-; player_update:C3|v_CurrentY[1]                      ; Merged with player_update:C3|NewY[1]   ;
-; player_update:C3|v_CurrentY[0]                      ; Merged with player_update:C3|NewY[0]   ;
-; player_update:C3|NewY[9]                            ; Stuck at GND due to stuck port data_in ;
-; VGA_SYNC:C2|pixel_row[9]                            ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 110             ;                                        ;
-+-----------------------------------------------------+----------------------------------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 237   ;
-; Number of registers using Synchronous Clear  ; 53    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 16    ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 82    ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+---------------------------------------------------+
-; Inverted Register Statistics                      ;
-+-----------------------------------------+---------+
-; Inverted Register                       ; Fan out ;
-+-----------------------------------------+---------+
-; pipes:C5|v_PipesXValues[3][2]           ; 4       ;
-; pipes:C5|v_PipesXValues[3][6]           ; 4       ;
-; pipes:C5|v_PipesXValues[3][5]           ; 4       ;
-; pipes:C5|v_PipesXValues[2][8]           ; 3       ;
-; pipes:C5|v_PipesXValues[2][2]           ; 4       ;
-; pipes:C5|v_PipesXValues[2][3]           ; 5       ;
-; pipes:C5|v_PipesXValues[2][5]           ; 4       ;
-; pipes:C5|v_PipesXValues[1][8]           ; 3       ;
-; pipes:C5|v_PipesXValues[1][7]           ; 4       ;
-; pipes:C5|v_PipesXValues[1][2]           ; 4       ;
-; pipes:C5|v_PipesXValues[1][4]           ; 6       ;
-; pipes:C5|v_PipesXValues[1][6]           ; 4       ;
-; pipes:C5|v_PipesXValues[1][5]           ; 4       ;
-; pipes:C5|v_PipesXValues[0][9]           ; 3       ;
-; pipes:C5|v_PipesXValues[0][7]           ; 4       ;
-; pipes:C5|v_PipesXValues[0][2]           ; 4       ;
-; pipes:C5|v_PipesXValues[0][4]           ; 6       ;
-; pipes:C5|v_PipesXValues[0][3]           ; 5       ;
-; pipes:C5|v_PipesXValues[0][5]           ; 4       ;
-; MOUSE:C4|send_char                      ; 3       ;
-; player_update:C3|v_YVel[0]              ; 1       ;
-; MOUSE:C4|SHIFTOUT[3]                    ; 1       ;
-; MOUSE:C4|SHIFTOUT[5]                    ; 1       ;
-; MOUSE:C4|SHIFTOUT[6]                    ; 1       ;
-; MOUSE:C4|SHIFTOUT[7]                    ; 1       ;
-; MOUSE:C4|SHIFTOUT[8]                    ; 1       ;
-; Total number of inverted registers = 26 ;         ;
-+-----------------------------------------+---------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |main|VGA_SYNC:C2|v_count[9]     ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |main|player_update:C3|v_YVel[4] ;
-; 5:1                ; 12 bits   ; 36 LEs        ; 24 LEs               ; 12 LEs                 ; Yes        ; |main|VGA_SYNC:C2|green_out[0]   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------+
@@ -719,48 +412,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; altsyncram Parameter Settings by Entity Instance                                                                                   ;
-+-------------------------------------------+----------------------------------------------------------------------------------------+
-; Name                                      ; Value                                                                                  ;
-+-------------------------------------------+----------------------------------------------------------------------------------------+
-; Number of entity instances                ; 3                                                                                      ;
-; Entity Instance                           ; renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component                        ;
-;     -- OPERATION_MODE                     ; ROM                                                                                    ;
-;     -- WIDTH_A                            ; 13                                                                                     ;
-;     -- NUMWORDS_A                         ; 1024                                                                                   ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                           ;
-;     -- WIDTH_B                            ; 1                                                                                      ;
-;     -- NUMWORDS_B                         ; 1                                                                                      ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                 ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                           ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                   ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                              ;
-; Entity Instance                           ; renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component                      ;
-;     -- OPERATION_MODE                     ; ROM                                                                                    ;
-;     -- WIDTH_A                            ; 13                                                                                     ;
-;     -- NUMWORDS_A                         ; 1024                                                                                   ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                           ;
-;     -- WIDTH_B                            ; 1                                                                                      ;
-;     -- NUMWORDS_B                         ; 1                                                                                      ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                 ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                           ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                   ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                              ;
-; Entity Instance                           ; renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component ;
-;     -- OPERATION_MODE                     ; ROM                                                                                    ;
-;     -- WIDTH_A                            ; 8                                                                                      ;
-;     -- NUMWORDS_A                         ; 512                                                                                    ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                           ;
-;     -- WIDTH_B                            ; 1                                                                                      ;
-;     -- NUMWORDS_B                         ; 1                                                                                      ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                 ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                           ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                   ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                              ;
-+-------------------------------------------+----------------------------------------------------------------------------------------+
-
-
 +--------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "collision:C6"                                                                           ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -825,63 +476,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; arriav_ff             ; 237                         ;
-;     CLR               ; 1                           ;
-;     ENA               ; 56                          ;
-;     ENA CLR           ; 15                          ;
-;     ENA SCLR          ; 11                          ;
-;     SCLR              ; 42                          ;
-;     plain             ; 112                         ;
-; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 389                         ;
-;     arith             ; 119                         ;
-;         1 data inputs ; 104                         ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 1                           ;
-;         5 data inputs ; 9                           ;
-;     extend            ; 4                           ;
-;         7 data inputs ; 4                           ;
-;     normal            ; 261                         ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 34                          ;
-;         3 data inputs ; 20                          ;
-;         4 data inputs ; 66                          ;
-;         5 data inputs ; 44                          ;
-;         6 data inputs ; 89                          ;
-;     shared            ; 5                           ;
-;         2 data inputs ; 5                           ;
-; boundary_port         ; 20                          ;
-; stratixv_ram_block    ; 33                          ;
-;                       ;                             ;
-; Max LUT depth         ; 7.20                        ;
-; Average LUT depth     ; 2.77                        ;
-+-----------------------+-----------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:01     ;
-+----------------+--------------+
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Thu May 11 13:39:46 2023
+    Info: Processing started: Thu May 11 13:59:03 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 305MiniProject -c 305MiniProject
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/score_tracker.vhd
+    Info (12022): Found design unit 1: score_tracker-track File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 24
+    Info (12023): Found entity 1: score_tracker File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 10
+Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/bcd_to_7seg.vhd
+    Info (12022): Found design unit 1: BCD_to_SevenSeg-arc1 File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 12
+    Info (12023): Found entity 1: BCD_to_SevenSeg File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/lfsr.vhd
+    Info (12022): Found design unit 1: LFSR-LFSRbehaviour File: H:/Documents/305-MiniProject/modelsim/lfsr.vhd Line: 14
+    Info (12023): Found entity 1: LFSR File: H:/Documents/305-MiniProject/modelsim/lfsr.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/text_renderer.vhd
     Info (12022): Found design unit 1: text_renderer-behave File: H:/Documents/305-MiniProject/modelsim/text_renderer.vhd Line: 16
     Info (12023): Found entity 1: text_renderer File: H:/Documents/305-MiniProject/modelsim/text_renderer.vhd Line: 5
@@ -895,8 +508,8 @@ Info (12021): Found 2 design units, including 0 entities, in source file /docume
     Info (12022): Found design unit 1: types File: H:/Documents/305-MiniProject/modelsim/types.vhd Line: 6
     Info (12022): Found design unit 2: constants File: H:/Documents/305-MiniProject/modelsim/types.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/pipes.vhd
-    Info (12022): Found design unit 1: pipes-construction File: H:/Documents/305-MiniProject/modelsim/pipes.vhd Line: 18
-    Info (12023): Found entity 1: pipes File: H:/Documents/305-MiniProject/modelsim/pipes.vhd Line: 7
+    Info (12022): Found design unit 1: pipes-construction File: H:/Documents/305-MiniProject/modelsim/pipes.vhd Line: 20
+    Info (12023): Found entity 1: pipes File: H:/Documents/305-MiniProject/modelsim/pipes.vhd Line: 8
 Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/sprite_rom.vhd
     Info (12022): Found design unit 1: sprite_rom-behave File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 27
     Info (12023): Found entity 1: sprite_rom File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 9
@@ -913,10 +526,13 @@ Info (12021): Found 2 design units, including 1 entities, in source file /docume
     Info (12022): Found design unit 1: player_update-rtl File: H:/Documents/305-MiniProject/modelsim/player_update.vhd Line: 21
     Info (12023): Found entity 1: player_update File: H:/Documents/305-MiniProject/modelsim/player_update.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file /documents/305-miniproject/modelsim/main.vhd
-    Info (12022): Found design unit 1: main-behave File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 20
+    Info (12022): Found design unit 1: main-behave File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 21
     Info (12023): Found entity 1: main File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 6
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Info (12128): Elaborating entity "renderer" for hierarchy "renderer:C1" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 117
+Warning (10541): VHDL Signal Declaration warning at main.vhd(15): used implicit default value for signal "Collided" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 15
+Warning (10541): VHDL Signal Declaration warning at main.vhd(17): used implicit default value for signal "scoreTens" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 17
+Warning (10541): VHDL Signal Declaration warning at main.vhd(136): used implicit default value for signal "RandomReset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 136
+Info (12128): Elaborating entity "renderer" for hierarchy "renderer:C1" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 154
 Info (12128): Elaborating entity "sprite_rom" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM" File: H:/Documents/305-MiniProject/modelsim/renderer.vhd Line: 90
 Info (12128): Elaborating entity "altsyncram" for hierarchy "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
 Info (12130): Elaborated megafunction instantiation "renderer:C1|sprite_rom:BIRD_ROM|altsyncram:altsyncram_component" File: H:/Documents/305-MiniProject/modelsim/sprite_rom.vhd Line: 58
@@ -981,37 +597,51 @@ Info (12133): Instantiated megafunction "renderer:C1|text_renderer:SCORE_TEXT|ch
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ahg1.tdf
     Info (12023): Found entity 1: altsyncram_ahg1 File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_ahg1" for hierarchy "renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated" File: c:/intelfpga/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:C2" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 133
-Info (12128): Elaborating entity "player_update" for hierarchy "player_update:C3" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 142
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:C2" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 170
+Info (12128): Elaborating entity "player_update" for hierarchy "player_update:C3" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 179
 Warning (10540): VHDL Signal Declaration warning at player_update.vhd(14): used explicit default value for signal "NewX" because signal was never assigned a value File: H:/Documents/305-MiniProject/modelsim/player_update.vhd Line: 14
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:C4" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 150
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:C4" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 187
 Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 151
 Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 155
 Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 156
 Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 157
-Info (12128): Elaborating entity "pipes" for hierarchy "pipes:C5" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 162
-Info (12128): Elaborating entity "collision" for hierarchy "collision:C6" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 170
-Warning (14284): Synthesized away the following node(s):
-    Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "renderer:C1|sprite_rom:BGKGRD_ROM|altsyncram:altsyncram_component|altsyncram_ltg1:auto_generated|q_a[12]" File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ltg1.tdf Line: 286
+Info (12128): Elaborating entity "pipes" for hierarchy "pipes:C5" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 197
+Info (12128): Elaborating entity "collision" for hierarchy "collision:C6" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 206
+Info (12128): Elaborating entity "LFSR" for hierarchy "LFSR:C7" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 215
+Info (12128): Elaborating entity "score_tracker" for hierarchy "score_tracker:C8" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 221
+Warning (10543): VHDL Variable Declaration warning at score_tracker.vhd(28): used default initial value for variable "v_CurrentPipeX" because variable was never assigned a value or an initial value expression. Use of default initial value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 28
+Warning (10543): VHDL Variable Declaration warning at score_tracker.vhd(29): used default initial value for variable "v_CurrentTopPipeY" because variable was never assigned a value or an initial value expression. Use of default initial value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 29
+Warning (10543): VHDL Variable Declaration warning at score_tracker.vhd(30): used default initial value for variable "v_CurrentBottomPipeY" because variable was never assigned a value or an initial value expression. Use of default initial value may introduce unintended design optimizations. File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 30
+Warning (10492): VHDL Process Statement warning at score_tracker.vhd(39): signal "PlayerY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 39
+Warning (10873): Using initial value X (don't care) for net "TotalScore" at score_tracker.vhd(33) File: H:/Documents/305-MiniProject/modelsim/score_tracker.vhd Line: 33
+Info (12128): Elaborating entity "BCD_to_SevenSeg" for hierarchy "BCD_to_SevenSeg:C9" File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 233
+Error (12014): Net "scoreOnes[6]", which fans out to "scoreOnes[6]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[6]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[6]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[5]", which fans out to "scoreOnes[5]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[5]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[5]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[4]", which fans out to "scoreOnes[4]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[4]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[4]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[3]", which fans out to "scoreOnes[3]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[3]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[3]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[2]", which fans out to "scoreOnes[2]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[2]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[2]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[1]", which fans out to "scoreOnes[1]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[1]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[1]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+Error (12014): Net "scoreOnes[0]", which fans out to "scoreOnes[0]", cannot be assigned more than one value File: H:/Documents/305-MiniProject/modelsim/main.vhd Line: 16
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C9|SevenSeg_out[0]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
+    Error (12015): Net is fed by "BCD_to_SevenSeg:C10|SevenSeg_out[0]" File: H:/Documents/305-MiniProject/modelsim/BCD_to_7Seg.vhd Line: 9
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Info (13000): Registers with preset signals will power-up high File: H:/Documents/305-MiniProject/modelsim/mouse.vhd Line: 146
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info (286030): Timing-Driven Synthesis is running
-Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "renderer:C1|text_renderer:SCORE_TEXT|char_rom:TEXT_ROM|altsyncram:altsyncram_component|altsyncram_ahg1:auto_generated|ALTSYNCRAM" File: H:/Documents/305-MiniProject/quartus/db/altsyncram_ahg1.tdf Line: 31
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 525 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 16 output pins
-    Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 472 logic cells
-    Info (21064): Implemented 33 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 4886 megabytes
-    Info: Processing ended: Thu May 11 13:40:00 2023
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:19
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 21 errors, 16 warnings
+    Error: Peak virtual memory: 4864 megabytes
+    Error: Processing ended: Thu May 11 13:59:14 2023
+    Error: Elapsed time: 00:00:11
+    Error: Total CPU time (on all processors): 00:00:17
 
 

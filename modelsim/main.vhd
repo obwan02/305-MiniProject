@@ -228,7 +228,6 @@ begin
         -- Todo: change score
         scoreOnes =>  scoreOnesSignal,
         scoreTens => scoreTensSignal
-    
     );
 
     C9: BCD_to_SevenSeg port map (

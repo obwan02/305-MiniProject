@@ -10,7 +10,7 @@ use work.constants;
 entity score_tracker is port(
     Clk : in std_logic; 
     PlayerY: in signed(9 downto 0);
-    PlayerX: in signed(	0 downto 0);
+    PlayerX: in signed(10 downto 0);
     TopPipeHeight: in PipesArray;
     BottomPipeHeight: in PipesArray;
     PipesXValues: in PipesArray;
