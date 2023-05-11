@@ -12,9 +12,10 @@ entity main is
           VgaHSync, VgaVSync: out std_logic;
           -- Mouse Shit
           MouseClk, MouseData: inout std_logic;
-          DebugLight: out std_logic;
-          --temp
-          tempLight: out std_logic);
+          Collided: out std_logic;
+          scoreOnes: out std_logic_vector(6 downto 0);
+          scoreTens: out std_logic_vector(6 downto 0)
+          );
 end entity main;
 
 architecture behave of main is
@@ -95,6 +96,26 @@ architecture behave of main is
     );
     end component;
 
+    component score_tracker is port(
+        Clk : in std_logic; 
+        PlayerY: in signed(9 downto 0);
+        PlayerX: in signed(10 downto 0);
+        TopPipeHeight: in PipesArray;
+        BottomPipeHeight: in PipesArray;
+        PipesXValues: in PipesArray;
+        -- Todo: change score
+        scoreOnes: out std_logic_vector(3 downto 0);
+        scoreTens: out std_logic_vector(3 downto 0)
+    
+    );
+    end component;
+
+    component BCD_to_SevenSeg is
+        port (BCD_digit : in std_logic_vector(3 downto 0);
+              SevenSeg_out : out std_logic_vector(6 downto 0));
+   end component;
+
+
     signal VSync: std_logic;
     signal VgaRow, VgaCol: std_logic_vector(9 downto 0);
     signal R, G, B: std_logic_vector(3 downto 0);
@@ -114,6 +135,10 @@ architecture behave of main is
     --Random generator variables
     signal RandomReset: std_logic;
     signal RandomNumbers: PipesArray;
+
+    -- score traker variables
+    signal scoreOnesSignal: std_logic_vector(3 downto 0);
+    signal scoreTensSignal: std_logic_vector(3 downto 0);
 begin
 
     VGA_CLOCK: process(Clk)
@@ -169,8 +194,6 @@ begin
                        mouse_cursor_column => open
     );
 
-    DebugLight <= LeftMouseButton;
-
     C5: pipes port map(
         PipeClk => VSync,
         PipeWidth => PipeWidth,
@@ -194,7 +217,27 @@ begin
         Reset => RandomReset,
         Random7BitNumbersArray => RandomNumbers
     );
-    
-    tempLight <= not(pushbutton);
 
+    C8: score_tracker port map(
+        Clk => Clk, 
+        PlayerX => PlayerX,
+        PlayerY => PlayerY,
+        TopPipeHeight => TopPipeHeights,
+        BottomPipeHeight => BottomPipeHeights,
+        PipesXValues => PipesXValues,
+        -- Todo: change score
+        scoreOnes =>  scoreOnesSignal,
+        scoreTens => scoreTensSignal
+    
+    );
+
+    C9: BCD_to_SevenSeg port map (
+        BCD_digit => scoreOnesSignal,
+        SevenSeg_out => scoreOnes
+    );
+
+    C10: BCD_to_SevenSeg port map (
+        BCD_digit => scoreTensSignal,
+        SevenSeg_out => scoreOnes
+    );
 end architecture;
