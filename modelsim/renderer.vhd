@@ -40,21 +40,16 @@ architecture behave of renderer is
         );
     end component;
 
-    component char_rom is
-	port
-	(
-		character_address	:	in STD_LOGIC_VECTOR (5 downto 0);
-		font_row, font_col	:	in STD_LOGIC_VECTOR (2 downto 0);
-		clock				: 	in STD_LOGIC ;
-		rom_mux_output		:	out STD_LOGIC
-	);
+    component text_renderer is 
+        generic(STR: string;
+                SIZE: natural);
+        port(Clk: in std_logic;
+             X: in signed(10 downto 0);
+             Y: in signed(9 downto 0);
+             VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+             Visible: out std_logic
+             );
     end component;
-
-	component text_storage is 
-		generic(STR: string);
-		port(Index: in unsigned(STR'length-1 downto 0)
-			 Address: out std_logic_vector(5 downto 0));
-	end component;
 
     -- Constants
     -- TODO: Make this more accessible
@@ -87,18 +82,10 @@ architecture behave of renderer is
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
     signal BackgroundRow, BackgroundCol: std_logic_vector (3 downto 0) := (others => '0');
 
-    -- Text rendering signals
-	signal CharIndex: unsigned(5 downto 0);
-    signal CharAddress: std_logic_vector(5 downto 0);
-    signal FontRow, FontCol: std_logic_vector(2 downto 0);
-    signal FontOutput, FontVisible: std_logic;
-begin
 
-    TEXT_ROM: char_rom port map(Clock => Clk,
-                                Character_Address => CharAddress,
-                                Font_Row => FontRow,
-                                Font_Col => FontCol,
-                                rom_mux_output => FontOutput);
+    -- Signal for text
+    signal TextVisible: std_logic;
+begin
 
     BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
                                      Addr_Width => 5) 
@@ -177,39 +164,24 @@ begin
 
     end process;
 
-	SCORE_TEXT: text_storage generic map(constants.SCORE_TEXT) port map(Address => CharAddress,
-														   Index => CharIndex);
-    TEXT_RENDER: process
-		constant TEXT_WIDTH: integer := constants.SCORE_TEXT'length * 8;
-    begin
-        wait until rising_edge(Clk);
-
-        if signed('0' & VgaCol) >= 16 and 
-           signed('0' & VgaCol) < signed(v_TextWidth + 16) and
-           signed(VgaRow) >= 16 and
-           signed(VgaRow) < 24 then
-			CharIndex <= shift_right(VgaCol, 4)
-            FontCol <= VgaCol(3 downto 1);
-            FontRow <= VgaRow(3 downto 1);
-            FontVisible <= FontOutput;
-        else
-            FontVisible <= '0';    
-        end if;
-
-
-    end process;
+	SCORE_TEXT: text_renderer generic map("SCORE", 1) port map(Clk => Clk,
+                                                               X => to_signed(16, 11),
+                                                               Y => to_signed(16, 10),
+                                                               VgaCol => VgaCol,
+                                                               VgaRow => VgaRow,
+                                                               Visible => TextVisible);
 
     BackgroundRow <= VgaRow(5 downto 2);
     BackgroundCol <= VgaCol(5 downto 2);
 
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, FontVisible)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, TextVisible)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if FontVisible = '1' then
+        if TextVisible = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
         elsif EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;

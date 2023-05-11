@@ -167,7 +167,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : C2        :        :                   :      
 GND                          : C3        : gnd    :                   :         :           :                
 GND                          : C4        : gnd    :                   :         :           :                
 GND                          : C5        :        :                   :         : 9A        :                
-DebugLight                   : C6        : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : C6        :        :                   :         : 8A        :                
 VCCIO8A                      : C7        : power  :                   : 2.5V    : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C8        :        :                   :         : 8A        :                
 VgaRedOut[2]                 : C9        : output : 2.5 V             :         : 8A        : Y              
@@ -214,7 +214,7 @@ MSEL3                        : E5        :        :                   :         
 VCC_AUX                      : E6        : power  :                   : 2.5V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E7        :        :                   :         : 8A        :                
 VCCIO8A                      : E8        : power  :                   : 2.5V    : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E9        :        :                   :         : 8A        :                
+DebugLight                   : E9        : output : 2.5 V             :         : 8A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : E10       :        :                   :         : 8A        :                
 VCCPD7A8A                    : E11       : power  :                   : 2.5V    : 7A, 8A    :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E12       :        :                   :         : 7A        :                
