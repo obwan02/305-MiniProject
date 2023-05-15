@@ -237,6 +237,6 @@ begin
 
     C10: BCD_to_SevenSeg port map (
         BCD_digit => scoreTensSignal,
-        SevenSeg_out => scoreOnes
+        SevenSeg_out => scoreTens
     );
 end architecture;
