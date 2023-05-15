@@ -60,11 +60,59 @@
 					"strict" : false
 				},
 				{
-					"name" : "DebugLight",
+					"name" : "scoreOnes[0]",
 					"strict" : false
 				},
 				{
-					"name" : "tempLight",
+					"name" : "scoreOnes[1]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreOnes[2]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreOnes[3]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreOnes[4]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreOnes[5]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreOnes[6]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[0]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[1]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[2]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[3]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[4]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[5]",
+					"strict" : false
+				},
+				{
+					"name" : "scoreTens[6]",
 					"strict" : false
 				},
 				{
@@ -73,10 +121,6 @@
 				},
 				{
 					"name" : "MouseData",
-					"strict" : false
-				},
-				{
-					"name" : "pushbutton",
 					"strict" : false
 				},
 				{

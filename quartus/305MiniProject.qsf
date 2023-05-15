@@ -85,4 +85,18 @@ set_global_assignment -name VHDL_FILE ../modelsim/vga_sync.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/renderer.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/player_update.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/main.vhd
+set_location_assignment PIN_U21 -to scoreOnes[0]
+set_location_assignment PIN_V21 -to scoreOnes[1]
+set_location_assignment PIN_W22 -to scoreOnes[2]
+set_location_assignment PIN_W21 -to scoreOnes[3]
+set_location_assignment PIN_Y22 -to scoreOnes[4]
+set_location_assignment PIN_Y21 -to scoreOnes[5]
+set_location_assignment PIN_AA22 -to scoreOnes[6]
+set_location_assignment PIN_AA20 -to scoreTens[0]
+set_location_assignment PIN_AB20 -to scoreTens[1]
+set_location_assignment PIN_AA19 -to scoreTens[2]
+set_location_assignment PIN_AA18 -to scoreTens[3]
+set_location_assignment PIN_AB18 -to scoreTens[4]
+set_location_assignment PIN_AA17 -to scoreTens[5]
+set_location_assignment PIN_U22 -to scoreTens[6]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

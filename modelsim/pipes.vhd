@@ -9,50 +9,75 @@ entity pipes is
     port(
         PipeClk: in std_logic;
         PipeWidth: out signed(10 downto 0);
-        RandomHeights: in PipesArray;
+        Rand: in std_logic_vector(7 downto 0);
         PipesXValues: out PipesArray;
         TopPipeHeights: out PipesArray;
-        BottomPipeHeights: out PipesArray
+        BottomPipeHeights: out PipesArray;
+
+        Trigger: in std_logic;
+        Done: out std_logic
     );
 end entity pipes;
 
 
 architecture construction of pipes is
+    signal s_Done: std_logic := '0';
 begin
+
+    Done <= s_Done and Trigger;
 
     PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
 
-    process(PipeClk)
-    variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
-                                            to_signed(200 + 80, 11), 
-                                            to_signed(300 + 160, 11),  
-                                            to_signed(400 + 240, 11));
-    variable v_TopPipeHeights: PipesArray;
-    variable v_BottomPipeHeights: PipesArray;
+    UPDATE: process(PipeClk)
+        constant RightMostPixel: signed(10 downto 0) := to_signed(640, 11);
+        constant Speed: signed(9 downto 0) := to_signed(2, 10);
+        constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
 
-    constant RightMostPixel: signed(10 downto 0) := to_signed(640, 11);
-    constant Speed: signed(9 downto 0) := to_signed(2, 10);
-    constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
+        variable v_Index: unsigned(2 downto 0);
+        variable v_PrevTrigger, v_Processing: std_logic := '0';
+
+
+        variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
+                                                to_signed(200 + 80, 11), 
+                                                to_signed(300 + 160, 11),  
+                                                to_signed(400 + 240, 11));
     begin
         if rising_edge(PipeClk) then
-            for i in 0 to constants.PIPE_MAX_INDEX loop
-                if (v_PipesXValues(i) + constants.PIPE_WIDTH <= 0) then
-                    v_PipesXValues(i) := RightMostPixel;
+
+            if v_PrevTrigger /= Trigger then
+                v_Index := (others => '0');
+                s_Done <= '0';
+    
+                if Trigger = '1' then 
+                    v_Processing := '1';
+                end if;
+            end if;
+    
+
+            if v_Processing = '1' then 
+                if (v_PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH <= 0) then
+                    v_PipesXValues(to_integer(v_Index)) := RightMostPixel;
 
                     --asign the randomly generated heigt to the top pipes
-                    v_TopPipeHeights(i) := RandomHeights(i);
+                    TopPipeHeights(to_integer(v_Index)) <= signed("000" & Rand);
 
                     -- find the bottom piprd height
-                    v_BottomPipeHeights(i) := constants.SCREEN_HEIGHT - (RandomHeights(i) + 200);
+                    BottomPipeHeights(to_integer(v_Index)) <= constants.SCREEN_HEIGHT - (signed("000" & Rand) + 200);
                     
                 else
-                    v_PipesXValues(i) := v_PipesXValues(i) - Speed;
+                    v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - Speed;
                 end if;
-            end loop; 
-        end if;
+            end if;
 
-        BottomPipeHeights <= v_BottomPipeHeights;
-        TopPipeHeights <= v_TopPipeHeights;
+            if v_Index = to_unsigned(3, 3) then 
+                v_Processing := '0';
+                s_Done <= '1';
+            else
+                v_Index := v_Index + 1;
+            end if;
+
+            v_PrevTrigger := Trigger;
+        end if;
         PipesXValues <= v_PipesXValues;
     end process;
 

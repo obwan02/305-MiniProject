@@ -14,47 +14,64 @@ entity score_tracker is port(
     TopPipeHeight: in PipesArray;
     BottomPipeHeight: in PipesArray;
     PipesXValues: in PipesArray;
-    -- Todo: change score
-    scoreOnes: out std_logic_vector(3 downto 0);
-    scoreTens: out std_logic_vector(3 downto 0)
+    -- Trigger and done signals
+    Trigger: in std_logic;
+    Done: out std_logic;
+
+    ScoreOnes: out std_logic_vector(3 downto 0);
+    ScoreTens: out std_logic_vector(3 downto 0)
 
 );
 end entity;
 
 architecture track of score_tracker is 
+    signal s_Done: std_logic := '0';
+begin
 
-begin
-process(Clk)
-    variable v_CurrentPipeX: signed(	0 downto 0);
-    variable v_CurrentTopPipeY: signed(	0 downto 0);
-    variable v_CurrentBottomPipeY: signed(	0 downto 0);
-    variable v_Collisions: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
-    variable v_is_increment: signed(6 downto 0);
-    variable TotalScore:  signed(6 downto 0);
-    variable onesCounter:  signed(6 downto 0);
-begin
-    for i in 0 to constants.PIPE_MAX_INDEX loop
-        v_is_increment := (others => '0');
-        -- if the the bird is inbetween the current pipes
-        if PlayerY >= v_CurrentTopPipeY and (PlayerY + constants.BIRD_HEIGHT) <= (constants.SCREEN_HEIGHT - v_CurrentBottomPipeY) then
-            if (PlayerX + constants.BIRD_WIDTH) >= v_CurrentPipeX and 
-                PlayerX <= (v_CurrentPipeX + constants.PIPE_WIDTH) then
-                if PlayerX + constants.BIRD_WIDTH = (v_CurrentPipeX + constants.PIPE_WIDTH) then
-                    v_is_increment := to_signed(1, 7);
-                end if;
+    Done <= s_Done and Trigger;
+
+    SCORE_TRACKER: process
+        variable TotalScore:  unsigned(7 downto 0);
+        -- This keeps track of which pipe we are checking ATM
+        -- NOTE: If the number of pipes increases, the size of this needs 
+        -- to increase
+        variable v_Index: unsigned(2 downto 0);
+        variable v_PrevTrigger: std_logic := '0';
+
+        variable v_Processing: std_logic := '0';
+    begin
+        wait until rising_edge(Clk);
+
+        if v_PrevTrigger /= Trigger then
+            v_Index := (others => '0');
+            s_Done <= '0';
+
+            if Trigger = '1' then 
+                v_Processing := '1';
             end if;
         end if;
-    end loop;
-        TotalScore := TotalScore + v_is_increment;
-        scoreTens <= "0000";
-        onesCounter := onesCounter + 1;
-        if TotalScore > 9 then
-            scoreTens <= "0000";
-            onesCounter := "0000000";
-        end if;
-        scoreones <= std_logic_vector(onesCounter(3 downto 0));
 
+        if v_Processing = '1' then
+            if PlayerY >= TopPipeHeight(to_integer(v_Index)) and (PlayerY + constants.BIRD_HEIGHT) <= (constants.SCREEN_HEIGHT - BottomPipeHeight(to_integer(v_Index))) then
+
+                if PlayerX + constants.BIRD_WIDTH = (PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH) then
+                    TotalScore := TotalScore + 1;
+                end if;
+
+            end if;
             
+            if v_Index = to_unsigned(3, 3) then 
+                v_Processing := '0';
+                s_Done <= '1';
+            else 
+                v_Index := v_Index + 1;
+            end if;
+                
+        end if ;
+
+        ScoreTens <= std_logic_vector(TotalScore / 10)(3 downto 0);
+        ScoreOnes <= std_logic_vector(TotalScore mod 10)(3 downto 0);
+        v_PrevTrigger := Trigger;
 
 end process;
 

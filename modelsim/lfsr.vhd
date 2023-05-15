@@ -7,7 +7,7 @@ use work.constants;
 entity LFSR is port(
     Clk: in std_logic;
     reset: in std_logic;
-    Random7BitNumbersArray: out PipesArray
+    Rand: out std_logic_vector(7 downto 0)
 );
 end entity;
 
@@ -19,22 +19,17 @@ begin
     begin
 
         if rising_edge(Clk) then
-            for i in 0 to constants.PIPE_MAX_INDEX  loop
-                -- find the random number
-                Q(7) := Q(6);
-                Q(6) := Q(5);
-                Q(5) := Q(4);
-                Q(4) := Q(3) xor Q(0);
-                Q(3) := Q(2) xor Q(0);
-                Q(2) := Q(1) xor Q(0);
-                Q(1) := Q(0);
-                Q(0) := Q(7);
-                -- convert to signed form
-                Random7BitNumbersArray(i) <= signed("000" & Q);
-            end loop;
-
-
+            Q(7) := Q(6);
+            Q(6) := Q(5);
+            Q(5) := Q(4);
+            Q(4) := Q(3) xor Q(0);
+            Q(3) := Q(2) xor Q(0);
+            Q(2) := Q(1) xor Q(0);
+            Q(1) := Q(0);
+            Q(0) := Q(7);
         end if;
+
+        Rand <= Q;
     end process;
 
 end architecture;

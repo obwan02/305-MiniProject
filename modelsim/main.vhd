@@ -54,7 +54,13 @@ architecture behave of main is
             LeftMouseButton: in std_logic;
     
             NewX: out signed(10 downto 0);
-            NewY: out signed(9 downto 0)
+            NewY: out signed(9 downto 0);
+
+            HitTopOrBottom: out std_logic;
+
+            -- Trigger and output
+            Trigger: in std_logic;
+            Done: out std_logic
         );
     end component;
 
@@ -62,11 +68,13 @@ architecture behave of main is
         port(
             PipeClk: in std_logic;
             PipeWidth: out signed(10 downto 0);
-            RandomHeights: in PipesArray;
+            Rand: in std_logic_vector(7 downto 0);
             PipesXValues: out PipesArray;
             TopPipeHeights: out PipesArray;
-            BottomPipeHeights: out PipesArray
+            BottomPipeHeights: out PipesArray;
 
+            Trigger: in std_logic;
+            Done: out std_logic
         );
     end component;
 
@@ -92,7 +100,7 @@ architecture behave of main is
     component LFSR is port(
         Clk: in std_logic;
         Reset: in std_logic;
-        Random7BitNumbersArray: out PipesArray
+        Rand: out std_logic_vector(7 downto 0)
     );
     end component;
 
@@ -103,9 +111,12 @@ architecture behave of main is
         TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
         PipesXValues: in PipesArray;
+        -- Trigger and Done
+        Trigger: in std_logic;
+        Done: out std_logic;
         -- Todo: change score
-        scoreOnes: out std_logic_vector(3 downto 0);
-        scoreTens: out std_logic_vector(3 downto 0)
+        ScoreOnes: out std_logic_vector(3 downto 0);
+        ScoreTens: out std_logic_vector(3 downto 0)
     
     );
     end component;
@@ -134,11 +145,15 @@ architecture behave of main is
 
     --Random generator variables
     signal RandomReset: std_logic;
-    signal RandomNumbers: PipesArray;
+    signal Rand: std_logic_vector(7 downto 0);
 
     -- score traker variables
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
+
+
+    -- Trigger signals
+    signal FinishedPlayerUpdate, FinishedPipeUpdate: std_logic;
 begin
 
     VGA_CLOCK: process(Clk)
@@ -176,11 +191,16 @@ begin
 
     VgaVSync <= VSync;
 
-    C3: player_update port map(Clk => VSync,
+    C3: player_update port map(Clk => Clk,
                                Reset => '0',
                                LeftMouseButton => LeftMouseButton,
                                NewX => PlayerX,
-                               NewY => PlayerY
+                               NewY => PlayerY,
+
+                               HitTopOrBottom => open,
+
+                               Trigger => not VSync,
+                               Done => FinishedPlayerUpdate
     );
 
 
@@ -195,12 +215,15 @@ begin
     );
 
     C5: pipes port map(
-        PipeClk => VSync,
+        PipeClk => Clk,
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
-        RandomHeights => RandomNumbers,
+        Rand => Rand,
         TopPipeHeights => TopPipeHeights,
-        BottomPipeHeights => BottomPipeHeights
+        BottomPipeHeights => BottomPipeHeights,
+
+        Trigger => not VSync,
+        Done => FinishedPipeUpdate
     );
 
     C6: collision port map(Clk => Clk,
@@ -215,7 +238,7 @@ begin
     C7: LFSR port map (
         clk => Clk,
         Reset => RandomReset,
-        Random7BitNumbersArray => RandomNumbers
+        Rand => Rand
     );
 
     C8: score_tracker port map(
@@ -225,9 +248,12 @@ begin
         TopPipeHeight => TopPipeHeights,
         BottomPipeHeight => BottomPipeHeights,
         PipesXValues => PipesXValues,
+        -- Trigger and output 
+        Trigger => FinishedPlayerUpdate and FinishedPipeUpdate,
+        Done => open,
         -- Todo: change score
-        scoreOnes =>  scoreOnesSignal,
-        scoreTens => scoreTensSignal
+        ScoreOnes =>  scoreOnesSignal,
+        ScoreTens => scoreTensSignal
     );
 
     C9: BCD_to_SevenSeg port map (
