@@ -40,7 +40,7 @@ architecture behave of renderer is
         );
     end component;
 
-    component text_renderer is 
+    component score_text_renderer is 
         generic(STR: string;
                 SIZE: natural);
         port(Clk: in std_logic;
@@ -109,7 +109,7 @@ begin
             Blue => BackgroundB,
             Visible => open
     );
-                         
+
     BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(4 downto 0); 
@@ -137,7 +137,6 @@ begin
         EnableBird <= v_Enable;
         BirdRow <= std_logic_vector(v_Row);
         BirdCol <= std_logic_vector(v_Col);
-        
     end process;
 
     PIPE_RENDER: process(Clk)
@@ -164,7 +163,7 @@ begin
 
     end process;
 
-	SCORE_TEXT: text_renderer generic map("SCORE", 1) port map(Clk => Clk,
+	SCORE_TEXT: score_text_renderer generic map("SCORE", 2) port map(Clk => Clk,
                                                                X => to_signed(16, 11),
                                                                Y => to_signed(16, 10),
                                                                VgaCol => VgaCol,

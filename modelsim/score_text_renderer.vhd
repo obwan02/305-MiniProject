@@ -2,18 +2,21 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity text_renderer is 
+entity score_text_renderer is 
 	generic(STR: string;
 			SIZE: natural);
 	port(Clk: in std_logic;
 		 X: in signed(10 downto 0);
 		 Y: in signed(9 downto 0);
 		 VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+		 
+		 -- ScoreOnes, ScoreTens, ScoreHundres: std_logic_vector(3 downto 0);
+
 		 Visible: out std_logic
 		 );
-end entity text_renderer;
+end entity score_text_renderer;
 
-architecture behave of text_renderer is
+architecture behave of score_text_renderer is
 	type AddrArray is array (STR'length-1 downto 0) of std_logic_vector(5 downto 0);
 
 	-- This function should only be called to generate a constant
@@ -32,7 +35,7 @@ architecture behave of text_renderer is
 				when '0' to '9' =>
 					Result(i) := std_logic_vector(to_unsigned(Current, 6));
 				when others =>
-					-- Anyhting we haven't defined yet defaults to #
+					-- Anything we haven't defined yet defaults to #
 					Result(i) := std_logic_vector(to_unsigned(35, 6));
 			end case;
 		end loop;
@@ -52,7 +55,7 @@ architecture behave of text_renderer is
 	end component;
 
 	constant Addresses: AddrArray := addr_array;
-	constant CharSize: natural := 8 ** SIZE;
+	constant CharSize: natural := 8 * SIZE;
 	constant TextWidth: natural := CharSize * STR'length;
 
 	-- Text rendering signals
@@ -85,9 +88,26 @@ begin
         else
             Visible <= '0';    
         end if;
-
-
     end process;
+
+	-- DIGIT_CALC: process
+	-- type AddrArray is array(9 downto 0) of std_logic_vector(5 downto 0);
+	-- 	constant NumAddresses: AddrArray := (std_logic_vector(to_unsigned(48, 6)), 
+	-- 									     std_logic_vector(to_unsigned(49, 6)), 
+	-- 									     std_logic_vector(to_unsigned(50, 6)), 
+	-- 									     std_logic_vector(to_unsigned(51, 6)), 
+	-- 									     std_logic_vector(to_unsigned(52, 6)), 
+	-- 									     std_logic_vector(to_unsigned(53, 6)), 
+	-- 									     std_logic_vector(to_unsigned(54, 6)), 
+	-- 									     std_logic_vector(to_unsigned(55, 6)), 
+	-- 									     std_logic_vector(to_unsigned(56, 6)), 
+	-- 									     std_logic_vector(to_unsigned(57, 6)));
+	-- begin
+	-- 	wait until rising_edge(Clk);
+		
+	-- end process;
+
+
 	
 
 end architecture;

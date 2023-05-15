@@ -12,7 +12,6 @@ entity main is
           VgaHSync, VgaVSync: out std_logic;
           -- Mouse Shit
           MouseClk, MouseData: inout std_logic;
-          Collided: out std_logic;
           scoreOnes: out std_logic_vector(6 downto 0);
           scoreTens: out std_logic_vector(6 downto 0)
           );
@@ -57,10 +56,12 @@ architecture behave of main is
             NewY: out signed(9 downto 0);
 
             HitTopOrBottom: out std_logic;
-
+            
             -- Trigger and output
             Trigger: in std_logic;
-            Done: out std_logic
+            Done: out std_logic;
+
+            Collided: in std_logic
         );
     end component;
 
@@ -105,19 +106,21 @@ architecture behave of main is
     end component;
 
     component score_tracker is port(
-        Clk : in std_logic; 
+        Clk, Reset : in std_logic;
+    
         PlayerY: in signed(9 downto 0);
         PlayerX: in signed(10 downto 0);
+    
         TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
         PipesXValues: in PipesArray;
-        -- Trigger and Done
+        
+        -- Trigger and done signals
         Trigger: in std_logic;
         Done: out std_logic;
-        -- Todo: change score
+    
         ScoreOnes: out std_logic_vector(3 downto 0);
         ScoreTens: out std_logic_vector(3 downto 0)
-    
     );
     end component;
 
@@ -150,6 +153,8 @@ architecture behave of main is
     -- score traker variables
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
+
+    signal Collided, Invincible: std_logic;
 
 
     -- Trigger signals
@@ -200,7 +205,9 @@ begin
                                HitTopOrBottom => open,
 
                                Trigger => not VSync,
-                               Done => FinishedPlayerUpdate
+                               Done => FinishedPlayerUpdate,
+
+                               Collided => Collided
     );
 
 
@@ -232,7 +239,7 @@ begin
                            PipesX => PipesXValues,
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
-                           Collided => open
+                           Collided => Collided
     );
 
     C7: LFSR port map (
@@ -243,6 +250,7 @@ begin
 
     C8: score_tracker port map(
         Clk => Clk, 
+        Reset => Collided,
         PlayerX => PlayerX,
         PlayerY => PlayerY,
         TopPipeHeight => TopPipeHeights,

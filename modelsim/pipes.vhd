@@ -15,16 +15,13 @@ entity pipes is
         BottomPipeHeights: out PipesArray;
 
         Trigger: in std_logic;
-        Done: out std_logic
+        Done: out std_logic := '0'
     );
 end entity pipes;
 
 
 architecture construction of pipes is
-    signal s_Done: std_logic := '0';
 begin
-
-    Done <= s_Done and Trigger;
 
     PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
 
@@ -46,7 +43,7 @@ begin
 
             if v_PrevTrigger /= Trigger then
                 v_Index := (others => '0');
-                s_Done <= '0';
+                Done <= '0';
     
                 if Trigger = '1' then 
                     v_Processing := '1';
@@ -71,7 +68,7 @@ begin
 
             if v_Index = to_unsigned(3, 3) then 
                 v_Processing := '0';
-                s_Done <= '1';
+                Done <= '1';
             else
                 v_Index := v_Index + 1;
             end if;
