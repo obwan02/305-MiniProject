@@ -60,7 +60,7 @@ begin
             end if;
             
             -- Overflow the ones to tens
-            if v_Ones = 9 then 
+            if v_Ones = 10 then 
                 v_Ones := (others => '0');
                 v_Tens := v_Tens + 1;
             end if;
