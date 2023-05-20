@@ -15,6 +15,8 @@ entity pipes is
         BottomPipeHeights: out PipesArray;
 
         Trigger: in std_logic;
+        GameMode: in std_logic;
+        ScoreTens: in std_logic_vector(3 downto 0);
         Done: out std_logic := '0'
     );
 end entity pipes;
@@ -27,11 +29,15 @@ begin
 
     UPDATE: process(PipeClk)
         constant RightMostPixel: signed(10 downto 0) := to_signed(640, 11);
-        constant Speed: signed(9 downto 0) := to_signed(1, 10);
+        constant TrainingSpeed: signed(9 downto 0) := to_signed(2, 10);
         constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
+
+        variable v_NormalSpeed: signed(9 downto 0) := to_signed(2, 10);
+        variable v_prevTensScore: std_logic_vector(3 downto 0) := scoreTens;
 
         variable v_Index: unsigned(2 downto 0);
         variable v_PrevTrigger, v_Processing: std_logic := '0';
+        
 
 
         variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
@@ -62,7 +68,15 @@ begin
                     BottomPipeHeights(to_integer(v_Index)) <= constants.SCREEN_HEIGHT - (signed("000" & Rand) + 200);
                     
                 else
-                    v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - Speed;
+                    if GameMode = '1' then
+                        v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - TrainingSpeed;
+                    else
+                        if scoreTens /= v_prevTensScore then
+                            v_NormalSpeed := v_NormalSpeed + 1;
+                            v_prevTensScore := scoreTens;
+                        end if;
+                        v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - v_NormalSpeed;
+                    end if;
                 end if;
             end if;
 

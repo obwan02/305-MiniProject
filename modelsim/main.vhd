@@ -78,7 +78,9 @@ architecture behave of main is
             BottomPipeHeights: out PipesArray;
 
             Trigger: in std_logic;
-            Done: out std_logic
+            GameMode: in std_logic;
+            ScoreTens: in std_logic_vector(3 downto 0);
+            Done: out std_logic := '0'
         );
     end component;
 
@@ -142,6 +144,18 @@ architecture behave of main is
               SevenSeg_out : out std_logic_vector(6 downto 0));
     end component;
 
+    component game_moore_fsm is port(
+        Clk: in std_logic;
+        Reset : in std_logic;
+        Dead: in std_logic;
+        Start: in std_logic;
+        Train : in std_logic;
+        TryAgain: in std_logic;
+        GameRunning: out std_logic;
+        TrainingStatus: out std_logic;
+        GameOver: out std_logic);
+    end component game_moore_fsm;
+
 
     signal VSync: std_logic;
     signal VgaRow, VgaCol: std_logic_vector(9 downto 0);
@@ -175,6 +189,20 @@ architecture behave of main is
 
     -- Trigger signals
     signal FinishedPlayerUpdate, FinishedPipeUpdate: std_logic;
+
+    -- State Machine
+    signal ResetStateMachine : std_logic;
+    signal Dead : std_logic;
+    signal Start : std_logic;
+    signal Train : std_logic;
+    signal TryAgain : std_logic;
+    -- 1 = GameRunning, 0 = game not running
+    signal GameRunning : std_logic;
+    -- Training mode = 1, Normal mode = 0
+    signal TrainingStatus : std_logic;
+    -- 1 = Player has run out of lives.
+    signal GameOver : std_logic;
+
 begin
 
     VGA_CLOCK: process(Clk)
@@ -249,8 +277,9 @@ begin
         Rand => Rand,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights,
-
         Trigger => not VSync,
+        GameMode => TrainingStatus,
+        ScoreTens => scoreTensSignal,
         Done => FinishedPipeUpdate
     );
 
@@ -304,5 +333,17 @@ begin
         Done => open,
         LifeCount => Lives,
         Dead => Dead
+	);
+
+    C11: game_moore_fsm port map(
+        Clk => Clk,
+        Reset => ResetStateMachine,
+        Dead => Dead,
+        Start => Start,
+        Train => Train,
+        TryAgain => TryAgain,
+        GameRunning => GameRunning,
+        TrainingStatus => TrainingStatus,
+        GameOver => GameOver
     );
 end architecture;
