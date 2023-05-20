@@ -85,7 +85,7 @@ set_location_assignment PIN_AA18 -to scoreTens[3]
 set_location_assignment PIN_AB18 -to scoreTens[4]
 set_location_assignment PIN_AA17 -to scoreTens[5]
 set_location_assignment PIN_U22 -to scoreTens[6]
-set_global_assignment -name VHDL_FILE ../modelsim/score_text_renderer.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/bcd_renderer.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/score_tracker.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/BCD_to_7Seg.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/lfsr.vhd

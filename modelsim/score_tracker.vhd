@@ -52,6 +52,7 @@ begin
             end if;
         end if;
 
+        -- TODO: Set a flag on the pipe to say it's been hit
         if v_Processing = '1' then
             if PlayerY >= TopPipeHeight(to_integer(v_Index)) and (PlayerY + constants.BIRD_HEIGHT) <= (constants.SCREEN_HEIGHT - BottomPipeHeight(to_integer(v_Index))) then
                 if PlayerX + constants.BIRD_WIDTH = (PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH) then

@@ -24,7 +24,7 @@ entity renderer is
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
         R, G, B: out std_logic_vector(3 downto 0);
 
-        Score: in unsigned(15 downto 0)
+        ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0)
     );
 end entity;
 
@@ -40,7 +40,7 @@ architecture behave of renderer is
         );
     end component;
 
-    component score_text_renderer is 
+    component text_renderer is 
         generic(STR: string;
                 SIZE: natural);
         port(Clk: in std_logic;
@@ -50,6 +50,20 @@ architecture behave of renderer is
              Visible: out std_logic
              );
     end component;
+
+    
+    component bcd_renderer is 
+        generic(SIZE: natural);
+        port(Clk: in std_logic;
+            X: in signed(10 downto 0);
+            Y: in signed(9 downto 0);
+            VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+
+            ScoreOnes, ScoreTens: std_logic_vector(3 downto 0);
+
+            Visible: out std_logic
+            );
+    end component bcd_renderer;
 
     -- Constants
     -- TODO: Make this more accessible
@@ -84,7 +98,7 @@ architecture behave of renderer is
 
 
     -- Signal for text
-    signal TextVisible: std_logic;
+    signal ScoreTextVisible, ScoreNumberVisible: std_logic;
 begin
 
     BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
@@ -163,24 +177,34 @@ begin
 
     end process;
 
-	SCORE_TEXT: score_text_renderer generic map("SCORE", 2) port map(Clk => Clk,
+	SCORE_TEXT: text_renderer generic map("SCORE", 2) port map(Clk => Clk,
                                                                X => to_signed(16, 11),
                                                                Y => to_signed(16, 10),
                                                                VgaCol => VgaCol,
                                                                VgaRow => VgaRow,
-                                                               Visible => TextVisible);
+                                                               Visible => ScoreTextVisible);
+
+    SCORE: bcd_renderer generic map(2) port map(Clk => Clk,
+                                                X => to_signed(108, 11),
+                                                Y => to_signed(16, 10),
+                                                VgaCol => VgaCol,
+                                                VgaRow => VgaRow,
+                                                Visible => ScoreNumberVisible,
+                                                ScoreOnes => ScoreOnes,
+                                                ScoreTens => ScoreTens);
+
+
 
     BackgroundRow <= VgaRow(5 downto 1);
     BackgroundCol <= VgaCol(5 downto 1);
 
-
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, TextVisible)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if TextVisible = '1' then
+        if ScoreTextVisible = '1' or ScoreNumberVisible = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
         elsif EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;

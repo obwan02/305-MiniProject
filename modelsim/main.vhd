@@ -33,7 +33,9 @@ architecture behave of main is
             BottomPipeHeights: in PipesArray;
 
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
-            R, G, B: out std_logic_vector(3 downto 0)
+            R, G, B: out std_logic_vector(3 downto 0);
+
+            ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0)
         );
     end component;
 
@@ -185,7 +187,10 @@ begin
                           VgaCol => VgaCol,
                           R => R,
                           G => G,
-                          B => B);
+                          B => B,
+                          
+                          ScoreOnes => scoreOnesSignal,
+                          ScoreTens => scoreTensSignal);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
                           red => R, green => G, blue => B,

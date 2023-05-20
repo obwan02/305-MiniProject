@@ -2,21 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity score_text_renderer is 
+entity text_renderer is 
 	generic(STR: string;
 			SIZE: natural);
 	port(Clk: in std_logic;
 		 X: in signed(10 downto 0);
 		 Y: in signed(9 downto 0);
 		 VgaCol, VgaRow: in std_logic_vector(9 downto 0);
-		 
-		 -- ScoreOnes, ScoreTens, ScoreHundres: std_logic_vector(3 downto 0);
 
 		 Visible: out std_logic
 		 );
-end entity score_text_renderer;
+end entity text_renderer;
 
-architecture behave of score_text_renderer is
+architecture behave of text_renderer is
 	type AddrArray is array (STR'length-1 downto 0) of std_logic_vector(5 downto 0);
 
 	-- This function should only be called to generate a constant
@@ -34,6 +32,10 @@ architecture behave of score_text_renderer is
 					Result(i) := std_logic_vector(to_unsigned(Current - 64, 6));
 				when '0' to '9' =>
 					Result(i) := std_logic_vector(to_unsigned(Current, 6));
+				when ' ' =>
+					Result(i) := std_logic_vector(to_unsigned(0, 6));
+				when '-' => 
+					Result(i) := std_logic_vector(to_unsigned(45, 6));
 				when others =>
 					-- Anything we haven't defined yet defaults to #
 					Result(i) := std_logic_vector(to_unsigned(35, 6));
@@ -47,10 +49,10 @@ architecture behave of score_text_renderer is
 	component char_rom is
 		port
 		(
-			character_address	:	in STD_LOGIC_VECTOR (5 downto 0);
-			font_row, font_col	:	in STD_LOGIC_VECTOR (2 downto 0);
-			clock				: 	in STD_LOGIC ;
-			rom_mux_output		:	out STD_LOGIC
+			character_address	:	in std_logic_vector(5 downto 0);
+			font_row, font_col	:	in std_logic_vector(2 downto 0);
+			clock				: 	in std_logic;
+			rom_mux_output		:	out std_logic
 		);
 	end component;
 
@@ -76,7 +78,6 @@ begin
     begin
         wait until rising_edge(Clk);
 
-		-- TODO: Scaling isn't working properly yet
         if signed('0' & VgaCol) >= X and 
            signed('0' & VgaCol) < (X + TextWidth) and
            signed(VgaRow) >= Y and
@@ -89,23 +90,6 @@ begin
             Visible <= '0';    
         end if;
     end process;
-
-	-- DIGIT_CALC: process
-	-- type AddrArray is array(9 downto 0) of std_logic_vector(5 downto 0);
-	-- 	constant NumAddresses: AddrArray := (std_logic_vector(to_unsigned(48, 6)), 
-	-- 									     std_logic_vector(to_unsigned(49, 6)), 
-	-- 									     std_logic_vector(to_unsigned(50, 6)), 
-	-- 									     std_logic_vector(to_unsigned(51, 6)), 
-	-- 									     std_logic_vector(to_unsigned(52, 6)), 
-	-- 									     std_logic_vector(to_unsigned(53, 6)), 
-	-- 									     std_logic_vector(to_unsigned(54, 6)), 
-	-- 									     std_logic_vector(to_unsigned(55, 6)), 
-	-- 									     std_logic_vector(to_unsigned(56, 6)), 
-	-- 									     std_logic_vector(to_unsigned(57, 6)));
-	-- begin
-	-- 	wait until rising_edge(Clk);
-		
-	-- end process;
 
 
 	
