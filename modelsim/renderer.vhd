@@ -24,7 +24,8 @@ entity renderer is
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
         R, G, B: out std_logic_vector(3 downto 0);
 
-        ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0)
+        ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
+        Lives: in unsigned(2 downto 0)
     );
 end entity;
 
@@ -65,6 +66,19 @@ architecture behave of renderer is
             );
     end component bcd_renderer;
 
+    component lives_renderer is 
+        generic(SIZE: natural);
+        port(Clk: in std_logic;
+             X: in signed(10 downto 0);
+             Y: in signed(9 downto 0);
+             VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+    
+             Lives: in unsigned(2 downto 0);
+    
+             Visible: out std_logic
+             );
+    end component;
+
     -- Constants
     -- TODO: Make this more accessible
     constant BirdWidth: signed(10 downto 0) := to_signed(8, 11);
@@ -98,7 +112,11 @@ architecture behave of renderer is
 
 
     -- Signal for text
-    signal ScoreTextVisible, ScoreNumberVisible: std_logic;
+    signal ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible: std_logic;
+
+    -- Text constants
+    constant SCORE_TEXT: string := "SCORE";
+    constant LIVES_TEXT: string :=  "LIVES";
 begin
 
     BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
@@ -177,14 +195,14 @@ begin
 
     end process;
 
-	SCORE_TEXT: text_renderer generic map("SCORE", 2) port map(Clk => Clk,
+	SCORE_TEXT_RENDER: text_renderer generic map(SCORE_TEXT, 2) port map(Clk => Clk,
                                                                X => to_signed(16, 11),
                                                                Y => to_signed(16, 10),
                                                                VgaCol => VgaCol,
                                                                VgaRow => VgaRow,
                                                                Visible => ScoreTextVisible);
 
-    SCORE: bcd_renderer generic map(2) port map(Clk => Clk,
+    SCORE_RENDER: bcd_renderer generic map(2) port map(Clk => Clk,
                                                 X => to_signed(108, 11),
                                                 Y => to_signed(16, 10),
                                                 VgaCol => VgaCol,
@@ -194,18 +212,36 @@ begin
                                                 ScoreTens => ScoreTens);
 
 
+    LIVES_TEXT_RENDER: text_renderer generic map(LIVES_TEXT, 2) port map(Clk => Clk,
+                                                               X => to_signed(16, 11),
+                                                               Y => to_signed(480 - 32, 10),
+                                                               VgaCol => VgaCol,
+                                                               VgaRow => VgaRow,
+                                                               Visible => LivesTextVisible);
+
+    LIVES_RENDER: lives_renderer generic map(2) port map(Clk => Clk,
+                                                                 X => to_signed(108, 11),
+                                                                 Y => to_signed(480 - 32, 10),
+                                                                 VgaCol => VgaCol,
+                                                                 VgaRow => VgaRow,
+                                                                 Visible => LivesVisible,
+                                                                 Lives => Lives);
+
+
 
     BackgroundRow <= VgaRow(5 downto 1);
     BackgroundCol <= VgaCol(5 downto 1);
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if ScoreTextVisible = '1' or ScoreNumberVisible = '1' then
+        if ScoreTextVisible = '1' or ScoreNumberVisible = '1' or LivesTextVisible = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
+        elsif LivesVisible = '1' then
+            R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
         elsif EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         elsif EnablePipe = '1' then

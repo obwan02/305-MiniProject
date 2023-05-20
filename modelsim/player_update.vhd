@@ -26,7 +26,7 @@ end entity player_update;
 
 architecture rtl of player_update is
 	-- Track the previous trigger value
-	signal  PrevTrigger : std_logic := '0';
+	signal PrevTrigger : std_logic := '0';
 begin
 
     MOVEMENT: process

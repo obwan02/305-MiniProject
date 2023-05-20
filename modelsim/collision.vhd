@@ -18,9 +18,7 @@ end entity collision;
 architecture behaviour of collision is	 
 begin
     process(Clk)
-    variable v_CurrentPipeX: signed(10 downto 0);
-    variable v_CurrentTopPipeY: signed(10 downto 0);
-    variable v_CurrentBottomPipeY: signed(10 downto 0);
+    variable v_CurrentPipeX, v_CurrentTopPipeY, v_CurrentBottomPipeY: signed(10 downto 0);
     variable v_WithinXRange: boolean;
 
     variable v_Collisions: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);

@@ -35,7 +35,8 @@ architecture behave of main is
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
             R, G, B: out std_logic_vector(3 downto 0);
 
-            ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0)
+            ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
+            Lives: unsigned(2 downto 0)
         );
     end component;
 
@@ -126,10 +127,20 @@ architecture behave of main is
     );
     end component;
 
+    component lives_system is port(
+        Clk, Enable, Reset, HasCollided: in std_logic;
+        Trigger: in std_logic;
+        Done: inout std_logic;
+    
+        LifeCount: out unsigned(2 downto 0);
+        Dead: out std_logic
+        );
+    end component;
+
     component BCD_to_SevenSeg is
         port (BCD_digit : in std_logic_vector(3 downto 0);
               SevenSeg_out : out std_logic_vector(6 downto 0));
-   end component;
+    end component;
 
 
     signal VSync: std_logic;
@@ -156,7 +167,10 @@ architecture behave of main is
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
 
-    signal Collided, Invincible: std_logic;
+    signal Collided, Invincible, Dead: std_logic;
+    
+    -- Lives
+    signal Lives: unsigned(2 downto 0);
 
 
     -- Trigger signals
@@ -190,7 +204,9 @@ begin
                           B => B,
                           
                           ScoreOnes => scoreOnesSignal,
-                          ScoreTens => scoreTensSignal);
+                          ScoreTens => scoreTensSignal,
+                          
+                          Lives => Lives);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
                           red => R, green => G, blue => B,
@@ -277,5 +293,16 @@ begin
     C10: BCD_to_SevenSeg port map (
         BCD_digit => scoreTensSignal,
         SevenSeg_out => scoreTens
+    );
+
+    C11: lives_system port map(
+        Clk => Clk,
+        Enable => '1',
+        Reset => not pushbutton,
+        HasCollided => Collided,
+        Trigger => FinishedPipeUpdate and FinishedPipeUpdate,
+        Done => open,
+        LifeCount => Lives,
+        Dead => Dead
     );
 end architecture;

@@ -27,7 +27,7 @@ begin
 
     UPDATE: process(PipeClk)
         constant RightMostPixel: signed(10 downto 0) := to_signed(640, 11);
-        constant Speed: signed(9 downto 0) := to_signed(2, 10);
+        constant Speed: signed(9 downto 0) := to_signed(1, 10);
         constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
 
         variable v_Index: unsigned(2 downto 0);
