@@ -91,7 +91,9 @@ SET_OUTPUTS : process (current_state)
 begin
 	case (current_state) is
 		when Initial =>
-			GameRunning <= '0';
+			-- TODO(MASSIVE WARNING):
+			-- PLZ SWITCH IN FUTURE
+			GameRunning <= '1';
 			TrainingStatus <= '0';
 			GameOver <= '0';
 		when TrainingSelection  =>

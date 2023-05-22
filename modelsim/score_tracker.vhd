@@ -19,17 +19,16 @@ entity score_tracker is port(
     
     -- Trigger and done signals
     Trigger: in std_logic;
-    DoneScoreTracking: out std_logic;
+    Done: out std_logic;
 
     Collisions: out std_logic_vector(TopPipeHeight'range);
     ScoreOnes: out std_logic_vector(3 downto 0);
-    ScoreTens: out std_logic_vector(3 downto 0)
-
-    
+    ScoreTens: out std_logic_vector(3 downto 0)    
 );
 end entity;
 
 architecture track of score_tracker is 
+    signal s_Done: std_logic := '0';
 begin
 
     SCORE_TRACKER: process
@@ -38,32 +37,24 @@ begin
         -- NOTE: If the number of pipes increases, the size of this needs 
         -- to increase
         variable v_Index: unsigned(2 downto 0);
-        variable v_PrevTrigger: std_logic := '0';
-        variable v_PrevPlayerXPos:   signed(10 downto 0);
-
-        variable v_Processing: std_logic := '0';
+        variable v_PrevPipesX:  PipesArray;
     begin
         wait until rising_edge(Clk);
 
 
         -- Check to see if we calculate
-        if v_PrevTrigger /= Trigger then
+        if Trigger = '0' then
             v_Index := (others => '0');
-            DoneScoreTracking <= '0';
-
-
-            if Trigger = '1' then 
-                v_Processing := '1';
-            end if;
+            s_Done <= '0';
         end if;
 
         -- TODO: Set a flag on the pipe to say it's been hit
         -- then, when we check for score increase, we first check the flag
-        if v_Processing = '1' then
-            if PipesXValues(to_integer(v_Index)) + to_signed(constants.PIPE_WIDTH, 11) >= v_PrevPlayerXPos and
-               PipesXValues(to_integer(v_Index)) + to_signed(constants.PIPE_WIDTH, 11) < PlayerX
+        if Trigger = '1' and s_Done = '0' then  
+            if PlayerX <= v_PrevPipesX(to_integer(v_Index)) + constants.PIPE_WIDTH and
+               PlayerX >= PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH
                then
-                v_Ones := v_Ones + 1;
+                v_Ones := v_Ones + 1;   
             end if;
             
             -- Overflow the ones to tens
@@ -73,9 +64,8 @@ begin
             end if;
 
             -- Check to see if we are finished
-            if v_Index = to_unsigned(3, 3) then 
-                v_Processing := '0';
-                DoneScoreTracking <= '1';
+            if v_Index = to_unsigned(3, 3) then
+                s_Done <= '1';
             else 
                 v_Index := v_Index + 1;
             end if;
@@ -88,8 +78,7 @@ begin
 
         ScoreOnes <= std_logic_vector(v_Ones);
         ScoreTens <= std_logic_vector(v_Tens);
-        v_PrevPlayerXPos := PlayerY;
-        v_PrevTrigger := Trigger;
+        v_PrevPipesX := PipesXValues;
 
 end process;
 

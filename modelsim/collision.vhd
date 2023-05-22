@@ -12,8 +12,8 @@ entity collision is port(
     PipesX: in PipesArray;
     TopPipeHeight: in PipesArray;
     BottomPipeHeight: in PipesArray;
-    CollisionTrigger: in std_logic;
-    CollisionDone: out std_logic;
+    Trigger: in std_logic;
+    Done: out std_logic;
 	Collided: out std_logic;
     Collisions: out std_logic_vector(PipesX'range)
     );
@@ -33,14 +33,14 @@ begin
         
         if rising_edge(Clk) then
 
-            if CollisionTrigger = '0' then
+            if Trigger = '0' then
                 s_CollisionDone <= '0';
                 v_Index := (others => '0');
                 v_Collided := '0';
             end if;
      
 
-            if CollisionTrigger = '1' and s_CollisionDone = '0' then 
+            if Trigger = '1' and s_CollisionDone = '0' then 
                 
                 v_CurrentPipeX := PipesX(to_integer(v_Index));
                 v_CurrentTopPipeY := TopPipeHeight(to_integer(v_Index));
@@ -66,9 +66,9 @@ begin
                     v_Index := v_Index + 1;
                 end if;
             end if;
-        end if;
+          end if;
 
-        CollisionDone <= s_CollisionDone;
+        Done <= s_CollisionDone;
         Collided <= v_Collided;
 
 end process;

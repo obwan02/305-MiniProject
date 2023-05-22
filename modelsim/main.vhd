@@ -80,7 +80,6 @@ architecture behave of main is
             Trigger: in std_logic;
             GameMode: in std_logic;
             ScoreTens: in std_logic_vector(3 downto 0);
-            CollisionTrigger: out std_logic;
             Done: out std_logic := '0'
         );
     end component;
@@ -101,8 +100,8 @@ architecture behave of main is
         PipesX: in PipesArray;
         TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
-        CollisionTrigger: in std_logic;
-        CollisionDone: out std_logic;
+        Trigger: in std_logic;
+        Done: out std_logic;
         Collided: out std_logic);
     end component;
 
@@ -184,16 +183,15 @@ architecture behave of main is
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
 
-    --Collided triggers
-    signal CollisionTrigger : std_logic;
-    signal CollisionDone : std_logic;
-
     -- Lives
     signal Lives: unsigned(2 downto 0);
     
     
     -- Trigger signals
-    signal FinishedPlayerUpdate, FinishedPipeUpdate: std_logic;
+    signal UpdateSignal, 
+           FinishedPlayerUpdate, 
+           FinishedPipeUpdate, 
+           FinishedCollisionUpdate: std_logic;
     
     -- State Machine + Other Stateful Signals
     signal Collided, Invincible, Dead: std_logic;
@@ -216,6 +214,8 @@ begin
 
         Clk25MHz <= v_25MHzClk;
     end process;
+
+    UpdateSignal <= '1' when unsigned(VGARow) = 479 else '0';
 
     C1: renderer port map(Clk => Clk, 
                           Reset => '0', 
@@ -255,7 +255,7 @@ begin
 
                                HitTopOrBottom => open,
 
-                               Trigger => not VSync and GameRunning,
+                               Trigger => UpdateSignal and GameRunning,
                                Done => FinishedPlayerUpdate,
 
                                Collided => Collided
@@ -279,10 +279,9 @@ begin
         Rand => Rand,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights,
-        Trigger => not VSync,
+        Trigger => UpdateSignal and GameRunning,
         GameMode => TrainingStatus,
         ScoreTens => scoreTensSignal,
-        CollisionTrigger => CollisionTrigger,
         Done => FinishedPipeUpdate
     );
 
@@ -292,8 +291,8 @@ begin
                            PipesX => PipesXValues,
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
-                           CollisionTrigger => CollisionTrigger,
-                           CollisionDone => FinishedPipeUpdate,
+                           Trigger => FinishedPipeUpdate and FinishedPlayerUpdate,
+                           Done => FinishedCollisionUpdate,
                            Collided => Collided
     );
 
@@ -312,7 +311,7 @@ begin
         BottomPipeHeight => BottomPipeHeights,
         PipesXValues => PipesXValues,
         -- Trigger and output 
-        Trigger => FinishedPlayerUpdate and FinishedPipeUpdate,
+        Trigger => FinishedCollisionUpdate,
         Done => open,
         -- Todo: change score
         ScoreOnes =>  scoreOnesSignal,
@@ -334,7 +333,7 @@ begin
         Enable => '1',
         Reset => not pushbutton,
         HasCollided => Collided,
-        Trigger => FinishedPipeUpdate and FinishedPipeUpdate,
+        Trigger => FinishedCollisionUpdate,
         Done => open,
         LifeCount => Lives,
         Dead => Dead

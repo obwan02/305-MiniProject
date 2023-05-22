@@ -34,7 +34,7 @@ begin
         constant TrainingSpeed: signed(9 downto 0) := to_signed(2, 10);
         constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
 
-        variable v_NormalSpeed: signed(9 downto 0) := to_signed(2, 10);
+        variable v_NormalSpeed: signed(9 downto 0) := to_signed(1, 10);
         variable v_prevTensScore: std_logic_vector(3 downto 0) := scoreTens;
 
         variable v_Index: unsigned(2 downto 0);
