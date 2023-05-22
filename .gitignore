@@ -2,4 +2,3 @@
 *.ghw
 modelsim/bin/*
 modelsim/work/*
-quartus
