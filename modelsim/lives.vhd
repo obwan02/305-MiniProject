@@ -21,7 +21,7 @@ architecture behaviour of lives_system is
 begin
 
     LifeCount <= Lives;
-    Dead <= '1' when LifeCount = 0 else '0';
+    Dead <= '1' when Lives = 0 else '0';
 
     process
         variable v_PrevCollideValue: std_logic := '0';
