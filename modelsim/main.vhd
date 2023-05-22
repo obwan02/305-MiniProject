@@ -271,7 +271,7 @@ begin
 
     C8: score_tracker port map(
         Clk => Clk, 
-        Reset => Collided,
+        Reset => Dead,
         PlayerX => PlayerX,
         PlayerY => PlayerY,
         TopPipeHeight => TopPipeHeights,

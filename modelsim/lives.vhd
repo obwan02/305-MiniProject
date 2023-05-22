@@ -28,24 +28,26 @@ begin
     begin
         wait until rising_edge(Clk);
 
-        if Trigger = '0' then 
-            Done <= '0';
-        end if;
-
-        if Trigger = '1' and Done = '0' then 
-            -- Detect rising edge
-            if v_PrevCollideValue /= HasCollided and HasCollided = '1' then 
-                if Lives /= 0 then 
-                    Lives <= Lives - 1;
-                end if;
+        if Enable = '1' then
+            if Trigger = '0' then 
+                Done <= '0';
             end if;
-            v_PrevCollideValue := HasCollided;
 
-            Done <= '1';
-        end if;
+            if Trigger = '1' and Done = '0' then 
+                -- Detect rising edge
+                if v_PrevCollideValue /= HasCollided and HasCollided = '1' then 
+                    if Lives /= 0 then 
+                        Lives <= Lives - 1;
+                    end if;
+                end if;
+                v_PrevCollideValue := HasCollided;
 
-        if Reset = '1' then 
-            Lives <= to_unsigned(3, 3); 
+                Done <= '1';
+            end if;
+
+            if Reset = '1' then 
+                Lives <= to_unsigned(3, 3); 
+            end if;
         end if;
     end process;
 end architecture;
