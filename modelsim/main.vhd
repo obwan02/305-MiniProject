@@ -181,21 +181,17 @@ architecture behave of main is
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
 
-    signal Collided, Invincible, Dead: std_logic;
     
     -- Lives
     signal Lives: unsigned(2 downto 0);
-
-
+    
+    
     -- Trigger signals
     signal FinishedPlayerUpdate, FinishedPipeUpdate: std_logic;
-
-    -- State Machine
-    signal ResetStateMachine : std_logic;
-    signal Dead : std_logic;
-    signal Start : std_logic;
-    signal Train : std_logic;
-    signal TryAgain : std_logic;
+    
+    -- State Machine + Other Stateful Signals
+    signal Collided, Invincible, Dead: std_logic;
+    signal ResetStateMachine, Start, Train, TryAgain : std_logic;
     -- 1 = GameRunning, 0 = game not running
     signal GameRunning : std_logic;
     -- Training mode = 1, Normal mode = 0
@@ -335,7 +331,7 @@ begin
         Dead => Dead
 	);
 
-    C11: game_moore_fsm port map(
+    C12: game_moore_fsm port map(
         Clk => Clk,
         Reset => ResetStateMachine,
         Dead => Dead,
