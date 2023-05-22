@@ -28,7 +28,7 @@ entity renderer is
         R, G, B: out std_logic_vector(3 downto 0);
 
         ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
-        Lives: in unsigned(2 downto 0);
+        Lives: in unsigned(2 downto 0)
     );
 end entity;
 
@@ -122,9 +122,13 @@ architecture behave of renderer is
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
     signal BackgroundRow, BackgroundCol: std_logic_vector (4 downto 0) := (others => '0');
 
+	-- Signals for pickup
+	signal PickupEnable, PickupVisible: std_logic;
+	signal PickupColor: std_logic_vector(11 downto 0);
+	signal PickupRow, PickupCol: unsigned(3 downto 0);
 
     -- Signal for text
-    signal ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible: std_logic;
+    signal ScoreTextEnable, ScoreNumberEnable, LivesTextEnable, LivesEnable: std_logic;
 
     -- Signals for menu
     signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
@@ -158,7 +162,16 @@ begin
             Visible => open
     );
 
-	HEART_PICKUP: sprite_rom generic map(Sprite_File =>
+	HEART_PICKUP: sprite_rom generic map(Sprite_File => "ROM/HEALTH_PICKUP.mif",
+										 Addr_Width => 4)
+							 port map(Clk => Clk,
+									  SpriteRow => std_logic_vector(PickupRow),
+									  SpriteCol => std_logic_vector(PickupCol),
+									  Red => PickupColor(11 downto 8),
+									  Green => PickupColor(7 downto 4),
+									  Blue => PickupColor(3 downto 0),
+									  Visible => PickupVisible);
+
 
     BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
@@ -187,7 +200,24 @@ begin
         BirdCol <= std_logic_vector(v_Col);
     end process;
 
-    PIPE_RENDER: process(VgaRow, VgaCol, TopPipeHeights, BottomPipeHeights, PipesXValues, PipeWidth)
+	PICKUP_RENDER: process(PickupColor, PickupVisible)
+	begin
+		if signed(VgaRow) >= PickupY and
+		   signed('0' & VgaCol) >= PickupX and
+		   signed(VgaRow) <= PickupY + constants.PICKUP_HEIGHT and
+		   signed('0' & VgaCol) <= PickupX + constants.BIRD_HEIGHT then 
+			PickupEnable <= PickupVisible;
+			PickupRow <= resize(unsigned(VgaRow) - unsigned('0' & PickupY), 4);
+			PickupCol <= resize(unsigned(VgaCol) - unsigned('0' & PickupX), 4);
+		else
+			PickupEnable <= '0';
+			PickupRow <= (others => '0');
+			PickupCol <= (others => '0');
+	   end if;
+
+	end process;
+
+    PIPE_RENDER: process(Clk)
         -- We need to store the output of each individual pipes 'enable'
         -- signal, otherwise, only the last pipe will be shown on the screen
         variable v_PipePixelEnable: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
@@ -214,14 +244,14 @@ begin
                                                                Y => to_signed(16, 10),
                                                                VgaCol => VgaCol,
                                                                VgaRow => VgaRow,
-                                                               Visible => ScoreTextVisible);
+                                                               Visible => ScoreTextEnable);
 
     SCORE_RENDER: bcd_renderer generic map(2) port map(Clk => Clk,
                                                 X => to_signed(108, 11),
                                                 Y => to_signed(16, 10),
                                                 VgaCol => VgaCol,
                                                 VgaRow => VgaRow,
-                                                Visible => ScoreNumberVisible,
+                                                Visible => ScoreNumberEnable,
                                                 ScoreOnes => ScoreOnes,
                                                 ScoreTens => ScoreTens);
 
@@ -231,14 +261,14 @@ begin
                                                                Y => to_signed(480 - 32, 10),
                                                                VgaCol => VgaCol,
                                                                VgaRow => VgaRow,
-                                                               Visible => LivesTextVisible);
+                                                               Visible => LivesTextEnable);
 
     LIVES_RENDER: lives_renderer generic map(2) port map(Clk => Clk,
                                                                  X => to_signed(108, 11),
                                                                  Y => to_signed(480 - 32, 10),
                                                                  VgaCol => VgaCol,
                                                                  VgaRow => VgaRow,
-                                                                 Visible => LivesVisible,
+                                                                 Visible => LivesEnable,
                                                                  Lives => Lives);
 
 
@@ -246,18 +276,18 @@ begin
     BackgroundRow <= VgaRow(5 downto 1);
     BackgroundCol <= VgaCol(5 downto 1);
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible, MenuR, MenuG, MenuB, EnableMenu)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextEnable, ScoreNumberEnable, LivesTextEnable, LivesEnable, PickupEnable, PickupColor)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if EnableMenu = '0' then 
-            R <= MenuR; G <= MenuG; B <= MenuB;
-        elsif ScoreTextVisible = '1' or ScoreNumberVisible = '1' or LivesTextVisible = '1' then
+        if ScoreTextEnable = '1' or ScoreNumberEnable = '1' or LivesTextEnable = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
-        elsif LivesVisible = '1' then
+        elsif LivesEnable = '1' then
             R <= (others => '1'); G <= (others => '0'); B <= (others => '0');
+		elsif PickupEnable = '1' then
+			R <= PickupColor(11 downto 8); G <= PickupColor(7 downto 4); B <= PickupColor(3 downto 0);
         elsif EnableBird = '1' then
             R <= BirdR; G <= BirdG; B <= BirdB;
         elsif EnablePipe = '1' then

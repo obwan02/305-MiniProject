@@ -1,12 +1,3 @@
-library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
-use work.constants;
-
-package types is
-    type PipesArray is array (constants.PIPE_MAX_INDEX downto 0) of signed(10 downto 0);
-	type PickupType is (Health, Invincible);
-end types;
 
 --TODO: Make PIPE width a constant
 package constants is 
@@ -29,3 +20,13 @@ package constants is
 
 	constant SCORE_TEXT: string := "Score";
 end constants;
+
+library IEEE;
+use IEEE.numeric_std.all;
+use work.constants;
+package types is
+
+    type PipesArray is array (constants.PIPE_MAX_INDEX downto 0) of signed(10 downto 0);
+	type PickupType is (Health, Invincible);
+end types;
+

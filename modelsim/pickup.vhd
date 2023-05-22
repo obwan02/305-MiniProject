@@ -26,20 +26,18 @@ architecture behave of pickup is
 begin
 
 	Done <= s_Done;
-	PlayerX <= X;
-	PlayerY <= Y;
 
 	MOVEMENT: process
 		variable v_ShouldFall: std_logic := '0';
 
-		variable X: std_logic_vector(10 downto 0);
-		variable Y: std_logic_vector(9 downto 0);
+		variable X: signed(10 downto 0);
+		variable Y: signed(9 downto 0);
 	begin
 		wait until rising_edge(Clk);
 
 		if Trigger = '0' then
 			if Reset = '1' then 
-				ShouldFall := '0';
+				v_ShouldFall := '0';
 				X := PlayerX;
 				Y := to_signed(-constants.PICKUP_HEIGHT, Y'length);
 			end if;
@@ -50,11 +48,11 @@ begin
 		if (Trigger = '1' and s_Done = '0') and Enable = '1' then 
 				
 			-- If we are not falling, check if we should fall
-			if ShouldFall = '0' then 
+			if v_ShouldFall = '0' then 
 				-- Check if Rand is at this
-				-- random value
+				-- random value, and if so, we drop the pickup
 				if Rand = "0100100" then 
-					ShouldFall := '1';
+					v_ShouldFall := '1';
 					X := PlayerX;
 					Y := to_signed(-constants.PICKUP_HEIGHT, Y'length);
 				end if;
@@ -62,9 +60,10 @@ begin
 				Y := Y - 1;
 			end if;
 
-			-- Check to see if we are off the screen
+			-- Check to see if we are off the screen,
+			-- and if so
 			if Y > constants.SCREEN_HEIGHT then
-				ShouldFall := '0';
+				v_ShouldFall := '0';
 				X := PlayerX;
 				Y := to_signed(-constants.PICKUP_HEIGHT, Y'length);
 			end if;
@@ -72,6 +71,8 @@ begin
 			s_Done <= '1';
 		end if;
 
+		PickupX <= X;
+		PickupY <= Y;
 	end process;
 
 
