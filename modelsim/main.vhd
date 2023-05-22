@@ -34,20 +34,26 @@ architecture behave of main is
             PipesXValues: in PipesArray;
             TopPipeHeights: in PipesArray;
             BottomPipeHeights: in PipesArray;
-
+    
             VgaRow, VgaCol: in std_logic_vector(9 downto 0);
-
-            TrainSwitch, LeftMouseButton : in std_logic;
-            mouse_cursor_row, mouse_cursor_column : in std_logic_vector(9 DOWNTO 0);
-
+            
             R, G, B: out std_logic_vector(3 downto 0);
-
-            DebugLight : out std_logic;
-
+    
             ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
             Lives: unsigned(2 downto 0)
         );
     end component;
+
+    component menus is port(
+        Clk, GameRunning, GameOver, TrainSwitch, LeftMouseButton : in std_logic;
+        VGARow, VGACol                                           : in unsigned(9 downto 0);
+        Score                                                    : in unsigned(9 downto 0);
+        MouseRow, MouseCol                    : in unsigned(9 downto 0); 
+        BackgroundR, BackgroundG, BackgroundB                    : in std_logic_vector(3 downto 0);
+        R, G, B                                                  : out std_logic_vector(3 downto 0);
+        Start, Train, TryAgain                                   : out std_logic;
+        DebugLight : out std_logic);
+    end component menus;
 
     component vga_sync is
     port(clock_25Mhz: in std_logic;
@@ -214,6 +220,10 @@ architecture behave of main is
     -- 1 = Player has run out of lives.
     signal GameOver : std_logic;
 
+    signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
+    signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
+    signal GameR, GameG, GameB: std_logic_vector(3 downto 0);
+
 begin
 
     VGA_CLOCK: process(Clk)
@@ -241,20 +251,35 @@ begin
                           VgaRow => VgaRow,
                           VgaCol => VgaCol,
 
-                          TrainSwitch => not(TrainSwitch),
-                          LeftMouseButton => LeftMouseButton,
-                          mouse_cursor_row => cursor_row,
-                          mouse_cursor_column => cursor_col,
-
-                          R => R,
-                          G => G,
-                          B => B,
+                          R => GameR,
+                          G => GameG,
+                          B => GameB,
                           
                           ScoreOnes => scoreOnesSignal,
                           ScoreTens => scoreTensSignal,
                           
-                          Lives => Lives,
-                          DebugLight => DebugLight);
+                          Lives => Lives);
+
+    MENU_RENDER: menus port map(Clk => Clk,
+                                GameRunning => '0',
+                                GameOver => '0',
+                                TrainSwitch => TrainSwitch,
+                                LeftMouseButton => LeftMouseButton,
+                                VGARow => unsigned(VGARow),
+                                VGACol => unsigned(VGACol),
+                                Score => to_unsigned(99, 10),
+                                MouseRow => unsigned(cursor_row),
+                                MouseCol => unsigned(cursor_col),
+                                BackgroundR => BackgroundR,
+                                BackgroundG => BackgroundG,
+                                BackgroundB => BackgroundB,
+                                R => MenuR,
+                                G => MenuG,
+                                B => MenuB,
+                                Start => Start,
+                                Train => Train,
+                                TryAgain => TryAgain,
+                                DebugLight => DebugLight);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
                           red => R, green => G, blue => B,
@@ -262,6 +287,10 @@ begin
                           horiz_sync_out => VgaHSync, vert_sync_out => VSync,
                           pixel_column => VgaCol, pixel_row => VgaRow
     );
+
+    R <= MenuR;
+    G <= MenuG;
+    B <= MenuB;
 
     VgaVSync <= VSync;
 

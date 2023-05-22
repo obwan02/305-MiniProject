@@ -16,23 +16,18 @@ entity renderer is
         PlayerX: in signed(10 downto 0);
         PlayerY: in signed(9 downto 0);
 
-        --Pipe arrays
+        -- pipe Arrays
         PipeWidth: in signed(10 downto 0);
         PipesXValues: in PipesArray;
         TopPipeHeights: in PipesArray;
         BottomPipeHeights: in PipesArray;
 
         VgaRow, VgaCol: in std_logic_vector(9 downto 0);
-
-        TrainSwitch, LeftMouseButton : in std_logic;
-        mouse_cursor_row, mouse_cursor_column : in std_logic_vector(9 DOWNTO 0);
-
+        
         R, G, B: out std_logic_vector(3 downto 0);
 
-        DebugLight : out std_logic;
-
         ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
-        Lives: in unsigned(2 downto 0)
+        Lives: unsigned(2 downto 0)
     );
 end entity;
 
@@ -161,24 +156,6 @@ begin
             Blue => BackgroundB,
             Visible => open
     );
-
-    MENU_RENDER: menus port map(Clk => Clk,
-                                GameRunning => '0',
-                                GameOver => '0',
-                                TrainSwitch => TrainSwitch,
-                                LeftMouseButton => LeftMouseButton,
-                                VGARow => unsigned(VGARow),
-                                VGACol => unsigned(VGACol),
-                                Score => to_unsigned(99, 10),
-                                MouseRow => unsigned(mouse_cursor_row),
-                                MouseCol => unsigned(mouse_cursor_column),
-                                BackgroundR => BackgroundR,
-                                BackgroundG => BackgroundG,
-                                BackgroundB => BackgroundB,
-                                R => MenuR,
-                                G => MenuG,
-                                B => MenuB,
-                                DebugLight => DebugLight);
                          
     BIRD_RENDER: process(VGACol, VGARow, PlayerY, PlayerX, BirdVisible)
         variable v_Enable: std_logic;
