@@ -20,11 +20,13 @@ entity pipes is
         Done: out std_logic := '0'
     );
 end entity pipes;
-
+ 
 
 architecture construction of pipes is
+    signal s_Done: std_logic := '0';
 begin
 
+    Done <= s_Done;
     PipeWidth <= to_signed(constants.PIPE_WIDTH, 11);
 
     UPDATE: process(PipeClk)
@@ -36,10 +38,6 @@ begin
         variable v_prevTensScore: std_logic_vector(3 downto 0) := scoreTens;
 
         variable v_Index: unsigned(2 downto 0);
-        variable v_PrevTrigger, v_Processing: std_logic := '0';
-        
-
-
         variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
                                                 to_signed(200 + 80, 11), 
                                                 to_signed(300 + 160, 11),  
@@ -47,18 +45,15 @@ begin
     begin
         if rising_edge(PipeClk) then
 
-            if v_PrevTrigger /= Trigger then
-                v_Index := (others => '0');
-                Done <= '0';
-    
-                if Trigger = '1' then 
-                    v_Processing := '1';
-                end if;
+            if Trigger = '0' then
+               v_Index := (others => '0');
+               s_Done <= '0';
             end if;
     
 
-            if v_Processing = '1' then 
+            if Trigger = '1' and s_Done = '0' then 
                 if (v_PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH <= 0) then
+
                     v_PipesXValues(to_integer(v_Index)) := RightMostPixel;
 
                     --asign the randomly generated heigt to the top pipes
@@ -81,13 +76,10 @@ begin
             end if;
 
             if v_Index = to_unsigned(3, 3) then 
-                v_Processing := '0';
-                Done <= '1';
+                s_Done <= '1';
             else
                 v_Index := v_Index + 1;
             end if;
-
-            v_PrevTrigger := Trigger;
         end if;
         PipesXValues <= v_PipesXValues;
     end process;

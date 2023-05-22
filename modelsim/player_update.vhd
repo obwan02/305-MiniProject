@@ -26,8 +26,10 @@ end entity player_update;
 
 architecture rtl of player_update is
 	-- Track the previous trigger value
-	signal PrevTrigger : std_logic := '0';
+	signal s_Done: std_logic := '0';
 begin
+
+	Done <= s_Done;
 
     MOVEMENT: process
         constant MAX_OUT: signed(9 downto 0) := to_signed(479, 10);  
@@ -48,21 +50,15 @@ begin
 		-- screen
 		variable v_HitTop : std_logic := '0';
 		variable v_HitBottom : std_logic := '0';
-
-		variable v_Processing : std_logic := '0';
     begin
 		wait until rising_edge(Clk);
 
-		if PrevTrigger /= Trigger then
-            Done <= '0';
-
-            if Trigger = '1' then 
-                v_Processing := '1';
-            end if;
+		if Trigger = '0' then
+            s_Done <= '0';
         end if;
 
 			
-		if v_Processing = '1' then
+		if Trigger = '1' and s_Done = '0' then
 			-- Change our velocity so that we
 			-- go upwards if the LMB was clicked.
 			-- Otherwise, we increment the velocity to
@@ -102,14 +98,11 @@ begin
 				v_HitBottom := '0';
 			end if;
 			
-			Done <= '1';
-			v_Processing := '0';
+			s_Done <= '1';
 		end if;
 		
 		HitTopOrBottom <= v_HitTop or v_HitBottom;
 		NewY <= v_CurrentY;
-		
-		PrevTrigger <= Trigger;
     end process;
 	
     

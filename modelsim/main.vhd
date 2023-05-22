@@ -80,6 +80,7 @@ architecture behave of main is
             Trigger: in std_logic;
             GameMode: in std_logic;
             ScoreTens: in std_logic_vector(3 downto 0);
+            CollisionTrigger: out std_logic;
             Done: out std_logic := '0'
         );
     end component;
@@ -100,6 +101,8 @@ architecture behave of main is
         PipesX: in PipesArray;
         TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
+        CollisionTrigger: in std_logic;
+        CollisionDone: out std_logic;
         Collided: out std_logic);
     end component;
 
@@ -181,7 +184,10 @@ architecture behave of main is
     signal scoreOnesSignal: std_logic_vector(3 downto 0);
     signal scoreTensSignal: std_logic_vector(3 downto 0);
 
-    
+    --Collided triggers
+    signal CollisionTrigger : std_logic;
+    signal CollisionDone : std_logic;
+
     -- Lives
     signal Lives: unsigned(2 downto 0);
     
@@ -249,7 +255,7 @@ begin
 
                                HitTopOrBottom => open,
 
-                               Trigger => not VSync,
+                               Trigger => not VSync and GameRunning,
                                Done => FinishedPlayerUpdate,
 
                                Collided => Collided
@@ -276,6 +282,7 @@ begin
         Trigger => not VSync,
         GameMode => TrainingStatus,
         ScoreTens => scoreTensSignal,
+        CollisionTrigger => CollisionTrigger,
         Done => FinishedPipeUpdate
     );
 
@@ -285,6 +292,8 @@ begin
                            PipesX => PipesXValues,
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
+                           CollisionTrigger => CollisionTrigger,
+                           CollisionDone => FinishedPipeUpdate,
                            Collided => Collided
     );
 

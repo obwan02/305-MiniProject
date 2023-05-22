@@ -19,10 +19,13 @@ entity score_tracker is port(
     
     -- Trigger and done signals
     Trigger: in std_logic;
-    Done: out std_logic;
+    DoneScoreTracking: out std_logic;
 
+    Collisions: out std_logic_vector(TopPipeHeight'range);
     ScoreOnes: out std_logic_vector(3 downto 0);
     ScoreTens: out std_logic_vector(3 downto 0)
+
+    
 );
 end entity;
 
@@ -36,6 +39,7 @@ begin
         -- to increase
         variable v_Index: unsigned(2 downto 0);
         variable v_PrevTrigger: std_logic := '0';
+        variable v_PrevPlayerXPos:   signed(10 downto 0);
 
         variable v_Processing: std_logic := '0';
     begin
@@ -45,7 +49,8 @@ begin
         -- Check to see if we calculate
         if v_PrevTrigger /= Trigger then
             v_Index := (others => '0');
-            Done <= '0';
+            DoneScoreTracking <= '0';
+
 
             if Trigger = '1' then 
                 v_Processing := '1';
@@ -53,11 +58,12 @@ begin
         end if;
 
         -- TODO: Set a flag on the pipe to say it's been hit
+        -- then, when we check for score increase, we first check the flag
         if v_Processing = '1' then
-            if PlayerY >= TopPipeHeight(to_integer(v_Index)) and (PlayerY + constants.BIRD_HEIGHT) <= (constants.SCREEN_HEIGHT - BottomPipeHeight(to_integer(v_Index))) then
-                if PlayerX + constants.BIRD_WIDTH = (PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH) then
-                    v_Ones := v_Ones + 1;
-                end if;
+            if PipesXValues(to_integer(v_Index)) + to_signed(constants.PIPE_WIDTH, 11) >= v_PrevPlayerXPos and
+               PipesXValues(to_integer(v_Index)) + to_signed(constants.PIPE_WIDTH, 11) < PlayerX
+               then
+                v_Ones := v_Ones + 1;
             end if;
             
             -- Overflow the ones to tens
@@ -69,7 +75,7 @@ begin
             -- Check to see if we are finished
             if v_Index = to_unsigned(3, 3) then 
                 v_Processing := '0';
-                Done <= '1';
+                DoneScoreTracking <= '1';
             else 
                 v_Index := v_Index + 1;
             end if;
@@ -82,6 +88,7 @@ begin
 
         ScoreOnes <= std_logic_vector(v_Ones);
         ScoreTens <= std_logic_vector(v_Tens);
+        v_PrevPlayerXPos := PlayerY;
         v_PrevTrigger := Trigger;
 
 end process;

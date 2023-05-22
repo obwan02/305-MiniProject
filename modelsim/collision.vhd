@@ -12,24 +12,39 @@ entity collision is port(
     PipesX: in PipesArray;
     TopPipeHeight: in PipesArray;
     BottomPipeHeight: in PipesArray;
-	Collided: out std_logic);
+    CollisionTrigger: in std_logic;
+    CollisionDone: out std_logic;
+	Collided: out std_logic;
+    Collisions: out std_logic_vector(PipesX'range)
+    );
+
 end entity collision;
 
 architecture behaviour of collision is	 
+    signal s_CollisionDone: std_logic := '0';
 begin
     process(Clk)
-    variable v_CurrentPipeX, v_CurrentTopPipeY, v_CurrentBottomPipeY: signed(10 downto 0);
-    variable v_WithinXRange: boolean;
+        variable v_CurrentPipeX, v_CurrentTopPipeY, v_CurrentBottomPipeY: signed(10 downto 0);
+        variable v_WithinXRange: boolean;
 
-    variable v_Collisions: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
+        variable v_Collided: std_logic;
+        variable v_Index: unsigned(2 downto 0) := (others => '0');
     begin
         
         if rising_edge(Clk) then
 
-            for i in 0 to constants.PIPE_MAX_INDEX loop
-                v_CurrentPipeX := PipesX(i);
-                v_CurrentTopPipeY := TopPipeHeight(i);
-                v_CurrentBottomPipeY := BottomPipeHeight(i);
+            if CollisionTrigger = '0' then
+                s_CollisionDone <= '0';
+                v_Index := (others => '0');
+                v_Collided := '0';
+            end if;
+     
+
+            if CollisionTrigger = '1' and s_CollisionDone = '0' then 
+                
+                v_CurrentPipeX := PipesX(to_integer(v_Index));
+                v_CurrentTopPipeY := TopPipeHeight(to_integer(v_Index));
+                v_CurrentBottomPipeY := BottomPipeHeight(to_integer(v_Index));
 
                 -- This statement checks if the bird's top or bottom edges are
                 -- either above or below the respective boundary that would
@@ -40,17 +55,21 @@ begin
                     -- edge collision.
                     if (PlayerX + constants.BIRD_WIDTH) >= v_CurrentPipeX and 
                         PlayerX <= (v_CurrentPipeX + constants.PIPE_WIDTH) then
-                        v_Collisions(i) := '1';
-                    else
-                        v_Collisions(i) := '0';
+                        v_Collided := '1';
+                        Collisions(to_integer(v_Index)) <= '1';
                     end if;
-                else
-                    v_Collisions(i) := '0';
                 end if;
-            end loop;
+
+                if v_Index = 3 then 
+                    s_CollisionDone <= '1';
+                else
+                    v_Index := v_Index + 1;
+                end if;
+            end if;
         end if;
 
-        Collided <= or_reduce(v_Collisions);
+        CollisionDone <= s_CollisionDone;
+        Collided <= v_Collided;
 
 end process;
 end architecture;

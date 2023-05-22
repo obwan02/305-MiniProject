@@ -9,8 +9,10 @@ entity game_moore_fsm is port(
 	Start: in std_logic;
 	Train : in std_logic;
 	TryAgain: in std_logic;
+	-- Bird flying
 	GameRunning: out std_logic;
 	TrainingStatus: out std_logic;
+	-- set to 1 when you have 0 lives
 	GameOver: out std_logic);
 end entity game_moore_fsm;
 
