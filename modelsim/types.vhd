@@ -5,6 +5,7 @@ use work.constants;
 
 package types is
     type PipesArray is array (constants.PIPE_MAX_INDEX downto 0) of signed(10 downto 0);
+	type PickupType is (Health, Invincible);
 end types;
 
 --TODO: Make PIPE width a constant
@@ -20,6 +21,10 @@ package constants is
     constant PIPE_COUNT: integer := 4;
     constant PIPE_MAX_INDEX: integer := PIPE_COUNT - 1;
     constant PIPE_WIDTH: integer := 80;
+
+	constant PICKUP_HEIGHT: integer := 16;
+	constant PICKUP_WIDTH: integer := 16;
+
 
 
 	constant SCORE_TEXT: string := "Score";

@@ -13,8 +13,9 @@ entity renderer is
         Clk   : in std_logic;
         Reset : in std_logic;
 
-        PlayerX: in signed(10 downto 0);
-        PlayerY: in signed(9 downto 0);
+        PlayerX, PickupX: in signed(10 downto 0);
+        PlayerY, PickupY: in signed(9 downto 0);
+		PickupType: PickupType;
 
         -- pipe Arrays
         PipeWidth: in signed(10 downto 0);
@@ -27,7 +28,7 @@ entity renderer is
         R, G, B: out std_logic_vector(3 downto 0);
 
         ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
-        Lives: unsigned(2 downto 0)
+        Lives: in unsigned(2 downto 0);
     );
 end entity;
 
@@ -156,8 +157,10 @@ begin
             Blue => BackgroundB,
             Visible => open
     );
-                         
-    BIRD_RENDER: process(VGACol, VGARow, PlayerY, PlayerX, BirdVisible)
+
+	HEART_PICKUP: sprite_rom generic map(Sprite_File =>
+
+    BIRD_RENDER: process(Clk)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(4 downto 0); 
     begin
