@@ -130,12 +130,13 @@ architecture behave of renderer is
     -- Signal for text
     signal ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible: std_logic;
 
+    -- Signals for menu
+    signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
+    signal EnableMenu : std_logic := '0';
+    
     -- Text constants
     constant SCORE_TEXT: string := "SCORE";
     constant LIVES_TEXT: string :=  "LIVES";
-
-    signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
-    signal TEST : std_logic := '0';
 begin
 
     BIRD_ROM: sprite_rom generic map(Sprite_File => "ROM/BRD3_ROM.mif",
@@ -179,28 +180,26 @@ begin
                                 B => MenuB,
                                 DebugLight => DebugLight);
                          
-    BIRD_RENDER: process(Clk)
+    BIRD_RENDER: process(VGACol, VGARow, PlayerY, PlayerX, BirdVisible)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(4 downto 0); 
     begin
 
-        if rising_edge(Clk) then
-            if signed(VgaRow) >= PlayerY and
-               signed('0' & VgaCol) >= PlayerX and 
-               signed(VgaRow) <= PlayerY + constants.BIRD_WIDTH and 
-               signed('0' & VgaCol) <= PlayerX + constants.BIRD_HEIGHT  then
-                -- Only enable the bird if the pixel isn't transparent
-                v_Enable := '1' and BirdVisible;
-                -- Here, we need to quadruple the size of the bird, as the sprite in ROM
-                -- is only 8x8 pixels.
-                -- To do this, we divide the rows and cols by 4.
-                v_Row := resize(unsigned(VgaRow) - unsigned('0' & PlayerY), 5);
-                v_Col := resize(unsigned(VgaCol) - unsigned('0' & PlayerX), 5);
-            else
-                v_Enable := '0';
-                v_Row := (others => '0');
-                v_Col := (others => '0');
-            end if;
+        if signed(VgaRow) >= PlayerY and
+            signed('0' & VgaCol) >= PlayerX and 
+            signed(VgaRow) <= PlayerY + constants.BIRD_WIDTH and 
+            signed('0' & VgaCol) <= PlayerX + constants.BIRD_HEIGHT  then
+            -- Only enable the bird if the pixel isn't transparent
+            v_Enable := '1' and BirdVisible;
+            -- Here, we need to quadruple the size of the bird, as the sprite in ROM
+            -- is only 8x8 pixels.
+            -- To do this, we divide the rows and cols by 4.
+            v_Row := resize(unsigned(VgaRow) - unsigned('0' & PlayerY), 5);
+            v_Col := resize(unsigned(VgaCol) - unsigned('0' & PlayerX), 5);
+        else
+            v_Enable := '0';
+            v_Row := (others => '0');
+            v_Col := (others => '0');
         end if;
 
         EnableBird <= v_Enable;
@@ -208,24 +207,22 @@ begin
         BirdCol <= std_logic_vector(v_Col);
     end process;
 
-    PIPE_RENDER: process(Clk)
+    PIPE_RENDER: process(VgaRow, VgaCol, TopPipeHeights, BottomPipeHeights, PipesXValues, PipeWidth)
         -- We need to store the output of each individual pipes 'enable'
         -- signal, otherwise, only the last pipe will be shown on the screen
         variable v_PipePixelEnable: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);
         begin
-            if rising_edge(Clk) then
-                for i in 0 to constants.PIPE_MAX_INDEX loop
-                    if (signed(VgaRow) <= TopPipeHeights(i) or 
-                        signed(VgaRow) >= (constants.SCREEN_HEIGHT - BottomPipeHeights(i))) and
-                        signed('0' & VgaCol) >= PipesXValues(i) and
-                        signed('0' & VgaCol) <= PipesXValues(i) + PipeWidth 
-                    then
-                        v_PipePixelEnable(i) := '1';
-                    else
-                        v_PipePixelEnable(i) := '0';      
-                    end if;
-                end loop;
-            end if;
+            for i in 0 to constants.PIPE_MAX_INDEX loop
+                if (signed(VgaRow) <= TopPipeHeights(i) or 
+                    signed(VgaRow) >= (constants.SCREEN_HEIGHT - BottomPipeHeights(i))) and
+                    signed('0' & VgaCol) >= PipesXValues(i) and
+                    signed('0' & VgaCol) <= PipesXValues(i) + PipeWidth 
+                then
+                    v_PipePixelEnable(i) := '1';
+                else
+                    v_PipePixelEnable(i) := '0';      
+                end if;
+            end loop;
 
             -- Show a pipe if any pipe is enabled
             EnablePipe <= or_reduce(v_PipePixelEnable);
@@ -269,13 +266,13 @@ begin
     BackgroundRow <= VgaRow(5 downto 1);
     BackgroundCol <= VgaCol(5 downto 1);
 
-    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible, MenuR, MenuG, MenuB, TEST)
+    RENDER_ALL: process(EnableBird, EnablePipe, BirdR, BirdG, BirdB, BackgroundR, BackgroundG, BackgroundB, ScoreTextVisible, ScoreNumberVisible, LivesTextVisible, LivesVisible, MenuR, MenuG, MenuB, EnableMenu)
     begin
         -- This process decides which items
         -- should be rendered for the current 
         -- pixel, given which items are being drawn
         -- atm.
-        if TEST = '0' then 
+        if EnableMenu = '0' then 
             R <= MenuR; G <= MenuG; B <= MenuB;
         elsif ScoreTextVisible = '1' or ScoreNumberVisible = '1' or LivesTextVisible = '1' then
             R <= (others => '1'); G <= (others => '1'); B <= (others => '1');

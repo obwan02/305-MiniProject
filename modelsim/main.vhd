@@ -14,7 +14,9 @@ entity main is
           -- Mouse Shit
           MouseClk, MouseData: inout std_logic;
           scoreOnes: out std_logic_vector(6 downto 0);
-          scoreTens: out std_logic_vector(6 downto 0)
+          scoreTens: out std_logic_vector(6 downto 0);
+
+          DebugLight: out std_logic
           );
 end entity main;
 

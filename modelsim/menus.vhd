@@ -169,6 +169,7 @@ end process;
     begin
     if (rising_edge(Clk)) then
         if (init = '1') then
+            DebugLight <= '0';
             -- Code for inital start menu
             -- Draw blue rectangle
             if VGACol >= 199 and VGACol <= 439
@@ -186,9 +187,7 @@ end process;
                         StartG <= "1111";
                         StartB <= "0110";
                         if LeftMouseButton = '1' then
-                            DebugLight <= '1';
-                        else
-                            DebugLight <= '0';
+                            DebugLight <= '1'; 
                         end if;
                     else
                         StartR <= "1101";
