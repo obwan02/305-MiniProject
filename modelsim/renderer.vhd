@@ -125,7 +125,7 @@ architecture behave of renderer is
 	-- Signals for pickup
 	signal PickupEnable, PickupVisible: std_logic;
 	signal PickupColor: std_logic_vector(11 downto 0);
-	signal PickupRow, PickupCol: unsigned(3 downto 0);
+	signal PickupRow, PickupCol: unsigned(4 downto 0);
 
     -- Signal for text
     signal ScoreTextEnable, ScoreNumberEnable, LivesTextEnable, LivesEnable: std_logic;
@@ -163,7 +163,7 @@ begin
     );
 
 	HEART_PICKUP: sprite_rom generic map(Sprite_File => "ROM/HEALTH_PICKUP.mif",
-										 Addr_Width => 4)
+										 Addr_Width => 5)
 							 port map(Clk => Clk,
 									  SpriteRow => std_logic_vector(PickupRow),
 									  SpriteCol => std_logic_vector(PickupCol),
@@ -207,8 +207,8 @@ begin
 		   signed(VgaRow) <= PickupY + constants.PICKUP_HEIGHT and
 		   signed('0' & VgaCol) <= PickupX + constants.BIRD_HEIGHT then 
 			PickupEnable <= PickupVisible;
-			PickupRow <= resize(unsigned(VgaRow) - unsigned('0' & PickupY), 4);
-			PickupCol <= resize(unsigned(VgaCol) - unsigned('0' & PickupX), 4);
+			PickupRow <= resize(unsigned(VgaRow) - unsigned('0' & PickupY), 5);
+			PickupCol <= resize(unsigned(VgaCol) - unsigned('0' & PickupX), 5);
 		else
 			PickupEnable <= '0';
 			PickupRow <= (others => '0');

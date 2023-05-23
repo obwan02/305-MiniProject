@@ -13,8 +13,8 @@ package constants is
     constant PIPE_MAX_INDEX: integer := PIPE_COUNT - 1;
     constant PIPE_WIDTH: integer := 80;
 
-	constant PICKUP_HEIGHT: integer := 16;
-	constant PICKUP_WIDTH: integer := 16;
+	constant PICKUP_HEIGHT: integer := 32;
+	constant PICKUP_WIDTH: integer := 32;
 
 
 
