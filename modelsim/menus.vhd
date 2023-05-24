@@ -100,10 +100,10 @@ end process;
 
 RENDER_START : process(Clk)
     variable v_Enable: std_logic;
+    variable v_Start: std_logic := '0';
 begin
 if rising_edge(Clk) then
     if GameRunning = '0' then
-        DebugLight <= '0';
         -- Code for inital start menu
         -- Draw blue rectangle
         if VGACol >= 199 and VGACol <= 439
@@ -112,16 +112,37 @@ if rising_edge(Clk) then
             StartR <= "0000";
             StartG <= "0010";
             StartB <= "0111";
-            -- Draw yellow rectangle for button
+            -- Draw First rectangle for button
             if VGACol >= 259 and VGACol <= 379
-            and VGARow >= 219 and VGARow <= 259 then
+            and VGARow >= 120 and VGARow <= 175 then
                 if MouseCol >= 259 and MouseCol <= 379
-                and MouseRow >= 219 and MouseRow <= 259 then 
+                and MouseRow >= 120 and MouseRow <= 175 then 
                     StartR <= "1111";
                     StartG <= "1111";
                     StartB <= "0110";
                     if LeftMouseButton = '1' then
-                        s_Start <= '1';
+                        v_Start := '1';
+                        Train <= '1';
+                    end if;
+                else
+                    StartR <= "1101";
+                    StartG <= "1100";
+                    StartB <= "0010";
+                end if;
+            end if;
+
+
+            -- Draw Second rectangle for button
+            if VGACol >= 259 and VGACol <= 379
+            and VGARow >= 185 and VGARow <= 240 then
+                if MouseCol >= 259 and MouseCol <= 379
+                and MouseRow >= 185 and MouseRow <= 240 then 
+                    StartR <= "1111";
+                    StartG <= "1111";
+                    StartB <= "0110";
+                    if LeftMouseButton = '1' then
+                        v_Start := '1';
+                        Train <= '0';
                     end if;
                 else
                     StartR <= "1101";
@@ -134,61 +155,10 @@ if rising_edge(Clk) then
         end if;
     end if;
     end if;
+
+    Start <= v_Start;
+    DebugLight <= v_Start;
 end process;
-Start <= s_Start;
 
-RENDER_MODE_SELECTION: process(Clk, s_Start)
-begin
-    if rising_edge(Clk) then
-        if (GameRunning = '0' and GameOver = '0' and s_Start = '1') then
-            -- Code for game mode selection
-            -- Draw blue rectangle
-            if VGACol >= 199 and VGACol <= 439
-            and VGARow >= 159 and VGARow <= 319 then
-                ModeSelEnable <= '1';
-                ModeSelR <= "0000";
-                ModeSelG <= "0010";
-                ModeSelB <= "0111";
-                -- Draw two rectangles for button
-                if VGACol >= 259 and VGACol <= 379
-                and VGARow >= 196 and VGARow <= 236 then
-                    if MouseCol >= 259 and MouseCol <= 379
-                    and MouseRow >= 196 and MouseRow <= 236 then 
-                        -- Light Blue
-                        ModeSelR <= "0000";
-                        ModeSelG <= "1111";
-                        ModeSelB <= "1100";
-                    else
-                        -- Bright Yellow
-                        ModeSelR <= "1101";
-                        ModeSelG <= "1111";
-                        ModeSelB <= "0010";
-                    end if;
-                end if;
-                if VGACol >= 259 and VGACol <= 379
-                and VGARow >= 243 and VGARow <= 283 then
-                    if MouseCol >= 259 and MouseCol <= 379
-                    and MouseRow >= 243 and MouseRow <= 283 then
-                        -- Bright Yellow
-                        ModeSelR <= "0000";
-                        ModeSelG <= "1111";
-                        ModeSelB <= "1100";
-                    else
-                        -- Light Blue
-                        ModeSelR <= "1101";
-                        ModeSelG <= "1111";
-                        ModeSelB <= "0010";
-                    end if;
 
-                    -- #### DRAW TRAINING TEXT WITH FUTURE FUNCTION ####
-
-                    -- #### DRAW NORMAL TEXT WITH FUTURE FUNCTION ####
-
-                end if;
-            else
-                ModeSelEnable <= '0';
-            end if;
-        end if;
-    end if;
-end process;
 end architecture;

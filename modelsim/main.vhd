@@ -16,7 +16,8 @@ entity main is
           scoreOnes: out std_logic_vector(6 downto 0);
           scoreTens: out std_logic_vector(6 downto 0);
 
-          DebugLight: out std_logic
+          DebugLight: out std_logic;
+          DebugLightState: out std_logic
           );
 end entity main;
 
@@ -162,7 +163,7 @@ architecture behave of main is
               SevenSeg_out : out std_logic_vector(6 downto 0));
     end component;
 
-    component game_moore_fsm is port(
+    component state_machine is port(
         Clk: in std_logic;
         Reset : in std_logic;
         Dead: in std_logic;
@@ -171,8 +172,9 @@ architecture behave of main is
         TryAgain: in std_logic;
         GameRunning: out std_logic;
         TrainingStatus: out std_logic;
-        GameOver: out std_logic);
-    end component game_moore_fsm;
+        GameOver: out std_logic;
+        DebugLight : out std_logic);
+    end component state_machine;
 
 	component pickup is port(
 				Clk, Reset, Enable: in std_logic;
@@ -414,16 +416,17 @@ begin
         Dead => Dead
 	);
 
-    C12: game_moore_fsm port map(
+    C12: state_machine port map(
         Clk => Clk,
         Reset => ResetStateMachine,
-        Dead => Dead,
+        Dead => '0',
         Start => Start,
         Train => Train,
-        TryAgain => TryAgain,
+        TryAgain => '0',
         GameRunning => GameRunning,
         TrainingStatus => TrainingStatus,
-        GameOver => GameOver
+        GameOver => GameOver,
+        DebugLight => DebugLightState
     );
 	
 	C13: pickup port map(
