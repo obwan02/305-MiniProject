@@ -26,6 +26,19 @@ architecture behaviour of menus is
         );
     end component;
 
+    component text_renderer is 
+        generic(STR: string;
+                SIZE: natural);
+        port(Clk: in std_logic;
+             X: in signed(10 downto 0);
+             Y: in signed(9 downto 0);
+             VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+    
+             Visible: out std_logic
+             );
+    end component;
+    
+
     signal MouseR, MouseG, MouseB: std_logic_vector(3 downto 0);
     signal CursorRow, CursorCol: std_logic_vector (3 downto 0) := (others => '0');
     signal ShowCursor, CursorVisible: std_logic;
@@ -35,7 +48,10 @@ architecture behaviour of menus is
     signal s_Start: std_logic := '0';
 
     signal ModeSelR, ModeSelG, ModeSelB: std_logic_vector(3 downto 0);
-    signal ModeSelEnable: std_logic;
+
+    signal TrainTextVisible: std_logic;
+    signal NormalTextVisible: std_logic;
+    signal TopScoreTextVisible: std_logic;
 
 begin
     CURSOR_ROM: sprite_rom generic map(Sprite_File => "ROM/CURSOR_ROM.mif",
@@ -48,23 +64,22 @@ begin
                                     Blue => MouseB,
                                     Visible => CursorVisible);
 
+
     DRAW_ORDER: process (ShowCursor, MouseR, MouseG, MouseB, StartEnable, StartR, 
     StartG, StartB, BackgroundR, BackgroundG, BackgroundB, 
-    ModeSelR, ModeSelG, ModeSelB, ModeSelEnable, GameRunning)
+    ModeSelR, ModeSelG, ModeSelB, GameRunning)
     begin
         if GameRunning /= '1' then 
             if ShowCursor = '1' then
                 R <= MouseR;
                 G <= MouseG;
                 B <= MouseB;
+            elsif TrainTextVisible = '1' or TopScoreTextVisible = '1' or NormalTextVisible = '1' then
+                R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
             elsif StartEnable = '1' then
                 R <= StartR;
                 G <= StartG;
                 B <= StartB;
-            elsif ModeSelEnable = '1' then
-                R <= ModeSelR;
-                G <= ModeSelG;
-                B <= ModeSelB;
             else
                 R <= BackgroundR;
                 G <= BackgroundG;
@@ -98,66 +113,100 @@ begin
     CursorCol <= std_logic_vector(v_Col);
 end process;
 
+
+TEXT1: text_renderer generic map("TRAINING", 2) port map(
+                                        Clk => Clk,
+                                        VgaCol => std_logic_vector(VgaCol),
+                                        VgaRow => std_logic_vector(VgaRow),
+                                        X => to_signed(316, 11),
+                                        Y => to_signed(270, 10),
+                                        Visible => TrainTextVisible
+
+);
+
+TEXT2: text_renderer generic map("NORMAL", 2) port map(
+    Clk => Clk,
+    VgaCol => std_logic_vector(VgaCol),
+    VgaRow => std_logic_vector(VgaRow),
+    X => to_signed(313, 11),
+    Y => to_signed(130, 10),
+    Visible => NormalTextVisible
+
+);
+
+
+TOPSCORE: text_renderer generic map("TOPSCORE", 2) port map(
+    Clk => Clk,
+    VgaCol => std_logic_vector(VgaCol),
+    VgaRow => std_logic_vector(VgaRow),
+    X => to_signed(312, 11),
+    Y => to_signed(400, 10),
+    Visible => TopScoreTextVisible
+
+);
+
 RENDER_START : process(Clk)
     variable v_Enable: std_logic;
     variable v_Start: std_logic := '0';
+    variable v_StartR, v_StartG, v_StartB: std_logic_vector(3 downto 0);
 begin
 if rising_edge(Clk) then
     if GameRunning = '0' then
         -- Code for inital start menu
         -- Draw blue rectangle
-        if VGACol >= 199 and VGACol <= 439
-        and VGARow >= 159 and VGARow <= 319 then
-            StartEnable <= '1';
-            StartR <= "0000";
-            StartG <= "0010";
-            StartB <= "0111";
-            -- Draw First rectangle for button
-            if VGACol >= 259 and VGACol <= 379
-            and VGARow >= 120 and VGARow <= 175 then
-                if MouseCol >= 259 and MouseCol <= 379
-                and MouseRow >= 120 and MouseRow <= 175 then 
-                    StartR <= "1111";
-                    StartG <= "1111";
-                    StartB <= "0110";
-                    if LeftMouseButton = '1' then
-                        v_Start := '1';
-                        Train <= '1';
-                    end if;
-                else
-                    StartR <= "1101";
-                    StartG <= "1100";
-                    StartB <= "0010";
-                end if;
-            end if;
 
+            StartEnable <= '0';
 
             -- Draw Second rectangle for button
-            if VGACol >= 259 and VGACol <= 379
-            and VGARow >= 185 and VGARow <= 240 then
-                if MouseCol >= 259 and MouseCol <= 379
-                and MouseRow >= 185 and MouseRow <= 240 then 
-                    StartR <= "1111";
-                    StartG <= "1111";
-                    StartB <= "0110";
+            if VGACol >= 259 and VGACol <= 500
+            and VGARow >= 100 and VGARow <= 175 then
+                StartEnable <= '1';
+                if MouseCol >= 259 and MouseCol <= 500
+                and MouseRow >= 100 and MouseRow <= 175 then 
+                    
+                    v_StartR := "0110";
+                    v_StartG := "0110";
+                    v_StartB := "1110";
                     if LeftMouseButton = '1' then
                         v_Start := '1';
                         Train <= '0';
                     end if;
                 else
-                    StartR <= "1101";
-                    StartG <= "1100";
-                    StartB <= "0010";
+                    v_StartR := "1110";
+                    v_StartG := "1001";
+                    v_StartB := "0001";
                 end if;
             end if;
-        else
-            StartEnable <= '0';
+
+
+
+            -- Draw Second rectangle for button
+            if VGACol >= 259 and VGACol <= 500
+            and VGARow >= 240 and VGARow <= 315 then
+                StartEnable <= '1';
+                if MouseCol >= 259 and MouseCol <= 500
+                and MouseRow >= 240 and MouseRow <= 315 then 
+                    
+                    v_StartR := "0110";
+                    v_StartG := "0110";
+                    v_StartB := "1110";
+                    if LeftMouseButton = '1' then
+                        v_Start := '1';
+                        Train <= '0';
+                    end if;
+                else
+                    v_StartR := "1110";
+                    v_StartG := "1001";
+                    v_StartB := "0001";
+                end if;
+            end if;
+
         end if;
-    end if;
     end if;
 
     Start <= v_Start;
     DebugLight <= v_Start;
+    StartR <= v_StartR; StartG <= v_StartG; StartB <= v_StartB;
 end process;
 
 
