@@ -93,7 +93,7 @@ begin
 		when Initial =>
 			-- TODO(MASSIVE WARNING):
 			-- PLZ SWITCH IN FUTURE
-			GameRunning <= '1';
+			GameRunning <= '0';
 			TrainingStatus <= '0';
 			GameOver <= '0';
 		when TrainingSelection  =>
