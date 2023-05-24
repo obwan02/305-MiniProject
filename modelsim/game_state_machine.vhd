@@ -22,7 +22,7 @@ architecture behaviour of game_moore_fsm is
 						TrainingMode, 
 						NormalMode, 
 						GameOverMode);
-	signal current_state, next_state : fsm_states;					 
+	signal current_state, next_state : fsm_states := Initial;					 
 begin
 
 -- STATE_CHANGER Process

@@ -25,8 +25,6 @@ architecture behaviour of menus is
              Visible: out std_logic
         );
     end component;
-    
-    signal init : std_logic := '1';
 
     signal MouseR, MouseG, MouseB: std_logic_vector(3 downto 0);
     signal CursorRow, CursorCol: std_logic_vector (3 downto 0) := (others => '0');
@@ -34,7 +32,7 @@ architecture behaviour of menus is
 
     signal StartR, StartG, StartB: std_logic_vector(3 downto 0);
     signal StartEnable: std_logic;
-    signal s_Start: std_logic;
+    signal s_Start: std_logic := '0';
 
     signal ModeSelR, ModeSelG, ModeSelB: std_logic_vector(3 downto 0);
     signal ModeSelEnable: std_logic;
@@ -52,57 +50,29 @@ begin
 
     DRAW_ORDER: process (ShowCursor, MouseR, MouseG, MouseB, StartEnable, StartR, 
     StartG, StartB, BackgroundR, BackgroundG, BackgroundB, 
-    ModeSelR, ModeSelG, ModeSelB, ModeSelEnable)
+    ModeSelR, ModeSelG, ModeSelB, ModeSelEnable, GameRunning)
     begin
-        if ShowCursor = '1' then
-            R <= MouseR;
-            G <= MouseG;
-            B <= MouseB;
-        elsif StartEnable = '1' then
-            R <= StartR;
-            G <= StartG;
-            B <= StartB;
-        elsif ModeSelEnable = '1' then
-            R <= ModeSelR;
-            G <= ModeSelG;
-            B <= ModeSelB;
+        if GameRunning /= '1' then 
+            if ShowCursor = '1' then
+                R <= MouseR;
+                G <= MouseG;
+                B <= MouseB;
+            elsif StartEnable = '1' then
+                R <= StartR;
+                G <= StartG;
+                B <= StartB;
+            elsif ModeSelEnable = '1' then
+                R <= ModeSelR;
+                G <= ModeSelG;
+                B <= ModeSelB;
+            else
+                R <= BackgroundR;
+                G <= BackgroundG;
+                B <= BackgroundB;
+            end if;
         else
-            R <= BackgroundR;
-            G <= BackgroundG;
-            B <= BackgroundB;
+            R <= (others => '0'); G <= (others => '0'); B <= (others => '0');
         end if;
-        
-        
-        -- elsif (GameRunning = '0' and GameOver = '1') then
-        --     -- Code for game over menu
-        --     -- Draw blue rectangle
-        --     if ((signed(VGACol) >= 199) and (signed(VGACol) <= 439)
-        --     and (signed(VGARow) >= 159) and (signed(VGARow) <= 319)) then
-        --         R <= "0000";
-        --         G <= "0010";
-        --         B <= "0111";
-
-        --         -- #### DRAW Score TEXT WITH FUTURE FUNCTION ####
-
-        --         -- Draw rectangle for button
-        --         if ((signed(VGACol) >= 259) and (signed(VGACol) <= 379)
-        --         and (signed(VGARow) >= 243) and (signed(VGARow) <= 283)) then
-        --             if ((mouse_cursor_column >= 259) and (mouse_cursor_column <= 379)
-        --             and (mouse_cursor_row >= 243) and (mouse_cursor_row <= 283)) then
-        --                 R <= "1101";
-        --                 G <= "1111";
-        --                 B <= "0010";
-
-        --             -- #### DRAW TRY AGAIN TEXT WITH FUTURE FUNCTION ####
-        --             end if;
-
-        --         end if;   
-        --     end if;
-        -- else
-        --     R <= BackgroundR;
-        --     G <= BackgroundG;
-        --     B <= BackgroundB;
-        -- end if;
 end process;
 
 -- Handle mouse events for button presses (initial menu and game over menu)
@@ -131,8 +101,8 @@ end process;
 RENDER_START : process(Clk)
     variable v_Enable: std_logic;
 begin
-if (rising_edge(Clk)) then
-    if (init = '1') then
+if rising_edge(Clk) then
+    if GameRunning = '0' then
         DebugLight <= '0';
         -- Code for inital start menu
         -- Draw blue rectangle
@@ -152,7 +122,6 @@ if (rising_edge(Clk)) then
                     StartB <= "0110";
                     if LeftMouseButton = '1' then
                         s_Start <= '1';
-                        init <= '0';
                     end if;
                 else
                     StartR <= "1101";
@@ -164,11 +133,11 @@ if (rising_edge(Clk)) then
             StartEnable <= '0';
         end if;
     end if;
-end if;
+    end if;
 end process;
 Start <= s_Start;
 
-RENDER_MODE_SELECTION : process(Clk, s_Start)
+RENDER_MODE_SELECTION: process(Clk, s_Start)
 begin
     if rising_edge(Clk) then
         if (GameRunning = '0' and GameOver = '0' and s_Start = '1') then

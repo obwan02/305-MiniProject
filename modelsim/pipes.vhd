@@ -15,7 +15,7 @@ entity pipes is
         BottomPipeHeights: out PipesArray;
 
         Trigger: in std_logic;
-        GameMode: in std_logic;
+        IsTraining: in std_logic;
         ScoreTens: in std_logic_vector(3 downto 0);
         Done: out std_logic := '0'
     );
@@ -63,7 +63,7 @@ begin
                     BottomPipeHeights(to_integer(v_Index)) <= constants.SCREEN_HEIGHT - (signed("000" & Rand) + 200);
                     
                 else
-                    if GameMode = '1' then
+                    if IsTraining = '1' then
                         v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - TrainingSpeed;
                     else
                         if scoreTens /= v_prevTensScore then

@@ -94,7 +94,7 @@ architecture behave of main is
             BottomPipeHeights: out PipesArray;
 
             Trigger: in std_logic;
-            GameMode: in std_logic;
+            IsTraining: in std_logic;
             ScoreTens: in std_logic_vector(3 downto 0);
             Done: out std_logic := '0'
         );
@@ -285,8 +285,8 @@ begin
                           Lives => Lives);
 
     MENU_RENDER: menus port map(Clk => Clk,
-                                GameRunning => '0',
-                                GameOver => '0',
+                                GameRunning => GameRunning,
+                                GameOver => GameOver,
                                 TrainSwitch => TrainSwitch,
                                 LeftMouseButton => LeftMouseButton,
                                 VGARow => unsigned(VGARow),
@@ -353,7 +353,7 @@ begin
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights,
         Trigger => UpdateSignal,
-        GameMode => TrainingStatus,
+        IsTraining => TrainingStatus,
         ScoreTens => scoreTensSignal,
         Done => FinishedPipeUpdate
     );
