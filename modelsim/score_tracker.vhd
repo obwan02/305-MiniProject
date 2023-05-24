@@ -8,7 +8,7 @@ use work.constants;
 
 
 entity score_tracker is port(
-    Clk, Reset : in std_logic;
+    Clk, Reset, Enable : in std_logic;
 
     PlayerY: in signed(9 downto 0);
     PlayerX: in signed(10 downto 0);
@@ -21,7 +21,6 @@ entity score_tracker is port(
     Trigger: in std_logic;
     Done: out std_logic;
 
-    Collisions: out std_logic_vector(TopPipeHeight'range);
     ScoreOnes: out std_logic_vector(3 downto 0);
     ScoreTens: out std_logic_vector(3 downto 0)    
 );
@@ -30,6 +29,9 @@ end entity;
 architecture track of score_tracker is 
     signal s_Done: std_logic := '0';
 begin
+
+
+    Done <= s_Done;
 
     SCORE_TRACKER: process
         variable v_Ones, v_Tens: unsigned(3 downto 0) := (others => '0');
@@ -50,7 +52,7 @@ begin
 
         -- TODO: Set a flag on the pipe to say it's been hit
         -- then, when we check for score increase, we first check the flag
-        if Trigger = '1' and s_Done = '0' then  
+        if (Trigger = '1' and s_Done = '0') and Enable = '1' then  
             if PlayerX <= v_PrevPipesX(to_integer(v_Index)) + constants.PIPE_WIDTH and
                PlayerX >= PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH
                then

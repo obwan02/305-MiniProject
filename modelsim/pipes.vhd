@@ -7,7 +7,7 @@ use work.constants;
 
 entity pipes is
     port(
-        PipeClk: in std_logic;
+        PipeClk, Enable: in std_logic;
         PipeWidth: out signed(10 downto 0);
         Rand: in std_logic_vector(7 downto 0);
         PipesXValues: out PipesArray;
@@ -35,7 +35,7 @@ begin
         constant TempHeight: signed(10 downto 0) := to_signed(100, 11);
 
         variable v_NormalSpeed: signed(9 downto 0) := to_signed(1, 10);
-        variable v_prevTensScore: std_logic_vector(3 downto 0) := scoreTens;
+        variable v_prevTensScore: std_logic_vector(3 downto 0) := (others => '0');
 
         variable v_Index: unsigned(2 downto 0);
         variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
@@ -51,7 +51,7 @@ begin
             end if;
     
 
-            if Trigger = '1' and s_Done = '0' then 
+            if (Trigger = '1' and s_Done = '0') and Enable = '1' then 
                 if (v_PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH <= 0) then
 
                     v_PipesXValues(to_integer(v_Index)) := RightMostPixel;

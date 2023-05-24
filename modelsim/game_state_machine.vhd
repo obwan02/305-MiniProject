@@ -50,7 +50,7 @@ end process;
 -- 
 -- Given the current state of the FSM, if the relevant conditions are
 -- met, set the next_state to the corresponding next state.
-FIND_NEXT_STATE : process (current_state, Reset, Dead, Start, Train)
+FIND_NEXT_STATE : process (current_state, Reset, Dead, Start, Train, TryAgain)
 begin
 	next_state <= Initial;
 	case (current_state) is

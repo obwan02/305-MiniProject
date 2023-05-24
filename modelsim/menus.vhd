@@ -106,7 +106,7 @@ begin
 end process;
 
 -- Handle mouse events for button presses (initial menu and game over menu)
-MOUSE_RENDER: process (VGARow, VGACol, MouseRow, MouseCol, CursorVisible)
+MOUSE_RENDER: process (VGARow, VGACol, MouseRow, MouseCol, CursorVisible, GameRunning)
     variable v_Enable: std_logic;
     variable v_Row, v_Col: unsigned(3 downto 0); 
 begin

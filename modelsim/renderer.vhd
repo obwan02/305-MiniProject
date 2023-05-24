@@ -173,7 +173,7 @@ begin
 									  Visible => PickupVisible);
 
 
-    BIRD_RENDER: process(Clk)
+    BIRD_RENDER: process(VgaRow, VgaCol, PlayerX, PlayerY, BirdVisible)
         variable v_Enable: std_logic;
         variable v_Row, v_Col: unsigned(4 downto 0); 
     begin
@@ -200,7 +200,7 @@ begin
         BirdCol <= std_logic_vector(v_Col);
     end process;
 
-	PICKUP_RENDER: process(PickupColor, PickupVisible)
+	PICKUP_RENDER: process(VgaRow, VgaCol, PickupX, PickupY, PickupColor, PickupVisible)
 	begin
 		if signed(VgaRow) >= PickupY and
 		   signed('0' & VgaCol) >= PickupX and
@@ -217,7 +217,8 @@ begin
 
 	end process;
 
-    PIPE_RENDER: process(Clk)
+    -- TODO: Change to not be clocked
+    PIPE_RENDER: process(VgaRow, VgaCol, PipesXValues, PipeWidth, BottomPipeHeights, TopPipeHeights)
         -- We need to store the output of each individual pipes 'enable'
         -- signal, otherwise, only the last pipe will be shown on the screen
         variable v_PipePixelEnable: std_logic_vector(constants.PIPE_MAX_INDEX downto 0);

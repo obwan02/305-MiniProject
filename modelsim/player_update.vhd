@@ -6,7 +6,7 @@ use work.constants;
 entity player_update is
     port (
         Clk   : in std_logic;
-        Reset : in std_logic;
+        Reset, Enable : in std_logic;
 
         LeftMouseButton: in std_logic;
 
@@ -57,7 +57,7 @@ begin
         end if;
 
 			
-		if Trigger = '1' and s_Done = '0' then
+		if (Trigger = '1' and s_Done = '0') and Enable = '1' then
 			-- Change our velocity so that we
 			-- go upwards if the LMB was clicked.
 			-- Otherwise, we increment the velocity to

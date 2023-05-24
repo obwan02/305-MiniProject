@@ -26,6 +26,7 @@ architecture behave of pickup is
 begin
 
 	Done <= s_Done;
+	PickupType <= HealthPickup;
 
 	MOVEMENT: process
 		variable v_ShouldFall: std_logic := '0';
@@ -51,7 +52,7 @@ begin
 			if v_ShouldFall = '0' then 
 				-- Check if Rand is at this
 				-- random value, and if so, we drop the pickup
-				if Rand = "0100100" then 
+				if Rand = "01001000" then 
 					v_ShouldFall := '1';
 					X := PlayerX;
 					Y := to_signed(-constants.PICKUP_HEIGHT, Y'length);

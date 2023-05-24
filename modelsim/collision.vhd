@@ -14,8 +14,7 @@ entity collision is port(
     BottomPipeHeight: in PipesArray;
     Trigger: in std_logic;
     Done: out std_logic;
-	Collided, PickupCollided: out std_logic;
-    Collisions: out std_logic_vector(PipesX'range)
+	Collided, PickupCollided: out std_logic
     );
 end entity collision;
 
@@ -69,7 +68,6 @@ begin
                     if (PlayerX + constants.BIRD_WIDTH) >= v_CurrentPipeX and 
                         PlayerX <= (v_CurrentPipeX + constants.PIPE_WIDTH) then
                         v_Collided := '1';
-                        Collisions(to_integer(v_Index)) <= '1';
                     end if;
                 end if;
 
@@ -81,8 +79,8 @@ begin
             end if;
           end if;
 
+          Collided <= v_Collided;
+        end process;
+        
         Done <= s_CollisionDone;
-        Collided <= v_Collided;
-
-end process;
 end architecture;

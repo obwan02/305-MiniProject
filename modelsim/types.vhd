@@ -27,6 +27,6 @@ use work.constants;
 package types is
 
     type PipesArray is array (constants.PIPE_MAX_INDEX downto 0) of signed(10 downto 0);
-	type PickupType is (Health, Invincible);
+	type PickupType is (HealthPickup, InvinciblePickup);
 end types;
 

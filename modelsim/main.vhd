@@ -67,7 +67,7 @@ architecture behave of main is
     component player_update is
         port (
             Clk   : in std_logic;
-            Reset : in std_logic;
+            Reset, Enable: in std_logic;
     
             LeftMouseButton: in std_logic;
     
@@ -86,7 +86,7 @@ architecture behave of main is
 
     component pipes is
         port(
-            PipeClk: in std_logic;
+            PipeClk, Enable: in std_logic;
             PipeWidth: out signed(10 downto 0);
             Rand: in std_logic_vector(7 downto 0);
             PipesXValues: out PipesArray;
@@ -129,7 +129,7 @@ architecture behave of main is
     end component;
 
     component score_tracker is port(
-        Clk, Reset : in std_logic;
+        Clk, Reset, Enable: in std_logic;
     
         PlayerY: in signed(9 downto 0);
         PlayerX: in signed(10 downto 0);
@@ -149,6 +149,7 @@ architecture behave of main is
 
     component lives_system is port(
         Clk, Enable, Reset, HasCollided: in std_logic;
+        Trigger: in std_logic;
         Done: inout std_logic;
     
         LifeCount: out unsigned(2 downto 0);
@@ -175,7 +176,6 @@ architecture behave of main is
 
 	component pickup is port(
 				Clk, Reset, Enable: in std_logic;
-				Lives: in unsigned(2 downto 0);
 				Rand: in std_logic_vector(7 downto 0);
 
 				PlayerX: in signed(10 downto 0);
@@ -231,7 +231,7 @@ architecture behave of main is
            FinishedCollisionUpdate: std_logic;
     
     -- State Machine + Other Stateful Signals
-    signal Collided, Invincible, Dead: std_logic;
+    signal Collided, PickupCollided, Invincible, Dead: std_logic;
     signal ResetStateMachine, Start, Train, TryAgain : std_logic;
     -- 1 = GameRunning, 0 = game not running
     signal GameRunning : std_logic;
@@ -262,6 +262,10 @@ begin
                           Reset => '0', 
                           PlayerX =>  PlayerX, 
                           PlayerY => PlayerY, 
+                          
+                          PickupX => PickupX,
+                          PickupY => PickupY,
+                          PickupType => PickupType,
                           --Pipes
                           PipeWidth => PipeWidth,
                           PipesXValues => PipesXValues,
@@ -308,13 +312,14 @@ begin
                           pixel_column => VgaCol, pixel_row => VgaRow
     );
 
-    R <= MenuR;
-    G <= MenuG;
-    B <= MenuB;
-
+    R <= GameR when GameRunning = '1' else MenuR;
+    G <= GameG when GameRunning = '1' else MenuG;
+    B <= GameB when GameRunning = '1' else MenuB;
+    
     VgaVSync <= VSync;
 
     C3: player_update port map(Clk => Clk,
+                               Enable => GameRunning,
                                Reset => '0',
                                LeftMouseButton => LeftMouseButton,
                                NewX => PlayerX,
@@ -322,7 +327,7 @@ begin
 
                                HitTopOrBottom => open,
 
-                               Trigger => UpdateSignal and GameRunning,
+                               Trigger => UpdateSignal,
                                Done => FinishedPlayerUpdate,
 
                                Collided => Collided
@@ -341,12 +346,13 @@ begin
 
     C5: pipes port map(
         PipeClk => Clk,
+        Enable => GameRunning,
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
         Rand => Rand,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights,
-        Trigger => UpdateSignal and GameRunning,
+        Trigger => UpdateSignal,
         GameMode => TrainingStatus,
         ScoreTens => scoreTensSignal,
         Done => FinishedPipeUpdate
@@ -360,7 +366,8 @@ begin
                            BottomPipeHeight => BottomPipeHeights,
                            Trigger => FinishedPipeUpdate and FinishedPlayerUpdate,
                            Done => FinishedCollisionUpdate,
-                           Collided => Collided
+                           Collided => Collided,
+                           PickupCollided => PickupCollided
     );
 
     C7: LFSR port map (
@@ -372,6 +379,7 @@ begin
     C8: score_tracker port map(
         Clk => Clk, 
         Reset => Dead,
+        Enable => GameRunning,
         PlayerX => PlayerX,
         PlayerY => PlayerY,
         TopPipeHeight => TopPipeHeights,
@@ -397,7 +405,7 @@ begin
 
     C11: lives_system port map(
         Clk => Clk,
-        Enable => '1',
+        Enable => GameRunning,
         Reset => not pushbutton,
         HasCollided => Collided,
         Trigger => FinishedCollisionUpdate,
@@ -421,7 +429,7 @@ begin
 	C13: pickup port map(
 				Clk => Clk, 
 				Reset => '0',
-				Enable => '1',
+				Enable => GameRunning,
 				Rand => Rand,
 
 				PlayerX => PlayerX,
@@ -430,9 +438,10 @@ begin
 				PickupY => PickupY,
 				PickupType => PickupType,
 				
-				HasCollided
+				HasCollided => PickupCollided,
 
-				Trigger: in std_logic;
-				Done: out std_logic);
-	end component;
+				Trigger => FinishedCollisionUpdate,
+				Done => open
+    );
+
 end architecture;
