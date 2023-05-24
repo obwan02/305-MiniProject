@@ -251,7 +251,7 @@ architecture behave of main is
     -- 1 = Player has run out of lives.
     signal GameOver : std_logic;
 
-    signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0);
+    signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0) := (others => '0');
     signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
     signal GameR, GameG, GameB: std_logic_vector(3 downto 0);
 
@@ -434,7 +434,7 @@ begin
     C12: state_machine port map(
         Clk => Clk,
         Reset => ResetStateMachine,
-        Dead => '0',
+        Dead => Dead,
         Start => Start,
         Train => Train,
         TryAgain => '0',

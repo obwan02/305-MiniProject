@@ -29,13 +29,20 @@ begin
             when Init => 
                 -- Start the game
                 if Start = '1' then
-                    if Train = '1' then 
+                    if Train = '0' then 
                         State <= Normal;
                 -- Game stays at mode selection 
                     else
                         State <= Training;
                     end if;
                 end if;
+
+            when Normal | Training =>
+                if Dead = '1' then 
+                    State <= GameFinished;
+                end if;
+
+            when GameFinished => null;
             when others => null;
         end case;
     end process;
