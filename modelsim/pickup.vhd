@@ -6,7 +6,6 @@ use work.constants;
 
 entity pickup is port(
 			Clk, Reset, Enable: in std_logic;
-			Lives: in unsigned(2 downto 0);
 			Rand: in std_logic_vector(7 downto 0);
 
 			PlayerX: in signed(10 downto 0);
@@ -15,6 +14,7 @@ entity pickup is port(
 			PickupY: out signed(9 downto 0);
 			PickupType: out PickupType;
 			
+			-- TODO: See if this can be replaced by the reset signal
 			HasCollided: in std_logic;
 
 			Trigger: in std_logic;

@@ -7,25 +7,38 @@ use work.constants;
 
 entity collision is port(
     Clk: in std_logic;
-	PlayerX: in signed(10 downto 0);
-	PlayerY: in signed(9 downto 0);
+	PlayerX, PickupX: in signed(10 downto 0);
+	PlayerY, PickupY: in signed(9 downto 0);
     PipesX: in PipesArray;
     TopPipeHeight: in PipesArray;
     BottomPipeHeight: in PipesArray;
     Trigger: in std_logic;
     Done: out std_logic;
-	Collided: out std_logic;
+	Collided, PickupCollided: out std_logic;
     Collisions: out std_logic_vector(PipesX'range)
     );
-
 end entity collision;
 
 architecture behaviour of collision is	 
     signal s_CollisionDone: std_logic := '0';
 begin
-    process(Clk)
-        variable v_CurrentPipeX, v_CurrentTopPipeY, v_CurrentBottomPipeY: signed(10 downto 0);
-        variable v_WithinXRange: boolean;
+
+	PICKUP_COLLISION: process(PlayerX, PlayerY, PickupX, PickupY)
+	begin
+		if PlayerX + constants.BIRD_WIDTH >= PickupX and
+		   PlayerX <= PickupX + constants.PICKUP_WIDTH and
+		   PlayerY + constants.BIRD_HEIGHT >= PickupY and
+		   PlayerY <= PickupY + constants.PICKUP_HEIGHT then
+			PickupCollided <= '1';
+		else
+			PickupCollided <= '0';
+		end if;
+
+	end process;
+
+    PIPE_COLLISIONS: process(Clk)
+    variable v_CurrentPipeX, v_CurrentTopPipeY, v_CurrentBottomPipeY: signed(10 downto 0);
+    variable v_WithinXRange: boolean;
 
         variable v_Collided: std_logic;
         variable v_Index: unsigned(2 downto 0) := (others => '0');

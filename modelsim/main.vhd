@@ -26,8 +26,9 @@ architecture behave of main is
             Clk   : in std_logic;
             Reset : in std_logic;
     
-            PlayerX: in signed(10 downto 0);
-            PlayerY: in signed(9 downto 0);
+            PlayerX, PickupX: in signed(10 downto 0);
+            PlayerY, PickupY: in signed(9 downto 0);
+			PickupType: in PickupType;
     
             -- pipe Arrays
             PipeWidth: in signed(10 downto 0);
@@ -117,7 +118,7 @@ architecture behave of main is
         BottomPipeHeight: in PipesArray;
         Trigger: in std_logic;
         Done: out std_logic;
-        Collided: out std_logic);
+        Collided, PickupCollided: out std_logic);
     end component;
 
     component LFSR is port(
@@ -148,7 +149,6 @@ architecture behave of main is
 
     component lives_system is port(
         Clk, Enable, Reset, HasCollided: in std_logic;
-        Trigger: in std_logic;
         Done: inout std_logic;
     
         LifeCount: out unsigned(2 downto 0);
@@ -173,6 +173,22 @@ architecture behave of main is
         GameOver: out std_logic);
     end component game_moore_fsm;
 
+	component pickup is port(
+				Clk, Reset, Enable: in std_logic;
+				Lives: in unsigned(2 downto 0);
+				Rand: in std_logic_vector(7 downto 0);
+
+				PlayerX: in signed(10 downto 0);
+				
+				PickupX: out signed(10 downto 0);
+				PickupY: out signed(9 downto 0);
+				PickupType: out PickupType;
+				
+				HasCollided: in std_logic;
+
+				Trigger: in std_logic;
+				Done: out std_logic);
+	end component;
 
     signal VSync: std_logic;
     signal VgaRow, VgaCol: std_logic_vector(9 downto 0);
@@ -181,6 +197,10 @@ architecture behave of main is
 
     signal PlayerX: signed(10 downto 0);
     signal PlayerY: signed(9 downto 0);
+
+	signal PickupX: signed(10 downto 0);
+	signal PickupY: signed(9 downto 0);
+	signal PickupType: PickupType;
 
     signal LeftMouseButton: std_logic;
 
@@ -397,4 +417,22 @@ begin
         TrainingStatus => TrainingStatus,
         GameOver => GameOver
     );
+	
+	C13: pickup port map(
+				Clk => Clk, 
+				Reset => '0',
+				Enable => '1',
+				Rand => Rand,
+
+				PlayerX => PlayerX,
+				
+				PickupX => PickupX,
+				PickupY => PickupY,
+				PickupType => PickupType,
+				
+				HasCollided
+
+				Trigger: in std_logic;
+				Done: out std_logic);
+	end component;
 end architecture;

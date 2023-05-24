@@ -15,7 +15,7 @@ entity renderer is
 
         PlayerX, PickupX: in signed(10 downto 0);
         PlayerY, PickupY: in signed(9 downto 0);
-		PickupType: PickupType;
+		PickupType: in PickupType;
 
         -- pipe Arrays
         PipeWidth: in signed(10 downto 0);
