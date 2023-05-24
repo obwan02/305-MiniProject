@@ -116,6 +116,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "DebugLight",
+					"strict" : false
+				},
+				{
 					"name" : "MouseClk",
 					"strict" : false
 				},
@@ -125,6 +129,10 @@
 				},
 				{
 					"name" : "Clk",
+					"strict" : false
+				},
+				{
+					"name" : "pushbutton",
 					"strict" : false
 				}
 			]

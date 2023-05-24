@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE 5CEBA4F23C7
 set_global_assignment -name TOP_LEVEL_ENTITY main
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:42:33  MAY 01, 2023"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Standard Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -68,9 +68,7 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_D3 -to MouseClk
 set_location_assignment PIN_G2 -to MouseData
-set_location_assignment PIN_AA2 -to Collided
 set_location_assignment PIN_U7 -to pushbutton
-set_location_assignment PIN_AA1 -to tempLight
 set_location_assignment PIN_U21 -to scoreOnes[0]
 set_location_assignment PIN_V21 -to scoreOnes[1]
 set_location_assignment PIN_W22 -to scoreOnes[2]
@@ -85,19 +83,27 @@ set_location_assignment PIN_AA18 -to scoreTens[3]
 set_location_assignment PIN_AB18 -to scoreTens[4]
 set_location_assignment PIN_AA17 -to scoreTens[5]
 set_location_assignment PIN_U22 -to scoreTens[6]
-set_global_assignment -name VHDL_FILE ../modelsim/bcd_renderer.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/score_tracker.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/BCD_to_7Seg.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/lfsr.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/text_renderer.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/char_rom.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/collision.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/types.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/pipes.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/sprite_rom.vhd
-set_global_assignment -name VHDL_FILE ../modelsim/mouse.vhd
+set_location_assignment PIN_AA1 -to DebugLight
+set_location_assignment PIN_AA2 -to DebugLightState
+set_global_assignment -name VHDL_FILE ../modelsim/state_machine.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/vga_sync.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/types.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/text_renderer.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/sprite_rom.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/score_tracker.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/renderer.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/ram.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/player_update.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/pipes.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/pickup.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/mouse.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/menus.vhd
 set_global_assignment -name VHDL_FILE ../modelsim/main.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/lives_renderer.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/lives.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/lfsr.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/collision.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/char_rom.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/BCD_to_7Seg.vhd
+set_global_assignment -name VHDL_FILE ../modelsim/bcd_renderer.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
