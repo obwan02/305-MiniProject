@@ -62,10 +62,10 @@ begin
                 -- need a collision to occur.
                 if PlayerY <= v_CurrentTopPipeY or (PlayerY + constants.BIRD_HEIGHT) >= (constants.SCREEN_HEIGHT - v_CurrentBottomPipeY) then
                     -- This condition checks if the right edge of the bird has
-                    -- hit any of the pipes. - also checks for top and bottom
-                    -- edge collision.
+                    -- hit any of the pipes.
                     if (PlayerX + constants.BIRD_WIDTH) >= v_CurrentPipeX and 
-                        PlayerX <= (v_CurrentPipeX + constants.PIPE_WIDTH) then
+                        PlayerX <= (v_CurrentPipeX + constants.PIPE_WIDTH) and 
+                        not (v_CurrentBottomPipeY = 0 and v_CurrentBottomPipeY = 0) then
                         v_Collided := '1';
                     end if;
                 end if;

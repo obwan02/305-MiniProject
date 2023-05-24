@@ -52,7 +52,8 @@ begin
 
         if (Trigger = '1' and s_Done = '0') and Enable = '1' then  
             if PlayerX <= v_PrevPipesX(to_integer(v_Index)) + constants.PIPE_WIDTH and
-               PlayerX >= PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH
+               PlayerX >= PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH and
+               not (TopPipeHeight(to_integer(v_Index)) = 0 and BottomPipeHeight(to_integer(v_Index)) = 0)
                then
                 v_Ones := v_Ones + 1;   
             end if;
