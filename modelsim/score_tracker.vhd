@@ -50,8 +50,6 @@ begin
             s_Done <= '0';
         end if;
 
-        -- TODO: Set a flag on the pipe to say it's been hit
-        -- then, when we check for score increase, we first check the flag
         if (Trigger = '1' and s_Done = '0') and Enable = '1' then  
             if PlayerX <= v_PrevPipesX(to_integer(v_Index)) + constants.PIPE_WIDTH and
                PlayerX >= PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH

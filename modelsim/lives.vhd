@@ -11,6 +11,7 @@ entity lives_system is port(
     Done: inout std_logic;
 
     LifeCount: out unsigned(2 downto 0);
+    PickupCollided: in std_logic;
     Dead: out std_logic
     );
 end entity lives_system;
@@ -41,6 +42,12 @@ begin
                     end if;
                 end if;
                 v_PrevCollideValue := HasCollided;
+
+                if PickupCollided = '1' then 
+                    if Lives /= "111" then
+                        Lives <= Lives + 1;
+                    end if;
+                end if;
 
                 Done <= '1';
             end if;

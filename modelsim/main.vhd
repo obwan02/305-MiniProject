@@ -93,6 +93,8 @@ architecture behave of main is
             TopPipeHeights: out PipesArray;
             BottomPipeHeights: out PipesArray;
 
+            Speed: out signed(9 downto 0);
+
             Trigger: in std_logic;
             IsTraining: in std_logic;
             ScoreTens: in std_logic_vector(3 downto 0);
@@ -111,14 +113,15 @@ architecture behave of main is
 
     component collision is port(
         Clk: in std_logic;
-        PlayerX: in signed(10 downto 0);
-        PlayerY: in signed(9 downto 0);
+        PlayerX, PickupX: in signed(10 downto 0);
+        PlayerY, PickupY: in signed(9 downto 0);
         PipesX: in PipesArray;
         TopPipeHeight: in PipesArray;
         BottomPipeHeight: in PipesArray;
         Trigger: in std_logic;
         Done: out std_logic;
-        Collided, PickupCollided: out std_logic);
+        Collided, PickupCollided: out std_logic
+        );
     end component;
 
     component LFSR is port(
@@ -153,6 +156,7 @@ architecture behave of main is
         Done: inout std_logic;
     
         LifeCount: out unsigned(2 downto 0);
+        PickupCollided: in std_logic;
         Dead: out std_logic
         );
     end component;
@@ -178,6 +182,9 @@ architecture behave of main is
 				Clk, Reset, Enable: in std_logic;
 				Rand: in std_logic_vector(7 downto 0);
 
+                Speed: in signed(9 downto 0);
+                Lives: in unsigned(2 downto 0);
+
 				PlayerX: in signed(10 downto 0);
 				
 				PickupX: out signed(10 downto 0);
@@ -197,6 +204,7 @@ architecture behave of main is
 
     signal PlayerX: signed(10 downto 0);
     signal PlayerY: signed(9 downto 0);
+    signal PlayerSpeed: signed(9 downto 0);
 
 	signal PickupX: signed(10 downto 0);
 	signal PickupY: signed(9 downto 0);
@@ -228,7 +236,8 @@ architecture behave of main is
     signal UpdateSignal, 
            FinishedPlayerUpdate, 
            FinishedPipeUpdate, 
-           FinishedCollisionUpdate: std_logic;
+           FinishedCollisionUpdate,
+           FinishedPickupUpdate: std_logic;
     
     -- State Machine + Other Stateful Signals
     signal Collided, PickupCollided, Invincible, Dead: std_logic;
@@ -303,7 +312,7 @@ begin
                                 Start => Start,
                                 Train => Train,
                                 TryAgain => TryAgain,
-                                DebugLight => DebugLight);
+                                DebugLight => open);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
                           red => R, green => G, blue => B,
@@ -350,6 +359,7 @@ begin
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
         Rand => Rand,
+        Speed => PlayerSpeed,
         TopPipeHeights => TopPipeHeights,
         BottomPipeHeights => BottomPipeHeights,
         Trigger => UpdateSignal,
@@ -361,14 +371,18 @@ begin
     C6: collision port map(Clk => Clk,
                            PlayerX => PlayerX,
                            PlayerY => PlayerY,
+                           PickupX => PickupX,
+                           PickupY => PickupY,
                            PipesX => PipesXValues,
                            TopPipeHeight => TopPipeHeights,
                            BottomPipeHeight => BottomPipeHeights,
-                           Trigger => FinishedPipeUpdate and FinishedPlayerUpdate,
+                           Trigger => FinishedPipeUpdate and FinishedPlayerUpdate and FinishedPickupUpdate,
                            Done => FinishedCollisionUpdate,
                            Collided => Collided,
                            PickupCollided => PickupCollided
     );
+
+    DebugLight <= PickupCollided;
 
     C7: LFSR port map (
         clk => Clk,
@@ -388,7 +402,7 @@ begin
         -- Trigger and output 
         Trigger => FinishedCollisionUpdate,
         Done => open,
-        -- Todo: change score
+        
         ScoreOnes =>  scoreOnesSignal,
         ScoreTens => scoreTensSignal
     );
@@ -411,6 +425,7 @@ begin
         Trigger => FinishedCollisionUpdate,
         Done => open,
         LifeCount => Lives,
+        PickupCollided => PickupCollided,
         Dead => Dead
 	);
 
@@ -432,6 +447,9 @@ begin
 				Enable => GameRunning,
 				Rand => Rand,
 
+                Speed => PlayerSpeed,
+                Lives => Lives,
+
 				PlayerX => PlayerX,
 				
 				PickupX => PickupX,
@@ -440,8 +458,8 @@ begin
 				
 				HasCollided => PickupCollided,
 
-				Trigger => FinishedCollisionUpdate,
-				Done => open
+				Trigger => UpdateSignal,
+				Done => FinishedPickupUpdate
     );
 
 end architecture;

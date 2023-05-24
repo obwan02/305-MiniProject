@@ -24,15 +24,14 @@ begin
 
 	PICKUP_COLLISION: process(PlayerX, PlayerY, PickupX, PickupY)
 	begin
-		if PlayerX + constants.BIRD_WIDTH >= PickupX and
-		   PlayerX <= PickupX + constants.PICKUP_WIDTH and
-		   PlayerY + constants.BIRD_HEIGHT >= PickupY and
-		   PlayerY <= PickupY + constants.PICKUP_HEIGHT then
+		if (PlayerX + constants.BIRD_WIDTH) >= PickupX and
+		   PlayerX <= (PickupX + constants.PICKUP_WIDTH) and
+		   (PlayerY + constants.BIRD_HEIGHT) >= PickupY and
+		   PlayerY <= (PickupY + constants.PICKUP_HEIGHT) then
 			PickupCollided <= '1';
 		else
 			PickupCollided <= '0';
 		end if;
-
 	end process;
 
     PIPE_COLLISIONS: process(Clk)
