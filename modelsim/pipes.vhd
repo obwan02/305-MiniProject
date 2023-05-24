@@ -14,9 +14,11 @@ entity pipes is
         TopPipeHeights: out PipesArray;
         BottomPipeHeights: out PipesArray;
 
-        Trigger: in std_logic;
+        Speed: out signed(9 downto 0);
+
         IsTraining: in std_logic;
         ScoreTens: in std_logic_vector(3 downto 0);
+        Trigger: in std_logic;
         Done: out std_logic := '0'
     );
 end entity pipes;
@@ -66,9 +68,9 @@ begin
                     if IsTraining = '1' then
                         v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - TrainingSpeed;
                     else
-                        if scoreTens /= v_prevTensScore then
-                            v_NormalSpeed := v_NormalSpeed + 1;
-                            v_prevTensScore := scoreTens;
+                        v_NormalSpeed(4 downto 0) := signed("0" & ScoreTens) + 1;    
+                        if v_NormalSpeed >= constants.MAX_SPEED then 
+                            v_NormalSpeed := to_signed(constants.MAX_SPEED, 10);
                         end if;
                         v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - v_NormalSpeed;
                     end if;
@@ -81,6 +83,13 @@ begin
                 v_Index := v_Index + 1;
             end if;
         end if;
+
+        if IsTraining = '1' then 
+            Speed <= TrainingSpeed;
+        else
+            Speed <= v_NormalSpeed;
+        end if;
+
         PipesXValues <= v_PipesXValues;
     end process;
 

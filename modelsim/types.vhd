@@ -16,6 +16,8 @@ package constants is
 	constant PICKUP_HEIGHT: integer := 32;
 	constant PICKUP_WIDTH: integer := 32;
 
+    constant MAX_SPEED: integer := 6;
+
 
 
 	constant SCORE_TEXT: string := "Score";
