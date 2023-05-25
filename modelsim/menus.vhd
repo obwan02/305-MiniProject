@@ -144,7 +144,7 @@ TEXT2: text_renderer generic map("NORMAL", 2) port map(
     Clk => Clk,
     VgaCol => std_logic_vector(VgaCol),
     VgaRow => std_logic_vector(VgaRow),
-    X => to_signed(313, 11),
+    X => to_signed(320, 11),
     Y => to_signed(130, 10),
     Visible => NormalTextVisible
 
@@ -218,7 +218,7 @@ if rising_edge(Clk) then
                     v_StartB := "1110";
                     if LeftMouseButton = '1' then
                         v_Start := '1';
-                        Train <= '0';
+                        Train <= '1';
                     end if;
                 else
                     v_StartR := "1110";
