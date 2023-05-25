@@ -47,13 +47,14 @@ architecture behave of main is
     end component;
 
     component menus is port(
-        Clk, GameRunning, GameOver, TrainSwitch, LeftMouseButton : in std_logic;
+        Clk, GameRunning, TrainSwitch, LeftMouseButton : in std_logic;
         VGARow, VGACol                                           : in unsigned(9 downto 0);
         Score                                                    : in unsigned(9 downto 0);
         MouseRow, MouseCol                    : in unsigned(9 downto 0); 
         BackgroundR, BackgroundG, BackgroundB                    : in std_logic_vector(3 downto 0);
+        ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
         R, G, B                                                  : out std_logic_vector(3 downto 0);
-        Start, Train, TryAgain                                   : out std_logic;
+        Start, Train                                   : out std_logic;
         DebugLight : out std_logic);
     end component menus;
 
@@ -87,7 +88,7 @@ architecture behave of main is
 
     component pipes is
         port(
-            PipeClk, Enable: in std_logic;
+            PipeClk, Enable, Reset: in std_logic;
             PipeWidth: out signed(10 downto 0);
             Rand: in std_logic_vector(7 downto 0);
             PipesXValues: out PipesArray;
@@ -173,10 +174,9 @@ architecture behave of main is
         Dead: in std_logic;
         Start: in std_logic;
         Train : in std_logic;
-        TryAgain: in std_logic;
         GameRunning: out std_logic;
         TrainingStatus: out std_logic;
-        GameOver: out std_logic;
+        ShouldReset: out std_logic;
         DebugLight : out std_logic);
     end component state_machine;
 
@@ -243,13 +243,11 @@ architecture behave of main is
     
     -- State Machine + Other Stateful Signals
     signal Collided, PickupCollided, Invincible, Dead: std_logic;
-    signal ResetStateMachine, Start, Train, TryAgain : std_logic;
+    signal ResetStateMachine, Start, Train, ShouldReset : std_logic;
     -- 1 = GameRunning, 0 = game not running
     signal GameRunning : std_logic;
     -- Training mode = 1, Normal mode = 0
     signal TrainingStatus : std_logic;
-    -- 1 = Player has run out of lives.
-    signal GameOver : std_logic;
 
     signal BackgroundR, BackgroundG, BackgroundB: std_logic_vector(3 downto 0) := (others => '0');
     signal MenuR, MenuG, MenuB: std_logic_vector(3 downto 0);
@@ -297,7 +295,6 @@ begin
 
     MENU_RENDER: menus port map(Clk => Clk,
                                 GameRunning => GameRunning,
-                                GameOver => GameOver,
                                 TrainSwitch => TrainSwitch,
                                 LeftMouseButton => LeftMouseButton,
                                 VGARow => unsigned(VGARow),
@@ -308,12 +305,13 @@ begin
                                 BackgroundR => BackgroundR,
                                 BackgroundG => BackgroundG,
                                 BackgroundB => BackgroundB,
+                                ScoreOnes => scoreOnesSignal,
+                                ScoreTens => scoreTensSignal,
                                 R => MenuR,
                                 G => MenuG,
                                 B => MenuB,
                                 Start => Start,
                                 Train => Train,
-                                TryAgain => TryAgain,
                                 DebugLight => open);
 
     C2: vga_sync port map(clock_25Mhz => Clk25MHz,
@@ -331,7 +329,7 @@ begin
 
     C3: player_update port map(Clk => Clk,
                                Enable => GameRunning,
-                               Reset => '0',
+                               Reset => ShouldReset,
                                LeftMouseButton => LeftMouseButton,
                                NewX => PlayerX,
                                NewY => PlayerY,
@@ -355,9 +353,11 @@ begin
                        mouse_cursor_column => cursor_col
     );
 
+    -- We need reset for pipes
     C5: pipes port map(
         PipeClk => Clk,
         Enable => GameRunning,
+        Reset => ShouldReset,
         PipeWidth => PipeWidth,
         PipesXValues => PipesXValues,
         Rand => Rand,
@@ -394,7 +394,7 @@ begin
 
     C8: score_tracker port map(
         Clk => Clk, 
-        Reset => Dead,
+        Reset => ShouldReset,
         Enable => GameRunning,
         PlayerX => PlayerX,
         PlayerY => PlayerY,
@@ -422,7 +422,7 @@ begin
     C11: lives_system port map(
         Clk => Clk,
         Enable => GameRunning,
-        Reset => not pushbutton,
+        Reset => not pushbutton or ShouldReset,
         HasCollided => Collided,
         Trigger => FinishedCollisionUpdate,
         Done => open,
@@ -437,16 +437,15 @@ begin
         Dead => Dead,
         Start => Start,
         Train => Train,
-        TryAgain => '0',
         GameRunning => GameRunning,
         TrainingStatus => TrainingStatus,
-        GameOver => GameOver,
+        ShouldReset => ShouldReset,
         DebugLight => DebugLightState
     );
 	
 	C13: pickup port map(
 				Clk => Clk, 
-				Reset => '0',
+				Reset => ShouldReset,
 				Enable => GameRunning,
 				Rand => Rand,
 

@@ -3,13 +3,14 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity menus is port(
-    Clk, GameRunning, GameOver, TrainSwitch, LeftMouseButton : in std_logic;
+    Clk, GameRunning, TrainSwitch, LeftMouseButton : in std_logic;
     VGARow, VGACol                                           : in unsigned(9 downto 0);
     Score                                                    : in unsigned(9 downto 0);
     MouseRow, MouseCol                    : in unsigned(9 downto 0); 
     BackgroundR, BackgroundG, BackgroundB                    : in std_logic_vector(3 downto 0);
+    ScoreOnes, ScoreTens: in std_logic_vector(3 downto 0);
     R, G, B                                                  : out std_logic_vector(3 downto 0);
-    Start, Train, TryAgain                                   : out std_logic;
+    Start, Train                                   : out std_logic;
     DebugLight : out std_logic);
 end entity menus;
 
@@ -37,6 +38,19 @@ architecture behaviour of menus is
              Visible: out std_logic
              );
     end component;
+
+    component bcd_renderer is 
+        generic(SIZE: natural);
+        port(Clk: in std_logic;
+            X: in signed(10 downto 0);
+            Y: in signed(9 downto 0);
+            VgaCol, VgaRow: in std_logic_vector(9 downto 0);
+
+            ScoreOnes, ScoreTens: std_logic_vector(3 downto 0);
+
+            Visible: out std_logic
+            );
+    end component bcd_renderer;
     
 
     signal MouseR, MouseG, MouseB: std_logic_vector(3 downto 0);
@@ -52,6 +66,7 @@ architecture behaviour of menus is
     signal TrainTextVisible: std_logic;
     signal NormalTextVisible: std_logic;
     signal TopScoreTextVisible: std_logic;
+    signal ScoreNumberEnable: std_logic;
 
 begin
     CURSOR_ROM: sprite_rom generic map(Sprite_File => "ROM/CURSOR_ROM.mif",
@@ -69,12 +84,13 @@ begin
     StartG, StartB, BackgroundR, BackgroundG, BackgroundB, 
     ModeSelR, ModeSelG, ModeSelB, GameRunning)
     begin
+        -- Enable Bits, state whether the bit should be shown
         if GameRunning /= '1' then 
             if ShowCursor = '1' then
                 R <= MouseR;
                 G <= MouseG;
                 B <= MouseB;
-            elsif TrainTextVisible = '1' or TopScoreTextVisible = '1' or NormalTextVisible = '1' then
+            elsif TrainTextVisible = '1' or TopScoreTextVisible = '1' or NormalTextVisible = '1'  or ScoreNumberEnable = '1' then
                 R <= (others => '1'); G <= (others => '1'); B <= (others => '1');
             elsif StartEnable = '1' then
                 R <= StartR;
@@ -139,11 +155,21 @@ TOPSCORE: text_renderer generic map("TOPSCORE", 2) port map(
     Clk => Clk,
     VgaCol => std_logic_vector(VgaCol),
     VgaRow => std_logic_vector(VgaRow),
-    X => to_signed(312, 11),
+    X => to_signed(290, 11),
     Y => to_signed(400, 10),
     Visible => TopScoreTextVisible
 
 );
+
+-- Render the score on the menu
+SCORE_RENDER: bcd_renderer generic map(2) port map(Clk => Clk,
+    X => to_signed(430, 11),
+    Y => to_signed(400, 10),
+    VgaCol => std_logic_vector(VgaCol),
+    VgaRow => std_logic_vector(VgaRow),
+    Visible => ScoreNumberEnable,
+    ScoreOnes => ScoreOnes,
+    ScoreTens => ScoreTens);
 
 RENDER_START : process(Clk)
     variable v_Enable: std_logic;
@@ -202,6 +228,10 @@ if rising_edge(Clk) then
             end if;
 
         end if;
+    end if;
+
+    if GameRunning = '1' then 
+        v_Start := '0';
     end if;
 
     Start <= v_Start;

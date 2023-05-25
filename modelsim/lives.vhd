@@ -51,10 +51,10 @@ begin
 
                 Done <= '1';
             end if;
+        end if;
 
-            if Reset = '1' then 
-                Lives <= to_unsigned(3, 3); 
-            end if;
+        if Reset = '1' then 
+            Lives <= to_unsigned(3, 3); 
         end if;
     end process;
 end architecture;
