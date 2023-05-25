@@ -39,7 +39,7 @@ begin
         variable v_NormalSpeed: signed(9 downto 0) := to_signed(1, 10);
         variable v_prevTensScore: std_logic_vector(3 downto 0) := (others => '0');
 
-        variable v_Index: unsigned(2 downto 0);
+        variable v_Index: unsigned(3 downto 0);
         variable v_PipesXValues: PipesArray := (to_signed(100, 11), 
                                                 to_signed(200 + 80, 11), 
                                                 to_signed(300 + 160, 11),  
@@ -51,12 +51,11 @@ begin
                v_Index := (others => '0');
                s_Done <= '0';
             end if;
-    
 
             if (Trigger = '1' and s_Done = '0') and Enable = '1' then 
                 if (v_PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH <= 0) then
 
-                    v_PipesXValues(to_integer(v_Index)) := RightMostPixel;
+                    v_PipesXValues(to_integer(v_Index)) := RightMostPixel - (v_PipesXValues(to_integer(v_Index)) + constants.PIPE_WIDTH);
 
                     --asign the randomly generated heigt to the top pipes
                     TopPipeHeights(to_integer(v_Index)) <= signed("000" & Rand);
@@ -75,12 +74,14 @@ begin
                         v_PipesXValues(to_integer(v_Index)) := v_PipesXValues(to_integer(v_Index)) - v_NormalSpeed;
                     end if;
                 end if;
-            end if;
 
-            if v_Index = to_unsigned(3, 3) then 
-                s_Done <= '1';
-            else
-                v_Index := v_Index + 1;
+                if v_Index = to_unsigned(3, 3) then 
+                    s_Done <= '1';
+                    v_Index := (others => '0');
+                else
+                    v_Index := v_Index + 1;
+                end if;
+
             end if;
         end if;
 
