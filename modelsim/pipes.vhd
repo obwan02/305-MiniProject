@@ -7,7 +7,7 @@ use work.constants;
 
 entity pipes is
     port(
-        PipeClk, Enable: in std_logic;
+        PipeClk, Enable, Reset: in std_logic;
         PipeWidth: out signed(10 downto 0);
         Rand: in std_logic_vector(7 downto 0);
         PipesXValues: out PipesArray;
@@ -46,6 +46,14 @@ begin
                                                 to_signed(400 + 240, 11));
     begin
         if rising_edge(PipeClk) then
+
+            if Reset = '1' then 
+                for i in 0 to constants.PIPE_MAX_INDEX loop 
+                    v_PipesXValues(i) := to_signed(100*(i+1)+ i*constants.PIPE_WIDTH, 11);
+                    BottomPipeHeights(i) <= (others => '0');
+                    TopPipeHeights(i) <= (others => '0');
+                end loop;
+            end if;
 
             if Trigger = '0' then
                v_Index := (others => '0');

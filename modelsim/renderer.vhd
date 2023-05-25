@@ -228,6 +228,7 @@ begin
                     signed(VgaRow) >= (constants.SCREEN_HEIGHT - BottomPipeHeights(i))) and
                     signed('0' & VgaCol) >= PipesXValues(i) and
                     signed('0' & VgaCol) <= PipesXValues(i) + PipeWidth 
+                    and not (TopPipeHeights(i) = 0 and BottomPipeHeights(i) = 0)
                 then
                     v_PipePixelEnable(i) := '1';
                 else
